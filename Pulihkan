@@ -1,0 +1,38 @@
+#!/bin/bash
+
+echo "🚨 Memulai proses pemulihan Pterodactyl..."
+
+PTERO_DIR="/var/www/pterodactyl"
+BACKUP_DIR="/var/www/pterodactyl_backup_$(date +%F_%T)"
+
+echo "📦 Backup file lama ke $BACKUP_DIR"
+cp -r $PTERO_DIR $BACKUP_DIR
+
+echo "🗑️ Menghapus file panel lama..."
+rm -rf $PTERO_DIR/*
+
+echo "⬇️ Download ulang Pterodactyl terbaru..."
+cd /var/www
+curl -Lo panel.tar.gz https://github.com/pterodactyl/panel/releases/latest/download/panel.tar.gz
+mkdir -p $PTERO_DIR
+tar -xzvf panel.tar.gz -C $PTERO_DIR
+rm panel.tar.gz
+
+cd $PTERO_DIR
+
+echo "📂 Set permission..."
+chmod -R 755 storage/* bootstrap/cache
+chown -R www-data:www-data *
+
+echo "📦 Install dependency..."
+curl -sS https://getcomposer.org/installer | php
+php composer.phar install --no-dev --optimize-autoloader
+
+echo "🔄 Cache config..."
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+
+echo "✅ Selesai! Silakan restart nginx / apache"
+
+echo "💡 Jangan lupa cek file .env dan pastikan tidak berubah"
